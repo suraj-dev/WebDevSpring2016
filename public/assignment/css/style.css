@@ -8,6 +8,6 @@
     border-color: black;
 }
 
-.form-control.txtboxmedium {
+.form-group input[type=text], input[type=password], input[type=email] {
     width: 40%;
 }
