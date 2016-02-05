@@ -1,5 +1,5 @@
 .incrsize {
-    font-size: 125%;
+    font-size: 130%;
 }
 
 .separator {
@@ -8,10 +8,4 @@
     border-color: black;
 }
 
-.form-group input[type=text], input[type=password], input[type=email], button[type=submit] {
-    width: 40%;
-}
 
-#registerbtn {
-    width: 40%;
-}
