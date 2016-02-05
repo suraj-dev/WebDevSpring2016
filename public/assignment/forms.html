@@ -8,7 +8,6 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
     <title>Forms</title>
 
@@ -22,7 +21,7 @@
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -79,6 +78,7 @@
             </ul>
             <div class="table-responsive" id="formtable">
                 <table class="table table-striped table-bordered">
+                    <thead>
                     <tr>
                         <th><span class="glyphicon glyphicon-triangle-bottom"></span> Form Name</th>
                         <th><span class="glyphicon glyphicon-triangle-bottom"></span> Action</th>
@@ -87,18 +87,21 @@
                         <th><input type="text" name="usrname" placeholder="name"></th>
                         <th><span class="glyphicon glyphicon-plus incrsize"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-ok incrsize"</span></th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
-                        <td>Registration Form</td>
+                        <td><a href="form-fields.html">Registration Form</a></td>
                         <td><span class="glyphicon glyphicon-remove incrsize"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil incrsize"</span></td>
                     </tr>
                     <tr>
-                        <td>Contact List</td>
+                        <td><a href="form-fields.html">Contact List</a></td>
                         <td><span class="glyphicon glyphicon-remove incrsize"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil incrsize"</span></td>
                     </tr>
                     <tr>
-                        <td>To Do List</td>
+                        <td><a href="form-fields.html">To Do List</a></td>
                         <td><span class="glyphicon glyphicon-remove incrsize"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil incrsize"</span></td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
