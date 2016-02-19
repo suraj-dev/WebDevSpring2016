@@ -1,4 +1,5 @@
 (function(){
+    'use strict';
     angular
         .module("FormBuilderApp")
         .factory("UserService", UserService);
@@ -25,12 +26,16 @@
             updateUser: updateUser
         };
 
+        return service;
+
+
         function findUserByUsernameAndPassword(username, password, callback)
         {
-            for(user in users){
-                if(users[user].username==username && users[user].password==password)
+            var usr;
+            for(usr in users){
+                if(users[usr].username==username && users[usr].password==password)
                 {
-                    callback(users[user]);
+                    callback(users[usr]);
                 }
             }
             callback(null);
@@ -46,10 +51,13 @@
             user["_id"]= (new Date).getTime();
             users.push(user);
             callback(user);
+            console.log(users);
+
         }
 
         function deleteUserById(userId, callback)
         {
+            var user;
             for(user in users){
                 if(users[user]._id==userId)
                 {
@@ -61,10 +69,15 @@
 
         function updateUser(userId, user, callback)
         {
+            var usr;
             for(usr in users){
                 if(users[usr]._id==userId)
                 {
-                    users[usr]=user;
+                    users[usr].username= user.username;
+                    users[usr].password= user.password;
+                    users[usr].firstName= user.firstName;
+                    users[usr].lastName= user.lastName;
+                    users[usr].email_id= user.email_id;
                     callback(users[usr]);
                 }
             }

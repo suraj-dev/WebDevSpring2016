@@ -12,36 +12,36 @@
                 <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label label-left">Username:</label>
                     <div class="col-sm-7">
-                        <input type="text" size="10" class="form-control" id="inputName" placeholder="Username">
+                        <input type="text" size="10" class="form-control" id="inputName" placeholder="Username" ng-model="prfusrname">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Password:</label>
                     <div class="col-sm-7">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="prfpasswd">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputName2" class="col-sm-2 control-label">First Name:</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control" id="inputName2" placeholder="First Name">
+                        <input type="text" class="form-control" id="inputName2" placeholder="First Name" ng-model="prffirstname">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputName3" class="col-sm-2 control-label">Last Name:</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control" id="inputName3" placeholder="Last Name">
+                        <input type="text" class="form-control" id="inputName3" placeholder="Last Name" ng-model="prflastname">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Email:</label>
                     <div class="col-sm-7">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="prfemail">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-7">
-                        <button type="submit" class="btn btn-default btn-primary btn-block">Update</button>
+                        <button type="submit" class="btn btn-default btn-primary btn-block" ng-click="update()">Update</button>
                     </div>
                 </div>
             </form>
