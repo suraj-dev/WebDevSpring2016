@@ -21,33 +21,19 @@
                         <th><span class="glyphicon glyphicon-triangle-bottom"></span> Action</th>
                     </tr>
                     <tr>
-                        <th><input type="text" class="form-control" name="usrname" placeholder="name"></th>
+                        <th><input type="text" class="form-control" name="formname" placeholder="name" ng-model="frmname"></th>
                         <th>
-                            <a href="#"><span class="glyphicon glyphicon-plus incrsize"></span></a>&nbsp;&nbsp;&nbsp;
+                            <a href="#" ng-click="addForm()"><span class="glyphicon glyphicon-plus incrsize"></span></a>&nbsp;&nbsp;&nbsp;
                             <a href="#"><span class="glyphicon glyphicon-ok incrsize"</span></a>
                         </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td><a href="form-fields.view.html">Registration Form</a></td>
+                    <tr ng-repeat="form in forms">
+                        <td><a href="form-fields.view.html" ng-click="selectForm($index)">{{form.name}}</a></td>
                         <td>
-                            <a href="#"><span class="glyphicon glyphicon-remove incrsize"></span></a>&nbsp;&nbsp;&nbsp;
-                            <a href="#"><span class="glyphicon glyphicon-pencil incrsize"</span></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="form-fields.view.html">Contact List</a></td>
-                        <td>
-                            <a href="#"><span class="glyphicon glyphicon-remove incrsize"></span></a>&nbsp;&nbsp;&nbsp;
-                            <a href="#"><span class="glyphicon glyphicon-pencil incrsize"</span></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="form-fields.view.html">To Do List</a></td>
-                        <td>
-                            <a href="#"><span class="glyphicon glyphicon-remove incrsize"></span></a>&nbsp;&nbsp;&nbsp;
-                            <a href="#"><span class="glyphicon glyphicon-pencil incrsize"</span></a>
+                            <a href="#" ng-click="deleteForm($index)"><span class="glyphicon glyphicon-remove incrsize"></span></a>&nbsp;&nbsp;&nbsp;
+                            <a href="#" ng-click="updateForm($index)"><span class="glyphicon glyphicon-pencil incrsize"></span></a>
                         </td>
                     </tr>
                     </tbody>
