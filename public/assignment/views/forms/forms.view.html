@@ -23,17 +23,17 @@
                     <tr>
                         <th><input type="text" class="form-control" name="formname" placeholder="name" ng-model="frmname"></th>
                         <th>
-                            <a href="#" ng-click="addForm()"><span class="glyphicon glyphicon-plus incrsize"></span></a>&nbsp;&nbsp;&nbsp;
-                            <a href="#"><span class="glyphicon glyphicon-ok incrsize"</span></a>
+                            <a ng-click="addForm()"><span class="glyphicon glyphicon-plus incrsize"></span></a>&nbsp;&nbsp;&nbsp;
+                            <a ng-click="updateForm()"><span class="glyphicon glyphicon-ok incrsize"></span></a>
                         </th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="form in forms">
-                        <td><a href="form-fields.view.html" ng-click="selectForm($index)">{{form.name}}</a></td>
+                        <td><a href="form-fields.view.html" ng-click="selectForm($index)"> {{form.title}} </a></td>
                         <td>
-                            <a href="#" ng-click="deleteForm($index)"><span class="glyphicon glyphicon-remove incrsize"></span></a>&nbsp;&nbsp;&nbsp;
-                            <a href="#" ng-click="updateForm($index)"><span class="glyphicon glyphicon-pencil incrsize"></span></a>
+                            <a ng-click="deleteForm($index)"><span class="glyphicon glyphicon-remove incrsize"></span></a>&nbsp;&nbsp;&nbsp;
+                            <a ng-click="selectForm($index)"><span class="glyphicon glyphicon-pencil incrsize"></span></a>
                         </td>
                     </tr>
                     </tbody>

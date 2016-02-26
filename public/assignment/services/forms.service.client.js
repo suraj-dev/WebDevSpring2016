@@ -1,4 +1,5 @@
 (function(){
+    'use strict';
     angular
         .module("FormBuilderApp")
         .factory("FormService", FormService);
@@ -28,13 +29,17 @@
 
         function findAllFormsForUser(userId, callback){
             var form;
+            var formforuser = [];
             for(form in forms){
                 if(forms[form].userId == userId)
                 {
-                    callback(forms[form]);
+                    formforuser.push(forms[form]);
                 }
             }
-            callback(null);
+
+            callback(formforuser);
+            return formforuser;
+
         }
 
         function deleteFormById(formId, callback){

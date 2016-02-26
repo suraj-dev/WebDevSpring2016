@@ -53,7 +53,7 @@
             user["_id"]= (new Date).getTime();
             users.push(user);
             callback(user);
-            console.log(users);
+            return user;
 
         }
 
