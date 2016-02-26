@@ -36,9 +36,11 @@
                 if(users[usr].username==username && users[usr].password==password)
                 {
                     callback(users[usr]);
+                    return users[usr];
                 }
             }
             callback(null);
+            return null;
         }
 
         function findAllUsers(callback)

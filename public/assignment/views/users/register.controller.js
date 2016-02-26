@@ -12,9 +12,10 @@
                 email_id: $scope.eml
             };
 
-            UserService.createUser(user, function(response){
+            var newUser = UserService.createUser(user, function(response){
                 $rootScope.data=response;
             });
+            $rootScope.currentUser = newUser;
             $location.path("profile.view.html");
         }
     }

@@ -18,10 +18,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/register">Register</a></li>
-                <li><a href="#/login">Login</a></li>
-                <li><a href="#">Username</a></li>
-                <li><a href="#">Logout</a></li>
+                <li ng-hide="currentUser"><a href="#/register">Register</a></li>
+                <li ng-hide="currentUser"><a href="#/login">Login</a></li>
+                <li ng-show="currentUser"><a href="#/profile">{{currentUser.username}}</a></li>
+                <li ng-show="currentUser"><a href="#">Logout</a></li>
             </ul>
             <!-- Disabling Search Box-->
             <!--<form class="navbar-form navbar-right">

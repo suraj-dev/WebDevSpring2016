@@ -7,7 +7,6 @@
     function ProfileController($scope, $rootScope, UserService){
         $scope.prfusrname = $rootScope.data.username;
         $scope.prfpasswd = $rootScope.data.password;
-        $scope.prfemail = $rootScope.data.email_id;
         $scope.update = function(){
             var id = $rootScope.data._id;
             var user={
