@@ -8,12 +8,18 @@
         $scope.login = login;
 
         function login(){
-            var user = UserService.findUserByUsernameAndPassword($scope.lgnusrname, $scope.lgnpasswd, function(response){
+            var user = UserService.findUserByCredentials($scope.lgnusrname, $scope.lgnpasswd, function(response){
                 $rootScope.data = response;
             });
             $rootScope.currentUser = user;
-            if(user != null)
-            $location.url('/profile');
+            if (user != null) {
+                if ($rootScope.currentUser.roles.indexOf('admin') >= 0) {
+                    $location.url('/admin');
+                }
+                else
+                    $location.url('/profile');
+            }
+            else
             $scope.message = "Invalid credentials";
         }
     }

@@ -19,7 +19,7 @@
         ];
 
         var service = {
-            findUserByUsernameAndPassword: findUserByUsernameAndPassword,
+            findUserByCredentials: findUserByCredentials,
             findAllUsers: findAllUsers,
             createUser: createUser,
             deleteUserById: deleteUserById,
@@ -29,7 +29,7 @@
         return service;
 
 
-        function findUserByUsernameAndPassword(username, password, callback) {
+        function findUserByCredentials(username, password, callback) {
             var usr;
             for (usr in users) {
                 if (users[usr].username == username && users[usr].password == password)
