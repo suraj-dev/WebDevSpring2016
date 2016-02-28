@@ -8,6 +8,8 @@
         $scope.prfusrname = $rootScope.data.username;
         $scope.prfpasswd = $rootScope.data.password;
         $scope.prfemail = $rootScope.data.email_id;
+        $scope.prffirstname = $rootScope.data.firstName;
+        $scope.prflastname = $rootScope.data.lastName;
         $scope.update = update;
 
         function update(){

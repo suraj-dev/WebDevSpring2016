@@ -32,7 +32,7 @@
         function findUserByCredentials(username, password, callback) {
             var usr;
             for (usr in users) {
-                if (users[usr].username == username && users[usr].password == password)
+                if (users[usr].username === username && users[usr].password === password)
                 {
                     callback(users[usr]);
                     return users[usr];
@@ -57,7 +57,7 @@
         function deleteUserById(userId, callback) {
             var user;
             for (user in users) {
-                if (users[user]._id == userId)
+                if (users[user]._id === userId)
                 {
                     delete users[user];
                     callback(users);
@@ -69,7 +69,7 @@
         {
             var usr;
             for(usr in users) {
-                if(users[usr]._id == userId)
+                if(users[usr]._id === userId)
                 {
                     users[usr].username = user.username;
                     users[usr].password = user.password;
