@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="https://bootswatch.com/darkly/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="https://bootswatch.com/assets/css/custom.min.css">
-    <link rel="stylesheet" href="views/css/customstyles.css">
+    <link rel="stylesheet" href="../views/css/customstyles.css">
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top">
@@ -33,15 +33,26 @@
 </div>
 
 <div class="container">
-<div class="page-header text-center" id="pgheader">
-    <h1>Welcome to Tourista !</h1>
-</div>
-    <div class="input-group input-group-lg">
-        <input type="text" class="form-control" id="mainsearch" placeholder="Name of a location">
-             <span class="input-group-btn">
-        <button class="btn btn-primary" type="button">Search</button>
-      </span>
+<h1 class="page-header">Login</h1>
+<form class="form-horizontal">
+    <div class="form-group">
+        <label for="inputName" class="col-sm-2 control-label">Username:</label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control txtboxmedium" id="inputName" placeholder="Username" ng-model="lgnusrname">
+        </div>
     </div>
+    <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">Password:</label>
+        <div class="col-sm-7">
+            <input type="password" class="form-control txtboxmedium" id="inputPassword3" placeholder="Password" ng-model="lgnpasswd">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-7">
+            <button type="submit" class="btn btn-primary btn-block" ng-click="login()">Login</button>
+        </div>
+    </div>
+</form>
 </div>
 
 
