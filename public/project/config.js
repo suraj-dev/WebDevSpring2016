@@ -1,6 +1,3 @@
-/**
- * Created by surajnagaraj on 3/1/16.
- */
 (function(){
     'use strict';
     angular
@@ -24,7 +21,12 @@
                     templateUrl: "views/admin/admin.view.html"
                 })
                 .when('/home', {
-                    templateUrl: "views/home/home.view.html"
+                    templateUrl: "views/home/home.view.html",
+                    controller: "SearchController"
+                })
+                .when('/details', {
+                    templateUrl: "views/details/details.view.html",
+                    controller: "DetailsController"
                 })
                 .otherwise({
                     redirectTo: '/home'

@@ -1,18 +1,6 @@
-html {
-    background: url('../../../project/views/images/milky-way-984050_1920.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+#headerwrap
+{
+    margin-top: 0px;
 }
 
-body
-{
-    background-color: inherit;
-}
-
-#pgheader
-{
-    padding-top: 10%;
-}
 
