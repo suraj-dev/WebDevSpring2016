@@ -9,10 +9,25 @@ html {
 body
 {
     background-color: inherit;
+    padding-bottom: 70px;
 }
 
 #pgheader
 {
     padding-top: 10%;
 }
+
+.detailsbg
+{
+    background: #080307;
+    opacity: 0.7;
+}
+
+.navbar.navbar-default.navbar-fixed-bottom
+{
+    height: 10px;
+    padding-bottom: 60px;
+    border: transparent;
+}
+
 
