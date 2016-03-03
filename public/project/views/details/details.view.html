@@ -4,5 +4,12 @@
 <div ng-bind-html="location_content">
 
 </div>
+    <h2>Image Gallery:</h2>
+    <iframe
+            class = "nobg"
+            ng-src={{imgSrc}}
+            frameborder="0" width="1000" height="500" scrolling="no" marginwidth="0" marginheight="0">
+    </iframe>
     <h2>Google Maps:</h2>
-    <div id="map"></div><ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>v>
+    <div id="map" class="nobg"></div><ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>v>
+</div>

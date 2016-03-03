@@ -34,3 +34,8 @@ body
 {
     height: 400px;
 }
+
+.nobg
+{
+  background: none;
+}
