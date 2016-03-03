@@ -4,12 +4,9 @@
         .module("TouristaApp")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($scope, $rootScope, $sce, $routeParams, $http, $templateCache) {
+    function DetailsController($scope, $rootScope, $sce, $routeParams, LocationService) {
         var pageid = $routeParams.pageid;
-        $http({method: 'JSONP',
-            url: "http://wikitravel.org/wiki/en/api.php?action=query&format=json&callback=JSON_CALLBACK&prop=extracts&pageids=" + pageid,
-            cache: $templateCache})
-            .success(function(response) {
+        LocationService.findLocationByID(pageid, function(response) {
                 console.log(response);
                 $rootScope.data = response;
                 $scope.detailsbg = "detailsbg";
