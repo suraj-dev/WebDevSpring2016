@@ -24,9 +24,13 @@
                     templateUrl: "views/home/home.view.html",
                     controller: "SearchController"
                 })
-                .when('/details', {
+                .when('/details/:pageid', {
                     templateUrl: "views/details/details.view.html",
                     controller: "DetailsController"
+                })
+                .when('/searchresults', {
+                    templateUrl: "views/searchresults/searchresults.view.html",
+                    controller: "SearchResultsController"
                 })
                 .otherwise({
                     redirectTo: '/home'
