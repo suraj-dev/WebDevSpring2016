@@ -20,21 +20,23 @@
 
         function request_yelp(name, callback) {
                     var method = 'GET';
-                    var url = 'http://api.yelp.com/v2/search';
+                    var url = 'http://api.yelp.com/v2/search?callback=JSON_CALLBACK';
                     var params = {
                         callback: 'angular.callbacks._0',
-                        location: 'San+Francisco',
+                        location: name,
+                        limit : 10,
+                        sort: 2,
                         oauth_consumer_key: 'j-Kgx6pccnY0mCsvijWBww', //Consumer Key
                         oauth_token: '_rZOi_LkB62ikZ8eF6MBKU-NwPrHha6v', //Token
                         oauth_signature_method: "HMAC-SHA1",
                         oauth_timestamp: new Date().getTime(),
-                        oauth_nonce: randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'),
-                        term: 'food'
+                        oauth_nonce: randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
                     };
                     var consumerSecret = 'iwTJ65m5paNf7CG_HLKU7xAJw2w'; //Consumer Secret
                     var tokenSecret = 'kL1vObCNdFETxcJqOZ7o_G6b_tQ'; //Token Secret
                     var signature = oauthSignature.generate(method, url, params, consumerSecret, tokenSecret, { encodeSignature: false});
                     params['oauth_signature'] = signature;
+
                     $http.jsonp(url, {params: params})
                         .success(callback);
                 }
