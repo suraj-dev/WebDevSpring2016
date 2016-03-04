@@ -28,4 +28,24 @@
     </div>
     <h2>Google Maps:</h2>
     <div id="map" class="nobg"></div><ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+    <h2>Reviews</h2>
+    <h4 ng-hide="currentUser">Sign in to post reviews</h4>
+    <div class="row" ng-show="currentUser">
+
+        <div class="col-md-6">
+            <div class="widget-area no-padding blank">
+                <div class="status-upload">
+                    <form>
+                        <textarea placeholder="What are your thoughts about this place?" ></textarea>
+                        <ul>
+                            <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
+                        </ul>
+                        <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
+                    </form>
+                </div><!-- Status Upload  -->
+            </div><!-- Widget Area -->
+        </div>
+
+    </div>
+</div>
 </div>
