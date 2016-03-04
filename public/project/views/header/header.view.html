@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-default navbar-fixed-top" ng-controller="HeaderController">
     <div class="container">
         <div class="navbar-header">
             <a href="#/home" class="navbar-brand">Tourista</a>
@@ -11,10 +11,11 @@
         <div class="navbar-collapse collapse" id="navbar-main">
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/login">Login</a></li>
-                <li><a href="#/register">Register</a></li>
+                <li ng-hide="currentUser"><a href="#/register">Register</a></li>
+                <li ng-hide="currentUser"><a href="#/login">Login</a></li>
+                <li ng-show="currentUser"><a href="#/profile">{{currentUser.username}}</a></li>
+                <li ng-show="currentUser"><a ng-click= "logout()">Logout</a></li>
             </ul>
-
         </div>
     </div>
 </div>

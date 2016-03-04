@@ -39,3 +39,7 @@ body
 {
   background: none;
 }
+
+a {
+    cursor: pointer;
+}
