@@ -1,6 +1,44 @@
 #headerwrap
 {
     margin-top: 0px;
+    background: #2f2f2f;
+    padding-top: 60px;
 }
 
+a
+{
+   color: #3c80d4;
+}
+
+body
+{
+    font-weight: normal;
+    font-size: 20px;
+}
+
+h1, h2, h3, h4, h5
+{
+    font-weight: normal;
+}
+
+.h5, h5
+{
+    font-size: 20px;
+}
+
+.desc more
+{
+    color: #333;
+}
+
+sm
+{
+    font-size: 16px;
+}
+
+.btn-github
+{
+    height: 100px;
+    width: 100px;
+}
 
