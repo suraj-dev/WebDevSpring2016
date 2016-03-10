@@ -78,6 +78,7 @@
                     users[usr].email_id = user.email_id;
                     users[usr].dob = user.dob;
                     users[usr].hometown = user.hometown;
+                    users[usr].roles = user.roles;
                     callback(users[usr]);
                 }
             }
