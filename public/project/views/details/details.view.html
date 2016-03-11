@@ -1,16 +1,17 @@
 <div ng-class="detailsbg">
-<h1>{{location_name}}</h1>
 
+<h1>{{location_name}} &nbsp;&nbsp;</h1><a ng-click="goToImageGallery($event)">Image Gallery</a> &nbsp; <a ng-click="goToGmaps($event)">Google Maps</a> &nbsp; <a ng-click="goToReviews($event)">Reviews</a> &nbsp; <a ng-click="goToPtsOfInterest($event)">Points of Interest</a>
+    <br>
 <div ng-bind-html="location_content">
 
 </div>
-    <h2>Image Gallery:</h2>
+    <h2 id="imgGallery">Image Gallery:</h2>
     <iframe
             class = "nobg"
             ng-src={{imgSrc}}
             frameborder="0" width="500" height="500" scrolling="no" marginwidth="0" marginheight="0">
     </iframe>
-    <h2>Points of Interest:</h2>
+    <h2 id="ptsOfInterest">Points of Interest:</h2>
     <div class="row">
         <div  ng-repeat="poi in yelpInfo.businesses">
         <div class="col-sm-6 col-md-4">
@@ -26,9 +27,14 @@
         </div>
     </div>
     </div>
-    <h2>Google Maps:</h2>
-    <div id="map" class="nobg"></div><ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
-    <h2>Reviews</h2>
+    <h2 id="gmaps">Google Maps:</h2>
+    <div id="map" class="nobg"></div><ui-gmap-google-map center='map.center' zoom='map.zoom'>
+    <ui-gmap-marker
+            idkey="marker.id" coords='marker.location'>
+    </ui-gmap-marker>
+</ui-gmap-google-map>
+
+    <h2 id="reviews">Reviews</h2>
     <h4 ng-hide="currentUser">Sign in to post reviews</h4>
     <div class="row" ng-show="currentUser">
 

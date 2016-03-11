@@ -4,7 +4,7 @@
         .module("TouristaApp")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($scope, $rootScope, $sce, $routeParams, LocationService, YelpAPIService, $window) {
+    function DetailsController($scope, $rootScope, $sce, $routeParams, LocationService, YelpAPIService, $location, $anchorScroll) {
         var pageid = $routeParams.pageid;
         var pageTitle;
         LocationService.findLocationByID(pageid, function(response) {
@@ -25,6 +25,23 @@
                                 if (pageinfo.query.pages.hasOwnProperty(key)) {
                                     pageTitle = pageinfo.query.pages[key].title;
                                     console.log(pageTitle);
+                                    var geocoder =  new google.maps.Geocoder();
+                                    geocoder.geocode( { 'address': pageTitle}, function(results, status) {
+                                        if (status == google.maps.GeocoderStatus.OK) {
+                                            $scope.map = { center: { latitude: results[0].geometry.location.lat(), longitude: results[0].geometry.location.lng() }, zoom: 8 };
+                                            $scope.marker = {
+                                                id : 0,
+                                                location: {
+                                                    latitude: results[0].geometry.location.lat(),
+                                                    longitude: results[0].geometry.location.lng()
+                                                }
+                                            };
+                                        }
+
+                                        else {
+                                            $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+                                        }
+                                    });
                                     $scope.imgSrc = $sce.trustAsResourceUrl("http://www.panoramio.com/wapi/template/photo_list.html?tag=" + pageTitle +"&amp;width=500&amp;height=500&amp;list_size=8&amp;position=bottom&amp;bgcolor=%2333");
                                     YelpAPIService.request_yelp(pageTitle, function(response){
                                         console.log(response);
@@ -34,7 +51,6 @@
                                 }
                             }
                         });
-                        $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
                     }
                 }
             });
@@ -62,6 +78,50 @@
 
         function deleteComment(index) {
             $scope.comments.splice(index,1);
+        }
+
+        $scope.goToImageGallery = goToImageGallery;
+
+        function goToImageGallery(event) {
+            var id = $location.hash();
+            event.stopPropagation();
+            event.preventDefault();
+            $location.hash('imgGallery');
+            $anchorScroll();
+            $location.hash(id);
+        }
+
+        $scope.goToGmaps = goToGmaps;
+
+        function goToGmaps(event) {
+            var id = $location.hash();
+            event.stopPropagation();
+            event.preventDefault();
+            $location.hash('gmaps');
+            $anchorScroll();
+            $location.hash(id);
+        }
+
+        $scope.goToReviews = goToReviews;
+
+        function goToReviews(event) {
+            var id = $location.hash();
+            event.stopPropagation();
+            event.preventDefault();
+            $location.hash('reviews');
+            $anchorScroll();
+            $location.hash(id);
+        }
+
+        $scope.goToPtsOfInterest = goToPtsOfInterest;
+
+        function goToPtsOfInterest(event) {
+            var id = $location.hash();
+            event.stopPropagation();
+            event.preventDefault();
+            $location.hash('ptsOfInterest');
+            $anchorScroll();
+            $location.hash(id);
         }
 
         }

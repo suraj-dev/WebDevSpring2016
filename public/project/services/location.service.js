@@ -13,7 +13,7 @@
             findLocationByID: findLocationByID,
             findTitleByID : findTitleByID,
             findComments : findComments,
-            postComment : postComment
+            postComment : postComment,
         };
 
         return service;
