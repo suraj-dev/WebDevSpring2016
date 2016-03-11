@@ -6,11 +6,14 @@
 
     function locationService($http, $templateCache) {
 
+        var comments = [];
+
         var service = {
             findLocationByTitle: findLocationByTitle,
             findLocationByID: findLocationByID,
-           /* imageProvider: imageProvider,*/
-            findTitleByID : findTitleByID
+            findTitleByID : findTitleByID,
+            findComments : findComments,
+            postComment : postComment
         };
 
         return service;
@@ -51,6 +54,23 @@
                 cache: $templateCache
             })
                 .success(callback);
+        }
+
+        function findComments(locationId, callback) {
+            var commentsForLocation = [];
+            for (var com in comments) {
+                if (comments[com].locationId === locationId)
+                {
+                    commentsForLocation.push(comments[com]);
+                }
+            }
+
+            callback(commentsForLocation);
+        }
+
+        function postComment(comment, callback) {
+            comments.push(comment);
+            callback(comment);
         }
 
     }

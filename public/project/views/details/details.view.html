@@ -36,16 +36,37 @@
             <div class="widget-area no-padding blank">
                 <div class="status-upload">
                     <form>
-                        <textarea placeholder="What are your thoughts about this place?" ></textarea>
+                        <textarea placeholder="What are your thoughts about this place?" ng-model="commentBox"></textarea>
                         <ul>
                             <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
                         </ul>
-                        <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
+                        <button type="submit" class="btn btn-success green" ng-click="postComment()"><i class="fa fa-share"></i> Share</button>
                     </form>
                 </div><!-- Status Upload  -->
             </div><!-- Widget Area -->
         </div>
 
     </div>
-</div>
+
+    <!-- Displaying comments -->
+    <div ng-repeat="comment in comments">
+    <div class="row">
+        <div class="col-sm-1">
+            <div class="thumbnail">
+                <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+            </div><!-- /thumbnail -->
+        </div><!-- /col-sm-1 -->
+
+        <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>{{comment.username}}</strong> <span class="text-muted">{{comment.timestamp}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="glyphicon glyphicon-remove" ng-click="deleteComment($index)"></span>
+                </div>
+                <div class="panel-body">
+                    {{comment.comment}}
+                </div><!-- /panel-body -->
+            </div><!-- /panel panel-default -->
+        </div><!-- /col-sm-5 -->
+    </div>
+    </div>
 </div>
