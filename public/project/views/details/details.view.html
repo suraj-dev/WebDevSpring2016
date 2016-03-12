@@ -1,6 +1,14 @@
 <div ng-class="detailsbg">
 
-<h1>{{location_name}} &nbsp;&nbsp;</h1><a ng-click="goToImageGallery($event)">Image Gallery</a> &nbsp; <a ng-click="goToGmaps($event)">Google Maps</a> &nbsp; <a ng-click="goToReviews($event)">Reviews</a> &nbsp; <a ng-click="goToPtsOfInterest($event)">Points of Interest</a>
+<h1>{{location_name}} &nbsp;&nbsp;
+    <span class="rating">
+<span class="star"></span>
+<span class="star"></span>
+<span class="star"></span>
+<span class="star"></span>
+<span class="star"></span>
+</span>
+    &nbsp;<a href=""><span class="glyphicon glyphicon-heart"></span></a> &nbsp; <a href=""><span class="glyphicon glyphicon-ok"></span></a></h1><a ng-click="goToImageGallery($event)">Image Gallery</a> &nbsp; <a ng-click="goToGmaps($event)">Google Maps</a> &nbsp; <a ng-click="goToReviews($event)">Reviews</a> &nbsp; <a ng-click="goToPtsOfInterest($event)">Points of Interest</a>
     <br>
 <div ng-bind-html="location_content">
 
@@ -66,7 +74,7 @@
         <div class="col-sm-5">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <strong>{{comment.username}}</strong> <span class="text-muted">{{comment.timestamp}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="glyphicon glyphicon-remove" ng-click="deleteComment($index)"></span>
+                    <a href="#/profile"><strong>{{comment.username}}</strong></a> <span class="text-muted">{{comment.timestamp}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="glyphicon glyphicon-remove" ng-click="deleteComment($index)"></span>
                 </div>
                 <div class="panel-body">
                     {{comment.comment}}
