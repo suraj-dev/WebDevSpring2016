@@ -11,9 +11,9 @@
         var service = {
             findLocationByTitle: findLocationByTitle,
             findLocationByID: findLocationByID,
-            findTitleByID : findTitleByID,
-            findComments : findComments,
-            postComment : postComment,
+            findTitleByID: findTitleByID,
+            findComments: findComments,
+            postComment: postComment,
         };
 
         return service;
@@ -37,15 +37,6 @@
                 .success(callback);
             page_id = id;
         }
-
-        /*function imageProvider(callback) {
-            $http({
-                method: 'JSONP',
-                url: "http://wikitravel.org/wiki/en/api.php?action=query&format=json&callback=JSON_CALLBACK&prop=imageinfo&pageids=" +  page_id +"&generator=images&redirects=1&iiprop=url",
-                cache: $templateCache
-            })
-                .success(callback);
-        }*/
 
         function findTitleByID(pageid, callback) {
             $http({
