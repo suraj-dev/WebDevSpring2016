@@ -71,7 +71,7 @@
             "_id": "999",
             "label": "Due Date",
             "type": "DATE"
-          },
+          }
         ]
       }
     ]
