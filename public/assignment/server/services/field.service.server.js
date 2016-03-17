@@ -37,6 +37,4 @@ module.exports = function(app, formModel, userModel) {
         var field = req.body;
         formModel.updateFieldById(fieldId, field, formId);
     }
-
-
 };
