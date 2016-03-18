@@ -68,6 +68,8 @@ module.exports = function () {
                 mock[u].password = user.password;
                 mock[u].firstName = user.firstName;
                 mock[u].lastName = user.lastName;
+                mock[u].email_id = user.email_id;
+                console.log(mock[u]);
             }
         }
     }

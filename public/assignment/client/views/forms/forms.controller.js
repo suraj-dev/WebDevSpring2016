@@ -14,7 +14,8 @@
         FormService
             .findAllFormsForUser(user_id)
             .then(function (response) {
-                $scope.forms = response.data;
+                console.log(response.data);
+                vm.forms = response.data;
             });
 
         vm.addForm = addForm;
@@ -24,10 +25,12 @@
                 title: frm.title
             };
             FormService
-                .createFormForUser($rootScope.data._id, form)
+                .createFormForUser($rootScope.currentUser._id, form)
                 .then(function(response) {
-                    vm.forms.push(response);
-            });
+                    vm.forms = response.data;
+            }, function(error) {
+                    console.log(error);
+                });
         }
 
         var selectedFormId = -1;
@@ -49,7 +52,7 @@
             FormService
                 .updateFormById(selectedFormId, newForm)
                 .then(function(response) {
-
+                    vm.forms = response.data;
             });
         }
 
@@ -57,6 +60,7 @@
 
         function deleteForm(index) {
             var form_id = vm.forms[index]._id;
+            console.log(form_id);
             FormService
                 .deleteFormById(form_id)
                 .then(function(response) {

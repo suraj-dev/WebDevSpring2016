@@ -41,7 +41,7 @@ module.exports = function () {
     }
 
     function createForm(form, userId) {
-        form._id = (new Date()).getTime();
+        form._id = (new Date()).getTime().toString();
         form.userId = userId;
         mock.push(form);
         return mock;
@@ -59,7 +59,7 @@ module.exports = function () {
         for (var u in mock) {
             if (mock[u]._id === formId) {
                 mock[u].title = form.title;
-                mock[u].fields = form.fields;
+                return mock;
             }
         }
     }
@@ -71,6 +71,7 @@ module.exports = function () {
                 forms.push(mock[u]);
             }
         }
+        return forms;
     }
 
     function findFieldsByFormId(formId) {

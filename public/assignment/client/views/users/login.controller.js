@@ -27,6 +27,9 @@
                         console.log(response.data);
                         $location.url("/profile");
                     }
+                    else {
+                        vm.message = "Invalid credentials";
+                    }
                 });
         }
     }

@@ -24,10 +24,9 @@
             UserService
                 .createUser(usr)
                 .then(function (response) {
-                    $rootScope.data = response;
                     var newUser = response.data;
                     console.log(newUser);
-                    UserService.setCurrentUser(usr);
+                    UserService.setCurrentUser(newUser[newUser.length - 1]);
                     $location.url("/profile");
                 });
 
