@@ -101,12 +101,57 @@
 
         function textPop() {
             var modalInstance = $uibModal.open({
-                templateUrl: 'myModalContent.html',
-                controller: 'ModalInstanceCtrl'
+                templateUrl: '/assignment/client/views/forms/modal/singleLineField.html'
+                /*controller: 'ModalInstanceCtrl'*/
             });
         }
 
-        angular.module('FormBuilderApp')
+        vm.textAreaPop = textAreaPop;
+
+        function textAreaPop() {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/assignment/client/views/forms/modal/singleLineField.html'
+                /*controller: 'ModalInstanceCtrl'*/
+            });
+        }
+
+        vm.datePop = datePop;
+
+        function datePop() {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/assignment/client/views/forms/modal/date.html'
+                /*controller: 'ModalInstanceCtrl'*/
+            });
+        }
+
+        vm.optionsPop = optionsPop;
+
+        function optionsPop() {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/assignment/client/views/forms/modal/options.html'
+                /*controller: 'ModalInstanceCtrl'*/
+            });
+        }
+
+        vm.checkboxPop = checkboxPop;
+
+        function checkboxPop() {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/assignment/client/views/forms/modal/options.html'
+                /*controller: 'ModalInstanceCtrl'*/
+            });
+        }
+
+        vm.radioPop = radioPop;
+
+        function radioPop() {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/assignment/client/views/forms/modal/options.html'
+                /*controller: 'ModalInstanceCtrl'*/
+            });
+        }
+
+     /*  angular.module('FormBuilderApp')
             .controller('ModalInstanceCtrl', function ($uibModalInstance) {
 
             vm.ok = function () {
@@ -116,6 +161,6 @@
             vm.cancel = function () {
                 $uibModalInstance.dismiss('cancel');
             };
-        });
+        });*/
     }
 })();
