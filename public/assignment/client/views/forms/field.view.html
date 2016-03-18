@@ -1,170 +1,148 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-    <title>Forms</title>
-</head>
-
-<body>
-
-            <h1 class="page-header">Forms</h1>
-            <ul class="nav nav-tabs">
-                <li role="presentation"><a href="#/forms">Forms</a></li>
-                <li role="presentation" class="active"><a href="#formFields">Fields</a></li>
-            </ul>
-            <br>
-            <div class="container" id="formFields">
-                <div class="row">
-                    <div class="col-sm-9">
-                        <label for="inputName">First Name:</label>
-                        <div class="row">
-                            <div class="col-xs-8 col-sm-6">
-                                <input type="text" class="form-control" id="inputName" placeholder="First Name">
-                            </div>
-                            <div class="col-xs-4 col-sm-6">
-                                <a href="#"><span class="glyphicon glyphicon-pencil incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-plus incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-remove incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
-                            </div>
+<h1 class="page-header">Forms</h1>
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="#/forms">Forms</a></li>
+    <li role="presentation" class="active"><a href="#formFields">Fields</a></li>
+</ul>
+<br>
+<div class="container" id="formFields" jga-sortable jga-axis="y">
+    <div ng-repeat="field in model.fields">
+        <div ng-switch="field.type">
+            <div class="row" ng-switch-when="TEXT">
+                <div class="col-sm-9">
+                    <label for="inputName">{{field.label}}</label>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-6">
+                            <input type="text" class="form-control" id="inputName" placeholder="field.placeholder">
                         </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <label for="inputName2">Last Name:</label>
-                        <div class="row">
-                            <div class="col-xs-8 col-sm-6">
-                                <input type="text" class="form-control" id="inputName2" placeholder="Last Name">
-                            </div>
-                            <div class="col-xs-4 col-sm-6">
-                                <a href="#"><span class="glyphicon glyphicon-pencil incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-plus incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-remove incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <label for="inputDate">Date of Birth:</label>
-                        <div class="row">
-                            <div class="col-xs-8 col-sm-6">
-                                <input type="date" class="form-control" id="inputDate" placeholder="Select Date">
-                            </div>
-                            <div class="col-xs-4 col-sm-6">
-                                <a href="#"><span class="glyphicon glyphicon-pencil incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-plus incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-remove incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <label for="inputGender">Gender:</label>
-                        <div class="row">
-                            <div class="col-xs-8 col-sm-6">
-                                <select name="gender" id="inputGender" class="form-control">
-                                    <option value="male" selected>Male</option>
-                                    <option value="female">Female</option>
-                                </select>
-                            </div>
-                            <div class="col-xs-4 col-sm-6">
-                                <a href="#"><span class="glyphicon glyphicon-pencil incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-plus incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-remove incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <label>Roles:</label>
-                        <div class="row">
-                            <div class="col-xs-8 col-sm-6">
-                                <div class="checkbox" id="inputRole">
-                                    <label><input type="checkbox" value="" checked>Admin</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value="">Student</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value="" checked>User</label>
-                                </div>
-                            </div>
-                            <div class="col-xs-4 col-sm-6">
-                                <a href="#"><span class="glyphicon glyphicon-pencil incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-plus incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-remove incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <label>License Agreement:</label>
-                        <div class="row">
-                            <div class="col-xs-8 col-sm-6">
-                                <div class="radio">
-                                    <label><input type="radio" name="optradio" checked>Yes</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="optradio">No</label>
-                                </div>
-                            </div>
-                            <div class="col-xs-4 col-sm-6">
-                                <a href="#"><span class="glyphicon glyphicon-pencil incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-plus incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-remove incrsize"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <hr class="separator">
-                <br>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <label for="inputField">Add New Field:</label>
-                        <div class="row">
-                            <div class="col-xs-8 col-sm-6">
-                                <select name="gender" id="inputField" class="form-control" ng-model = "model.fieldType">
-                                    <option value="Single Line Text" selected>Single Line Text</option>
-                                    <option value="Date">Date</option>
-                                    <option value="Dropdown">Dropdown</option>
-                                    <option value="Checkboxes">Checkboxes</option>
-                                    <option value="Radio buttons">Radio buttons</option>
-                                    <option value="Paragraph Text Field">Paragraph Text Field</option>
-                                </select>
-                            </div>
-                            <div class="col-xs-4 col-sm-6">
-                                <span>&nbsp;</span><a href="#"><span class="glyphicon glyphicon-plus incrsize" ng-click = 'addField()'></span></a>
-                            </div>
+                        <div class="col-xs-4 col-sm-6">
+                            <a href=""><span class="glyphicon glyphicon-pencil incrsize" ng-click = "model.textPop()"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-remove incrsize"
+                                              ng-click="model.removeField($index)"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
                         </div>
                     </div>
                 </div>
             </div>
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-<script src="../../assets/js/vendor/holder.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-</body>
-</html>
+            <br>
+            <div class="row" ng-switch-when="DATE">
+                <div class="col-sm-9">
+                    <label for="inputDate">{{field.label}}</label>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-6">
+                            <input type="date" class="form-control" id="inputDate" placeholder="field.placeholder">
+                        </div>
+                        <div class="col-xs-4 col-sm-6">
+                            <a href=""><span class="glyphicon glyphicon-pencil incrsize" ng-click = "model.datePop()"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-remove incrsize"
+                                              ng-click="model.removeField($index)"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row" ng-switch-when="OPTIONS">
+                <div class="col-sm-9">
+                    <label for="inputGender">{{field.label}}</label>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-6">
+                            <select name="gender" id="inputGender" class="form-control">
+                                <option value="option.value" ng-repeat="option in field.options">{{option.label}}</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-4 col-sm-6">
+                            <a href=""><span class="glyphicon glyphicon-pencil incrsize" ng-click = "model.optionsPop()"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-remove incrsize"
+                                              ng-click="model.removeField($index)"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row" ng-switch-when="CHECKBOXES">
+                <div class="col-sm-9">
+                    <label>{{field.label}}</label>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-6">
+                            <div class="checkbox" id="inputRole" ng-repeat="option in field.options">
+                                <label><input type="checkbox" value="option.value">{{option.label}}</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-6">
+                            <a href=""><span class="glyphicon glyphicon-pencil incrsize" ng-click = "model.checkboxPop()"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-remove incrsize"
+                                              ng-click="model.removeField($index)"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row" ng-switch-when="RADIOS">
+                <div class="col-sm-9">
+                    <label>{{field.label}}</label>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-6">
+                            <div class="radio" ng-repeat="option in field.options">
+                                <label><input type="radio" value="option.value" name="optradio">{{option.label}}</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-6">
+                            <a href=""><span class="glyphicon glyphicon-pencil incrsize" ng-click = "model.radioPop()"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-remove incrsize"
+                                              ng-click="model.removeField($index)"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-switch-when="TEXTAREA">
+                <div class="col-sm-9">
+                    <label>{{field.label}}</label>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-6">
+                            <textarea class="form-control" rows="4" id="comment"></textarea>
+                        </div>
+                        <div class="col-xs-4 col-sm-6">
+                            <a href=""><span class="glyphicon glyphicon-pencil incrsize" ng-click = "model.textAreaPop()"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-remove incrsize"
+                                              ng-click="model.removeField($index)"></span></a>
+                            <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+    <hr class="separator">
+    <div class="row">
+        <div class="col-sm-9">
+            <label for="inputField">Add New Field:</label>
+            <div class="row">
+                <div class="col-xs-8 col-sm-6">
+                    <select name="gender" id="inputField" class="form-control" ng-model="model.fieldType">
+                        <option value="Single Line Text" selected>Single Line Text</option>
+                        <option value="Date">Date</option>
+                        <option value="Dropdown">Dropdown</option>
+                        <option value="Checkboxes">Checkboxes</option>
+                        <option value="Radio buttons">Radio buttons</option>
+                        <option value="Paragraph Text Field">Multiline Text</option>
+                    </select>
+                </div>
+                <div class="col-xs-4 col-sm-6">
+                    <span>&nbsp;</span><a href=""><span class="glyphicon glyphicon-plus incrsize"
+                                                         ng-click='model.addField(model.fieldType)'></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

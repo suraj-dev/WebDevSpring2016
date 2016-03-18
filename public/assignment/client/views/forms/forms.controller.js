@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .controller("FormController", FormController);
 
-    function FormController($rootScope, FormService) {
+    function FormController($rootScope, FormService, $location) {
 
         var user_id = $rootScope.currentUser._id;
 
@@ -14,7 +14,6 @@
         FormService
             .findAllFormsForUser(user_id)
             .then(function (response) {
-                console.log(response.data);
                 vm.forms = response.data;
             });
 
@@ -60,7 +59,6 @@
 
         function deleteForm(index) {
             var form_id = vm.forms[index]._id;
-            console.log(form_id);
             FormService
                 .deleteFormById(form_id)
                 .then(function(response) {

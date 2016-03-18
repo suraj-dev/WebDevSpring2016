@@ -98,8 +98,9 @@ module.exports = function () {
         for(var u in mock) {
             if (mock[u]._id === formId) {
                 for(var v in mock[u].fields) {
-                    if (v._id === fieldId) {
-                        delete v;
+                    if (mock[u].fields[v]._id === fieldId) {
+                        delete mock[u].fields[v];
+                        return mock[u].fields;
                     }
                 }
             }
@@ -109,8 +110,9 @@ module.exports = function () {
     function createField(field, formId) {
         for (var u in mock) {
             if (mock[u]._id === formId) {
-                field._id = (new Date()).getTime();
+                field._id = (new Date()).getTime().toString();
                 mock[u].fields.push(field);
+                return mock[u].fields;
             }
         }
     }

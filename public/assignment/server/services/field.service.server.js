@@ -22,13 +22,15 @@ module.exports = function(app, formModel, userModel) {
     function deleteFieldById(req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        formModel.deleteFieldById(fieldId, formId);
+        var fields = formModel.deleteFieldById(fieldId, formId);
+        res.json(fields);
     }
 
     function createField(req, res) {
         var formId = req.params.formId;
         var field = req.body;
-        formModel.createField(field, formId);
+        var fields = formModel.createField(field, formId);
+        res.json(fields);
     }
 
     function updateFieldById(req, res) {
