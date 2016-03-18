@@ -18,11 +18,13 @@ module.exports = function () {
     }
 
     function findUserById(userId) {
-        for(var u in mock) {
-            if (mock[u]._id === userId) {
-                return mock[u];
+        var usr;
+        for(usr in mock) {
+            if (mock[usr]._id === userId) {
+                return mock[usr];
             }
         }
+        console.log('id ' + userId + ' not found');
         return null;
     }
 

@@ -1,9 +1,9 @@
-module.exports = function(app, userModel, formModel) {
+module.exports = function(app, userModel) {
     app.post('/api/assignment/user', createUser);
     app.get('/api/assignment/user', findAllUsers);
     app.get('/api/assignment/user/:id', findUserById);
-    app.get('/api/assignment/user?username=username', findUserByUsername);
-    app.get('/api/assignment/user?username=alice&password=wonderland', findUserByCredentials);
+    app.get('/api/assignment/user?username=:username', findUserByUsername);
+    app.get('/api/assignment/user?username=:username&password=:password', findUserByCredentials);
     app.put('/api/assignment/user/:id', updateUserById);
     app.delete('/api/assignment/user/:id', deleteUserById);
 
@@ -14,25 +14,35 @@ module.exports = function(app, userModel, formModel) {
     }
 
     function findAllUsers(req, res) {
-        var users = userModel.findAllUsers();
-        res.json(users);
+        if(req.query.username && req.query.password) {
+            findUserByCredentials(req, res);
+        }
+        else if(req.query.username) {
+            findUserByUsername(req, res);
+        }
+        else {
+            var users = userModel.findAllUsers();
+            res.json(users);
+        }
     }
 
     function findUserById(req, res) {
-        var userId = req.params.id;
+        var userId = Number(req.params.id);
+        console.log(userId);
         var user = userModel.findUserById(userId);
         res.json(user);
     }
 
     function findUserByUsername(req, res) {
-        var username = req.params.username;
+        var username = req.query.username;
         var user = userModel.findUserByUsername(username);
         res.json(user);
     }
 
     function findUserByCredentials(req, res) {
-        var username = req.params.username;
-        var password = req.params.password;
+        var username = req.query.username;
+        var password = req.query.password;
+        console.log(username, password);
         var credentials = {
             username : username,
             password : password
@@ -42,7 +52,7 @@ module.exports = function(app, userModel, formModel) {
     }
 
     function updateUserById(req, res) {
-        var userId = req.params.id;
+        var userId = Number(req.params.id);
         var user = req.body;
         userModel.updateUserById(userId, user);
         var users = userModel.findAllUsers();
@@ -50,7 +60,7 @@ module.exports = function(app, userModel, formModel) {
     }
 
     function deleteUserById(req, res) {
-        var userId = req.params.id;
+        var userId = Number(req.params.id);
         userModel.deleteUserById(userId);
         var users = userModel.findAllUsers();
         res.json(users);

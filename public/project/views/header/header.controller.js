@@ -4,12 +4,12 @@
         .module("TouristaApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope, $rootScope, $location) {
+    function HeaderController($scope, $rootScope, $location, UserService) {
         $scope.$location = $location;
         $scope.logout = logout;
 
         function logout() {
-            $rootScope.currentUser = null;
+            UserService.setCurrentUser(null);
             $location.url("/home");
         }
     }

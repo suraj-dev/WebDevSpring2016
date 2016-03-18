@@ -1,24 +1,36 @@
-(function() {
+(function () {
     'use strict';
     angular
         .module("FormBuilderApp")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($scope, $rootScope, UserService, $location) {
-        $scope.register = register;
+    function RegisterController($rootScope, UserService, $location) {
+        var vm = this;
 
-        function register() {
-            var user = {
-                username: $scope.usrname,
-                password: $scope.inptpasswd,
-                email_id: $scope.eml
+        vm.register = register;
+
+        function init() {
+
+        }
+        init();
+
+        function register(user) {
+            var usr = {
+                username: user.username,
+                password: user.password,
+                email_id: user.email
             };
 
-            var newUser = UserService.createUser(user, function(response) {
-                $rootScope.data = response;
-            });
-            $rootScope.currentUser = newUser;
-            $location.path("profile.view.html");
+            UserService
+                .createUser(usr)
+                .then(function (response) {
+                    $rootScope.data = response;
+                    var newUser = response.data;
+                    console.log(newUser);
+                    UserService.setCurrentUser(usr);
+                    $location.url("/profile");
+                });
+
         }
     }
 })();

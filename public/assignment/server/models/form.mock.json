@@ -33,8 +33,7 @@
           },
           {
             "label": "New Hampshire",
-            "value": "NH",
-            ]
+            "value": "NH"
           },
           {
             "_id": "555",
@@ -75,3 +74,5 @@
         ]
       }
     ]
+  }
+]

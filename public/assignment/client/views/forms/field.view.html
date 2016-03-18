@@ -140,7 +140,7 @@
                         <label for="inputField">Add New Field:</label>
                         <div class="row">
                             <div class="col-xs-8 col-sm-6">
-                                <select name="gender" id="inputField" class="form-control">
+                                <select name="gender" id="inputField" class="form-control" ng-model = "model.fieldType">
                                     <option value="Single Line Text" selected>Single Line Text</option>
                                     <option value="Date">Date</option>
                                     <option value="Dropdown">Dropdown</option>
@@ -150,7 +150,7 @@
                                 </select>
                             </div>
                             <div class="col-xs-4 col-sm-6">
-                                <span>&nbsp;</span><a href="#"><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <span>&nbsp;</span><a href="#"><span class="glyphicon glyphicon-plus incrsize" ng-click = 'addField()'></span></a>
                             </div>
                         </div>
                     </div>

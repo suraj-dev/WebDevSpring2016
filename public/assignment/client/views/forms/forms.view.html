@@ -21,19 +21,19 @@
                         <th><span class="glyphicon glyphicon-triangle-bottom"></span> Action</th>
                     </tr>
                     <tr>
-                        <th><input type="text" class="form-control" name="formname" placeholder="name" ng-model="frmname"></th>
+                        <th><input type="text" class="form-control" name="formname" placeholder="name" ng-model="model.form.title"></th>
                         <th>
-                            <a ng-click="addForm()"><span class="glyphicon glyphicon-plus incrsize"></span></a>&nbsp;&nbsp;&nbsp;
-                            <a ng-click="updateForm()"><span class="glyphicon glyphicon-ok incrsize"></span></a>
+                            <a ng-click="model.addForm(model.form)"><span class="glyphicon glyphicon-plus incrsize"></span></a>&nbsp;&nbsp;&nbsp;
+                            <a ng-click="model.updateForm(model.form)"><span class="glyphicon glyphicon-ok incrsize"></span></a>
                         </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="form in forms">
-                        <td><a href="form-fields.view.html" ng-click="selectForm($index)"> {{form.title}} </a></td>
+                    <tr ng-repeat="form in model.forms">
+                        <td><a href="field.view.html" ng-click="model.selectForm($index)"> {{form.title}} </a></td>
                         <td>
-                            <a ng-click="deleteForm($index)"><span class="glyphicon glyphicon-remove incrsize"></span></a>&nbsp;&nbsp;&nbsp;
-                            <a ng-click="selectForm($index)"><span class="glyphicon glyphicon-pencil incrsize"></span></a>
+                            <a ng-click="model.deleteForm($index)"><span class="glyphicon glyphicon-remove incrsize"></span></a>&nbsp;&nbsp;&nbsp;
+                            <a ng-click="model.selectForm($index)"><span class="glyphicon glyphicon-pencil incrsize"></span></a>
                         </td>
                     </tr>
                     </tbody>
