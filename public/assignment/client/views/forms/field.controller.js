@@ -151,6 +151,10 @@
             });
         }
 
+        vm.sortableFields = {
+            axis : 'y'
+        };
+
      /*  angular.module('FormBuilderApp')
             .controller('ModalInstanceCtrl', function ($uibModalInstance) {
 

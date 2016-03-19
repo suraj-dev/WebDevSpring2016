@@ -4,7 +4,7 @@
     <li role="presentation" class="active"><a href="#formFields">Fields</a></li>
 </ul>
 <br>
-<div class="container" id="formFields" jga-sortable jga-axis="y">
+<div class="container" id="formFields" ui-sortable="sortableFields" ng-model="model.fields">
     <div ng-repeat="field in model.fields">
         <div ng-switch="field.type">
             <div class="row" ng-switch-when="TEXT">
