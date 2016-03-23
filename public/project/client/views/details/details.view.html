@@ -14,11 +14,13 @@
 
 </div>
     <h2 id="imgGallery">Image Gallery:</h2>
+    <div>
     <iframe
-            class = "nobg"
+            class = "nobg embed-responsive-item"
             ng-src={{imgSrc}}
-            frameborder="0" width="500" height="500" scrolling="no" marginwidth="0" marginheight="0">
+            frameborder="0" width="350" height="500" scrolling="yes" marginwidth="0" marginheight="0">
     </iframe>
+        </div>
     <h2 id="ptsOfInterest">Points of Interest:</h2>
     <div class="row">
         <div  ng-repeat="poi in yelpInfo.businesses">

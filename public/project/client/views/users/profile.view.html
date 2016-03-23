@@ -4,43 +4,43 @@
     <div class="form-group">
         <label for="inputName" class="col-sm-2 control-label label-left">Username:</label>
         <div class="col-sm-7">
-            <input type="text" size="10" class="form-control" id="inputName" placeholder="Username" ng-model="prfusrname">
+            <input type="text" size="10" class="form-control" id="inputName" placeholder="Username" ng-model="model.username">
         </div>
     </div>
     <div class="form-group">
         <label for="inputPassword3" class="col-sm-2 control-label">Password:</label>
         <div class="col-sm-7">
-            <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="prfpasswd">
+            <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="model.password">
         </div>
     </div>
     <div class="form-group">
         <label for="inputName2" class="col-sm-2 control-label">First Name:</label>
         <div class="col-sm-7">
-            <input type="text" class="form-control" id="inputName2" placeholder="First Name" ng-model="prffirstname">
+            <input type="text" class="form-control" id="inputName2" placeholder="First Name" ng-model="model.firstName">
         </div>
     </div>
     <div class="form-group">
         <label for="inputName3" class="col-sm-2 control-label">Last Name:</label>
         <div class="col-sm-7">
-            <input type="text" class="form-control" id="inputName3" placeholder="Last Name" ng-model="prflastname">
+            <input type="text" class="form-control" id="inputName3" placeholder="Last Name" ng-model="model.lastName">
         </div>
     </div>
     <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Email:</label>
         <div class="col-sm-7">
-            <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="prfemail">
+            <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="model.email">
         </div>
     </div>
     <div class="form-group">
         <label for="inputName3" class="col-sm-2 control-label">Hometown:</label>
         <div class="col-sm-7">
-            <input type="text" class="form-control" id="inputName3" placeholder="Hometown" ng-model="prfhometown">
+            <input type="text" class="form-control" id="inputName3" placeholder="Hometown" ng-model="model.hometowm">
         </div>
     </div>
     <div class="form-group">
         <label for="inputName3" class="col-sm-2 control-label">Date of Birth:</label>
         <div class="col-sm-7">
-            <input type="text" class="form-control" id="inputName3" placeholder="mm/dd/yyyy" ng-model="prfdob">
+            <input type="text" class="form-control" id="inputName3" placeholder="mm/dd/yyyy" ng-model="model.dob">
         </div>
     </div>
     <div class="form-group">
@@ -69,7 +69,7 @@
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-7">
-            <button type="submit" class="btn btn-default btn-primary btn-block" ng-click="update()">Update</button>
+            <button type="submit" class="btn btn-default btn-primary btn-block" ng-click="model.update()">Update</button>
         </div>
     </div>
 </form>
