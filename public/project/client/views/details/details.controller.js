@@ -7,6 +7,7 @@
     function DetailsController($scope, $rootScope, $sce, $routeParams, LocationService, YelpAPIService, $location, $anchorScroll) {
 
         var vm = this;
+        var imgUrl;
         var pageid = $routeParams.pageid;
         var pageTitle;
         LocationService
@@ -19,6 +20,18 @@
                 if ($rootScope.data.query.pages.hasOwnProperty(key)) {
                     vm.location_name = $rootScope.data.query.pages[key].title;
                     vm.location_content = $sce.trustAsHtml($rootScope.data.query.pages[key].extract);
+                    LocationService
+                        .getCoverImage(pageid)
+                        .then(function(response) {
+                            for (var key in response.data.query.pages) {
+                                if (response.data.query.pages.hasOwnProperty(key)) {
+                                    imgUrl = response.data.query.pages[key].thumbnail.original;
+                                    $scope.getImage = function() {
+                                        return 'url(' + imgUrl + ')';
+                                    }
+                                }
+                                }
+                        });
                     LocationService
                         .findTitleByID(pageid)
                         .then(function (response) {

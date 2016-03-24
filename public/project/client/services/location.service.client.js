@@ -13,7 +13,8 @@
             findLocationByID: findLocationByID,
             findTitleByID: findTitleByID,
             findComments: findComments,
-            postComment: postComment
+            postComment: postComment,
+            getCoverImage: getCoverImage
         };
 
         return service;
@@ -21,7 +22,7 @@
         function findLocationByTitle(title) {
             return $http({
                 method: 'JSONP',
-                url: "http://wikitravel.org/wiki/en/api.php?action=query&format=json&callback=JSON_CALLBACK&list=allpages&apfrom=".concat(title),
+                url: "https://en.wikivoyage.org/w/api.php?action=query&format=json&callback=JSON_CALLBACK&list=allpages&apfrom=".concat(title),
                 cache: $templateCache
             });
         }
@@ -31,7 +32,7 @@
             page_id = id;
             return $http({
                 method: 'JSONP',
-                url: "http://wikitravel.org/wiki/en/api.php?action=query&format=json&callback=JSON_CALLBACK&prop=extracts%7Cimages&pageids=" + id,
+                url: "https://en.wikivoyage.org/w/api.php?action=query&format=json&callback=JSON_CALLBACK&prop=extracts%7Cimages&pageids=" + id,
                 cache: $templateCache
             });
 
@@ -40,7 +41,7 @@
         function findTitleByID(pageid) {
             return $http({
                 method: 'JSONP',
-                url: "http://wikitravel.org/wiki/en/api.php?action=query&format=json&callback=JSON_CALLBACK&prop=info&pageids=" +  pageid,
+                url: "http://en.wikivoyage.org/w/api.php?action=query&format=json&callback=JSON_CALLBACK&prop=info&pageids=" +  pageid,
                 cache: $templateCache
             });
         }
@@ -60,6 +61,14 @@
         function postComment(comment) {
             comments.push(comment);
             return comment;
+        }
+
+        function getCoverImage(pageid) {
+            return $http({
+                method: 'JSONP',
+                url: "http://en.wikivoyage.org/w/api.php?action=query&format=json&prop=pageimages&callback=JSON_CALLBACK&piprop=thumbnail%7Coriginal&pageids=" +  pageid,
+                cache: $templateCache
+            });
         }
 
     }
