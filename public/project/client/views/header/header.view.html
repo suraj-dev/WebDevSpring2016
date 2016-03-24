@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-fixed-top" ng-controller="HeaderController">
+<div class="navbar navbar-default navbar-fixed-top" ng-controller="HeaderController as model">
     <div class="container">
         <div class="navbar-header">
             <a href="#/home" class="navbar-brand">Tourista</a>
@@ -15,7 +15,7 @@
                 <li ng-hide="currentUser"><a href="#/login">Login</a></li>
                 <li ng-show="currentUser.roles.indexOf('admin') >= 0" ng-class="{'active' : $location.url() =='/admin'}"><a href="#/admin">Admin</a></li>
                 <li ng-show="currentUser"><a href="#/profile">{{currentUser.username}}</a></li>
-                <li ng-show="currentUser"><a ng-click= "logout()">Logout</a></li>
+                <li ng-show="currentUser"><a ng-click= "model.logout()">Logout</a></li>
                 <li><a href="https://docs.google.com/document/d/1SyYr1Wv3rjo1XAj29wPsZDI5LwRG98DG7H_3RieXohg/edit?usp=sharing">Documentation</a></li>
             </ul>
         </div>

@@ -5,22 +5,24 @@
         .controller("DetailsController", DetailsController);
 
     function DetailsController($scope, $rootScope, $sce, $routeParams, LocationService, YelpAPIService, $location, $anchorScroll) {
+
+        var vm = this;
         var pageid = $routeParams.pageid;
         var pageTitle;
-        LocationService.findLocationByID(pageid, function (response) {
+        LocationService
+            .findLocationByID(pageid)
+            .then(function (response) {
             console.log(response);
-            $rootScope.data = response;
-            /* LocationService.imageProvider(function(response) {
-             $rootScope.imageURL = response;
-             console.log(response);
-             });*/
-            $scope.detailsbg = "detailsbg";
+            $rootScope.data = response.data;
+            vm.detailsbg = "detailsbg";
             for (var key in $rootScope.data.query.pages) {
                 if ($rootScope.data.query.pages.hasOwnProperty(key)) {
-                    $scope.location_name = $rootScope.data.query.pages[key].title;
-                    $scope.location_content = $sce.trustAsHtml($rootScope.data.query.pages[key].extract);
-                    LocationService.findTitleByID(pageid, function (response) {
-                        var pageinfo = response;
+                    vm.location_name = $rootScope.data.query.pages[key].title;
+                    vm.location_content = $sce.trustAsHtml($rootScope.data.query.pages[key].extract);
+                    LocationService
+                        .findTitleByID(pageid)
+                        .then(function (response) {
+                        var pageinfo = response.data;
                         for (var key in pageinfo.query.pages) {
                             if (pageinfo.query.pages.hasOwnProperty(key)) {
                                 pageTitle = pageinfo.query.pages[key].title;
@@ -44,13 +46,14 @@
                                     }
 
                                     else {
-                                        $scope.map = {center: {latitude: 45, longitude: -73}, zoom: 8};
+                                        vm.map = {center: {latitude: 45, longitude: -73}, zoom: 8};
                                     }
                                 });
-                                $scope.imgSrc = $sce.trustAsResourceUrl("http://www.panoramio.com/wapi/template/photo_list.html?tag=" + pageTitle + "&amp;width=500&amp;height=500&amp;list_size=8&amp;position=bottom&amp;bgcolor=%2333");
-                                YelpAPIService.request_yelp(pageTitle, function (response) {
+                                vm.imgSrc = $sce.trustAsResourceUrl("http://www.panoramio.com/wapi/template/photo_list.html?tag=" + pageTitle + "&amp;width=500&amp;height=500&amp;list_size=8&amp;position=bottom&amp;bgcolor=%2333");
+                                YelpAPIService.request_yelp(pageTitle)
+                                    .then(function (response) {
                                     console.log(response);
-                                    $rootScope.yelpInfo = response;
+                                    $rootScope.yelpInfo = response.data;
                                 });
                                 break;
                             }
@@ -60,11 +63,11 @@
             }
         });
 
-        LocationService.findComments(pageid, function (response) {
-            $scope.comments = response;
-        });
+        var commentsForLocation = LocationService.findComments(pageid);
+        vm.comments = commentsForLocation;
 
-        $scope.postComment = postComment;
+
+        vm.postComment = postComment;
 
         function postComment() {
             var comment = {
@@ -72,20 +75,21 @@
                 locationId: pageid,
                 username: $rootScope.currentUser.username,
                 timestamp: new Date(),
-                comment: $scope.commentBox
+                comment: vm.commentBox
             };
-            LocationService.postComment(comment, function (response) {
-                $scope.comments.push(response);
+            LocationService.postComment(comment)
+                .then(function (response) {
+                vm.comments.push(response);
             });
         }
 
-        $scope.deleteComment = deleteComment;
+        vm.deleteComment = deleteComment;
 
         function deleteComment(index) {
-            $scope.comments.splice(index, 1);
+            vm.comments.splice(index, 1);
         }
 
-        $scope.goToImageGallery = goToImageGallery;
+        vm.goToImageGallery = goToImageGallery;
 
         function goToImageGallery(event) {
             var id = $location.hash();
@@ -96,7 +100,7 @@
             $location.hash(id);
         }
 
-        $scope.goToGmaps = goToGmaps;
+        vm.goToGmaps = goToGmaps;
 
         function goToGmaps(event) {
             var id = $location.hash();
@@ -107,7 +111,7 @@
             $location.hash(id);
         }
 
-        $scope.goToReviews = goToReviews;
+        vm.goToReviews = goToReviews;
 
         function goToReviews(event) {
             var id = $location.hash();
@@ -118,7 +122,7 @@
             $location.hash(id);
         }
 
-        $scope.goToPtsOfInterest = goToPtsOfInterest;
+        vm.goToPtsOfInterest = goToPtsOfInterest;
 
         function goToPtsOfInterest(event) {
             var id = $location.hash();

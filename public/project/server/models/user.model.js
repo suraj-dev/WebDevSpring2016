@@ -69,6 +69,8 @@ module.exports = function () {
                 mock[u].firstName = user.firstName;
                 mock[u].lastName = user.lastName;
                 mock[u].email_id = user.email_id;
+                mock[u].dob = user.dob;
+                mock[u].hometown = user.hometown;
                 console.log(mock[u]);
             }
         }

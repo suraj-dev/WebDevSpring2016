@@ -1,6 +1,6 @@
-<div ng-class="detailsbg">
+<div ng-class="model.detailsbg">
 
-<h1>{{location_name}} &nbsp;&nbsp;
+<h1>{{model.location_name}} &nbsp;&nbsp;
     <span class="rating">
 <span class="star"></span>
 <span class="star"></span>
@@ -8,16 +8,16 @@
 <span class="star"></span>
 <span class="star"></span>
 </span>
-    &nbsp;<a href=""><span class="glyphicon glyphicon-heart"></span></a> &nbsp; <a href=""><span class="glyphicon glyphicon-ok"></span></a></h1><a ng-click="goToImageGallery($event)">Image Gallery</a> &nbsp; <a ng-click="goToGmaps($event)">Google Maps</a> &nbsp; <a ng-click="goToReviews($event)">Reviews</a> &nbsp; <a ng-click="goToPtsOfInterest($event)">Points of Interest</a>
+    &nbsp;<a href=""><span class="glyphicon glyphicon-heart"></span></a> &nbsp; <a href=""><span class="glyphicon glyphicon-ok"></span></a></h1><a ng-click="model.goToImageGallery($event)">Image Gallery</a> &nbsp; <a ng-click="model.goToGmaps($event)">Google Maps</a> &nbsp; <a ng-click="model.goToReviews($event)">Reviews</a> &nbsp; <a ng-click="model.goToPtsOfInterest($event)">Points of Interest</a>
     <br>
-<div ng-bind-html="location_content">
+<div ng-bind-html="model.location_content">
 
 </div>
     <h2 id="imgGallery">Image Gallery:</h2>
     <div>
     <iframe
             class = "nobg embed-responsive-item"
-            ng-src={{imgSrc}}
+            ng-src={{model.imgSrc}}
             frameborder="0" width="350" height="500" scrolling="yes" marginwidth="0" marginheight="0">
     </iframe>
         </div>
@@ -52,11 +52,11 @@
             <div class="widget-area no-padding blank">
                 <div class="status-upload">
                     <form>
-                        <textarea placeholder="What are your thoughts about this place?" ng-model="commentBox"></textarea>
+                        <textarea placeholder="What are your thoughts about this place?" ng-model="model.commentBox"></textarea>
                         <ul>
                             <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
                         </ul>
-                        <button type="submit" class="btn btn-success green" ng-click="postComment()"><i class="fa fa-share"></i> Share</button>
+                        <button type="submit" class="btn btn-success green" ng-click="model.postComment()"><i class="fa fa-share"></i> Share</button>
                     </form>
                 </div><!-- Status Upload  -->
             </div><!-- Widget Area -->
@@ -65,7 +65,7 @@
     </div>
 
     <!-- Displaying comments -->
-    <div ng-repeat="comment in comments">
+    <div ng-repeat="comment in model.comments">
     <div class="row">
         <div class="col-sm-1">
             <div class="thumbnail">
@@ -76,7 +76,7 @@
         <div class="col-sm-5">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="#/profile"><strong>{{comment.username}}</strong></a> <span class="text-muted">{{comment.timestamp}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="glyphicon glyphicon-remove" ng-click="deleteComment($index)"></span>
+                    <a href="#/profile"><strong>{{comment.username}}</strong></a> <span class="text-muted">{{comment.timestamp}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="glyphicon glyphicon-remove" ng-click="model.deleteComment($index)"></span>
                 </div>
                 <div class="panel-body">
                     {{comment.comment}}

@@ -31,7 +31,8 @@
                 })
                 .when('/details/:pageid', {
                     templateUrl: "views/details/details.view.html",
-                    controller: "DetailsController"
+                    controller: "DetailsController",
+                    controllerAs : "model"
                 })
                 .when('/searchresults', {
                     templateUrl: "views/searchresults/searchresults.view.html",

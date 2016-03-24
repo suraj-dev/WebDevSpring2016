@@ -19,6 +19,7 @@
         vm.firstName = $rootScope.currentUser.firstName;
         vm.lastName = $rootScope.currentUser.lastName;
 
+
         vm.update = update;
 
 

@@ -18,7 +18,7 @@
             return result;
         }
 
-        function request_yelp(name, callback) {
+        function request_yelp(name) {
                     var method = 'GET';
                     var url = 'http://api.yelp.com/v2/search?callback=JSON_CALLBACK';
                     var params = {
@@ -37,8 +37,7 @@
                     var signature = oauthSignature.generate(method, url, params, consumerSecret, tokenSecret, { encodeSignature: false});
                     params['oauth_signature'] = signature;
 
-                    $http.jsonp(url, {params: params})
-                        .success(callback);
+                    return $http.jsonp(url, {params: params});
                 }
             }
 })();
