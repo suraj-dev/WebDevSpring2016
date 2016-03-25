@@ -3,20 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="14d07411-3868-4768-acff-682a33617804" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/css/custom.css" afterPath="$PROJECT_DIR$/public/project/client/css/custom.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/services/location.service.client.js" afterPath="$PROJECT_DIR$/public/project/client/services/location.service.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/services/user.service.client.js" afterPath="$PROJECT_DIR$/public/project/client/services/user.service.client.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/details/details.controller.js" afterPath="$PROJECT_DIR$/public/project/client/views/details/details.controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/details/details.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/details/details.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/home/home.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/home/home.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/users/login.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/users/login.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/users/profile.controller.js" afterPath="$PROJECT_DIR$/public/project/client/views/users/profile.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/users/profile.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/users/profile.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/app.js" afterPath="$PROJECT_DIR$/public/project/server/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/models/user.mock.json" afterPath="$PROJECT_DIR$/public/project/server/models/user.mock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/models/user.model.js" afterPath="$PROJECT_DIR$/public/project/server/models/user.model.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/models/location.model.js" afterPath="$PROJECT_DIR$/public/project/server/models/location.model.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/services/location.service.server.js" afterPath="$PROJECT_DIR$/public/project/server/services/location.service.server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/services/user.service.server.js" afterPath="$PROJECT_DIR$/public/project/server/services/user.service.server.js" />
     </list>
     <ignored path="WebApp1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,31 +28,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="user.mock.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user.mock.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/project/server/models/user.mock.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7677165">
+            <state vertical-scroll-proportion="-16.25">
               <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.model.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/project/server/models/user.model.js">
+      <file leaf-file-name="login.view.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/project/client/views/users/login.view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="66" column="41" selection-start-line="65" selection-start-column="8" selection-end-line="66" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.service.server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/project/server/services/user.service.server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="34" />
+            <state vertical-scroll-proportion="-0.625">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="92" />
               <folding />
             </state>
           </provider>
@@ -71,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/public/project/server/services/location.service.server.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+              <caret line="13" column="83" selection-start-line="13" selection-start-column="83" selection-end-line="13" selection-end-column="83" />
               <folding />
             </state>
           </provider>
@@ -81,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/public/project/client/services/location.service.client.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="75" column="52" selection-start-line="75" selection-start-column="52" selection-end-line="75" selection-end-column="52" />
+              <caret line="81" column="9" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -91,27 +72,27 @@
         <entry file="file://$PROJECT_DIR$/public/project/client/views/details/details.controller.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="181" column="71" selection-start-line="181" selection-start-column="71" selection-end-line="181" selection-end-column="71" />
+              <caret line="171" column="42" selection-start-line="171" selection-start-column="42" selection-end-line="171" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.service.client.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/assignment/client/services/user.service.client.js">
+      <file leaf-file-name="location.model.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/project/server/models/location.model.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
+              <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.service.client.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/project/client/services/user.service.client.js">
+      <file leaf-file-name="location.mock.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/project/server/models/location.mock.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="57" column="60" selection-start-line="57" selection-start-column="60" selection-end-line="57" selection-end-column="60" />
+            <state vertical-scroll-proportion="-1.875">
+              <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -120,18 +101,28 @@
       <file leaf-file-name="details.view.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/project/client/views/details/details.view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="8.208333">
-              <caret line="50" column="27" selection-start-line="50" selection-start-column="27" selection-end-line="50" selection-end-column="27" />
+            <state vertical-scroll-proportion="1.9583334">
+              <caret line="52" column="65" selection-start-line="52" selection-start-column="65" selection-end-line="52" selection-end-column="65" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/project/server/app.js">
+      <file leaf-file-name="profile.view.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/project/client/views/users/profile.view.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.48622048">
+              <caret line="53" column="56" selection-start-line="53" selection-start-column="56" selection-end-line="53" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/project/client/views/header/header.controller.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="62" selection-start-line="3" selection-start-column="62" selection-end-line="3" selection-end-column="62" />
+              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -197,14 +188,14 @@
         <option value="$PROJECT_DIR$/public/project/client/css/custom.css" />
         <option value="$PROJECT_DIR$/public/project/client/views/users/login.view.html" />
         <option value="$PROJECT_DIR$/public/project/server/models/location.mock.json" />
-        <option value="$PROJECT_DIR$/public/project/client/services/location.service.client.js" />
-        <option value="$PROJECT_DIR$/public/project/server/models/location.model.js" />
-        <option value="$PROJECT_DIR$/public/project/server/services/location.service.server.js" />
         <option value="$PROJECT_DIR$/public/project/server/app.js" />
         <option value="$PROJECT_DIR$/public/project/client/services/user.service.client.js" />
-        <option value="$PROJECT_DIR$/public/project/client/views/details/details.controller.js" />
-        <option value="$PROJECT_DIR$/public/project/client/views/details/details.view.html" />
         <option value="$PROJECT_DIR$/public/project/server/models/user.mock.json" />
+        <option value="$PROJECT_DIR$/public/project/client/services/location.service.client.js" />
+        <option value="$PROJECT_DIR$/public/project/client/views/details/details.controller.js" />
+        <option value="$PROJECT_DIR$/public/project/server/services/location.service.server.js" />
+        <option value="$PROJECT_DIR$/public/project/server/models/location.model.js" />
+        <option value="$PROJECT_DIR$/public/project/client/views/details/details.view.html" />
       </list>
     </option>
   </component>
@@ -797,7 +788,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282532" sideWeight="0.50277776" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30769232" sideWeight="0.49722221" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1056,14 +1047,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/project/client/views/users/profile.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.041667">
-          <caret line="53" column="56" selection-start-line="53" selection-start-column="56" selection-end-line="53" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/project/client/views/searchresults/searchresults.view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.375">
@@ -1112,14 +1095,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/project/client/views/users/login.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="92" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/project/client/views/home/home.view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.875">
@@ -1132,30 +1107,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/project/client/views/header/header.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/project/server/models/location.mock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.125">
-          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/project/server/models/location.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1192,26 +1143,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/project/client/services/location.service.client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="52" selection-start-line="75" selection-start-column="52" selection-end-line="75" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/project/client/services/user.service.client.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="57" column="60" selection-start-line="57" selection-start-column="60" selection-end-line="57" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/project/server/services/location.service.server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -1224,10 +1159,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/project/client/views/details/details.view.html">
+    <entry file="file://$PROJECT_DIR$/public/project/client/views/users/login.view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="8.208333">
-          <caret line="50" column="27" selection-start-line="50" selection-start-column="27" selection-end-line="50" selection-end-column="27" />
+        <state vertical-scroll-proportion="-0.625">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/project/client/views/header/header.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1235,15 +1178,63 @@
     <entry file="file://$PROJECT_DIR$/public/project/client/views/details/details.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="181" column="71" selection-start-line="181" selection-start-column="71" selection-end-line="181" selection-end-column="71" />
+          <caret line="171" column="42" selection-start-line="171" selection-start-column="42" selection-end-line="171" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/project/client/services/location.service.client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="81" column="9" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/project/server/services/location.service.server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="83" selection-start-line="13" selection-start-column="83" selection-end-line="13" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/project/server/models/location.model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/project/server/models/user.mock.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7677165">
+        <state vertical-scroll-proportion="-16.25">
           <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/project/server/models/location.mock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.875">
+          <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/project/client/views/details/details.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.9583334">
+          <caret line="52" column="65" selection-start-line="52" selection-start-column="65" selection-end-line="52" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/project/client/views/users/profile.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48622048">
+          <caret line="53" column="56" selection-start-line="53" selection-start-column="56" selection-end-line="53" selection-end-column="56" />
           <folding />
         </state>
       </provider>

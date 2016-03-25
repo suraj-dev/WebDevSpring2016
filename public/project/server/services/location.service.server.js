@@ -11,7 +11,7 @@ module.exports = function(app, locationModel) {
     function createFavoritedUser(req, res) {
         var locationId = Number(req.params.locationid);
         var userId = Number(req.params.userid);
-        var favoritedUsers = locationModel.findFavoritedUsers(locationId, userId);
+        var favoritedUsers = locationModel.createFavoritedUser(locationId, userId);
         res.json(favoritedUsers);
     }
 };

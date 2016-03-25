@@ -15,7 +15,8 @@
             findComments: findComments,
             postComment: postComment,
             getCoverImage: getCoverImage,
-            findFavoritedUsers : findFavoritedUsers
+            findFavoritedUsers : findFavoritedUsers,
+            postFavoritedUser : postFavoritedUser
         };
 
         return service;
@@ -74,6 +75,10 @@
 
         function findFavoritedUsers(locationId) {
             return $http.get('/api/project/location/' + locationId + '/favuser');
+        }
+
+        function postFavoritedUser(locationId, userId) {
+            return $http.put('/api/project/location/' + locationId + '/favuser/' + userId);
         }
 
     }

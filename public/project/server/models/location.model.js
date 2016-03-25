@@ -23,12 +23,10 @@ module.exports = function () {
                 mock[l].favoritedUsers.push(userId);
                 return mock[l].favoritedUsers;
             }
-            else
-            {
-                mock[l]._id = locationId;
-                mock[l].favoritedUsers = userId;
-                return mock[l].favoritedUsers;
-            }
+
         }
+        mock[l]._id = locationId;
+        mock[l].favoritedUsers = [userId];
+        return mock[l].favoritedUsers;
     }
 };

@@ -99,10 +99,8 @@
                 timestamp: new Date(),
                 comment: vm.commentBox
             };
-            LocationService.postComment(comment)
-                .then(function (response) {
-                vm.comments.push(response);
-            });
+         var com =   LocationService.postComment(comment);
+                vm.comments.push(com);
         }
 
         vm.deleteComment = deleteComment;
@@ -167,6 +165,21 @@
                 .userFavoritesLocation(userId, location)
                 .then(function(response) {
                    $rootScope.currentUser.favoriteLocations = response.data;
+                });
+
+            LocationService
+                .postFavoritedUser(pageid, userId)
+                .then(function(response) {
+                    var users = response.data;
+                    var favoritedUsers = [];
+                    for(var u in users) {
+                        UserService
+                            .findUserById(users[u])
+                            .then(function(response) {
+                                favoritedUsers.push(response.data.username);
+                            });
+                    }
+                    vm.favoritedUsers = favoritedUsers;
                 });
         }
 
