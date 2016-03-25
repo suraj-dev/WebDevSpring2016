@@ -8,7 +8,8 @@ module.exports = function () {
         findUserByUsername : findUserByUsername,
         findUserByCredentials : findUserByCredentials,
         deleteUserById : deleteUserById,
-        updateUserById : updateUserById
+        updateUserById : updateUserById,
+        userFavoritesLocation : userFavoritesLocation
     };
 
     return api;
@@ -71,7 +72,22 @@ module.exports = function () {
                 mock[u].email_id = user.email_id;
                 mock[u].dob = user.dob;
                 mock[u].hometown = user.hometown;
+                return "Success";
                 console.log(mock[u]);
+            }
+            else
+            {
+                return "Error";
+            }
+        }
+    }
+
+    function userFavoritesLocation(userId, location) {
+        for (var u in mock) {
+            if (mock[u]._id === userId) {
+                mock[u].favoriteLocations.push(location);
+                console.log(mock[u]);
+                return mock[u].favoriteLocations;
             }
         }
     }

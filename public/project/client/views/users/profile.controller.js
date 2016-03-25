@@ -31,7 +31,13 @@
             UserService
                 .updateUser(id,user)
                 .then(function(response) {
-                $rootScope.data= response.data;
+                    console.log(response.data);
+                if(response.data === "Success") {
+                    vm.updateMessage = "Profile has been updated";
+                }
+                    else {
+                    vm.updateErrorMessage = "Error occurred while trying to update the profile";
+                }
             });
         }
     }

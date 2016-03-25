@@ -14,7 +14,8 @@
             findTitleByID: findTitleByID,
             findComments: findComments,
             postComment: postComment,
-            getCoverImage: getCoverImage
+            getCoverImage: getCoverImage,
+            findFavoritedUsers : findFavoritedUsers
         };
 
         return service;
@@ -69,6 +70,10 @@
                 url: "http://en.wikivoyage.org/w/api.php?action=query&format=json&prop=pageimages&callback=JSON_CALLBACK&piprop=thumbnail%7Coriginal&pageids=" +  pageid,
                 cache: $templateCache
             });
+        }
+
+        function findFavoritedUsers(locationId) {
+            return $http.get('/api/project/location/' + locationId + '/favuser');
         }
 
     }

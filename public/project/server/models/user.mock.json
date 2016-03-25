@@ -8,6 +8,12 @@
     "dob": "10/10/1990",
     "roles": [
       "user"
+    ],
+    "favoriteLocations" : [
+      {
+        "locationId" : 4367,
+        "locationTitle" : "Boston"
+      }
     ]
   },
   {
@@ -19,6 +25,9 @@
     "password": "bob",
     "roles": [
       "admin"
+    ],
+    "favoriteLocations" : [
+
     ]
   },
   {
@@ -30,6 +39,9 @@
     "dob": "11/11/1990",
     "roles": [
       "user"
+    ],
+    "favoriteLocations" : [
+
     ]
   },
   {
@@ -41,6 +53,9 @@
     "dob": "12/12/1990",
     "roles": [
       "user"
+    ],
+    "favoriteLocations" : [
+
     ]
   },
   {
@@ -52,6 +67,9 @@
     "dob": "08/08/1991",
     "roles": [
       "user"
+    ],
+    "favoriteLocations" : [
+
     ]
   }
 ]

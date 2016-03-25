@@ -3,14 +3,15 @@
     <div class="jumbotron" ng-style="{ 'background-image' : getImage(), 'background-size' : '1250px 250px' }">
         <p><h1>{{model.location_name}}</h1></p> &nbsp;&nbsp;
     </div>
-    <span class="rating">
+    <div ng-hide="currentUser"><h4>Login to provide ratings, mark favorite and visited places</h4></div>
+    <span class="rating" ng-show="currentUser">
 <span class="star"></span>
 <span class="star"></span>
 <span class="star"></span>
 <span class="star"></span>
 <span class="star"></span>
 </span>
-    &nbsp;<span><h4><a href=""><span class="glyphicon glyphicon-heart"></span></a> &nbsp; <a href=""><span class="glyphicon glyphicon-ok"></span></a> &nbsp; &nbsp; <a ng-click="model.goToImageGallery($event)">Image Gallery</a> &nbsp; <a ng-click="model.goToGmaps($event)">Google Maps</a> &nbsp; <a ng-click="model.goToReviews($event)">Reviews</a> &nbsp; <a ng-click="model.goToPtsOfInterest($event)">Points of Interest</a></h4></span>
+    &nbsp;<span><h4><a href="" ng-show="currentUser"><span ng-click = "model.userFavoritesLocation()" class="glyphicon glyphicon-heart"></span></a> &nbsp; <a href="" ng-show="currentUser"><span class="glyphicon glyphicon-ok"></span></a> &nbsp; &nbsp; <a ng-click="model.goToImageGallery($event)">Image Gallery</a> &nbsp; <a ng-click="model.goToGmaps($event)">Google Maps</a> &nbsp; <a ng-click="model.goToReviews($event)">Reviews</a> &nbsp; <a ng-click="model.goToPtsOfInterest($event)">Points of Interest</a></h4></span>
     <br>
 <div ng-bind-html="model.location_content">
 
@@ -45,7 +46,13 @@
             idkey="marker.id" coords='marker.location'>
     </ui-gmap-marker>
 </ui-gmap-google-map>
+    <br>
 
+    <h2>Users who have favorited this location:</h2>
+    <p ng-hide="currentUser">Login to see users who have favorited this location</p>
+    <ul ng-repeat = "user in model.favoritedUsers" ng-show="currentUser">
+        <li>{{user}}</li>
+    </ul>
     <h2 id="reviews">Reviews</h2>
     <h4 ng-hide="currentUser">Sign in to post reviews</h4>
     <div class="row" ng-show="currentUser">
@@ -58,7 +65,7 @@
                         <ul>
                             <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
                         </ul>
-                        <button type="submit" class="btn btn-success green" ng-click="model.postComment()"><i class="fa fa-share"></i> Share</button>
+                        <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
                     </form>
                 </div><!-- Status Upload  -->
             </div><!-- Widget Area -->

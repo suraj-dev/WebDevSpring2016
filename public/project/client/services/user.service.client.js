@@ -13,7 +13,9 @@
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
-            setCurrentUser : setCurrentUser
+            setCurrentUser : setCurrentUser,
+            userFavoritesLocation : userFavoritesLocation,
+            findUserById : findUserById
         };
 
         return service;
@@ -46,6 +48,14 @@
 
         function setCurrentUser(user) {
             $rootScope.currentUser = user;
+        }
+
+        function userFavoritesLocation(userId, location) {
+            return $http.put('/api/project/user/' + userId + '/location', location);
+        }
+
+        function findUserById(userId) {
+            return $http.get('/api/project/user/' + userId);
         }
     }
 })();

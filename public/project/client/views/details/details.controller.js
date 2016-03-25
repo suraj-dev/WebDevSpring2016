@@ -4,12 +4,21 @@
         .module("TouristaApp")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($scope, $rootScope, $sce, $routeParams, LocationService, YelpAPIService, $location, $anchorScroll) {
+    function DetailsController($scope, $rootScope, $sce, $routeParams, LocationService, YelpAPIService, $location, $anchorScroll, UserService) {
 
         var vm = this;
         var imgUrl;
         var pageid = $routeParams.pageid;
         var pageTitle;
+        var userId;
+        if($rootScope.currentUser != null) {
+            userId = $rootScope.currentUser._id;
+            console.log(userId);
+        }
+        else
+        {
+            userId = null;
+        }
         LocationService
             .findLocationByID(pageid)
             .then(function (response) {
@@ -145,6 +154,37 @@
             $anchorScroll();
             $location.hash(id);
         }
+
+        vm.userFavoritesLocation = userFavoritesLocation;
+
+        function userFavoritesLocation() {
+            var location = {
+                locationId : pageid,
+                locationTitle : pageTitle
+            };
+
+            UserService
+                .userFavoritesLocation(userId, location)
+                .then(function(response) {
+                   $rootScope.currentUser.favoriteLocations = response.data;
+                });
+        }
+
+        LocationService
+            .findFavoritedUsers(pageid)
+            .then(function(response) {
+               var users = response.data;
+                var favoritedUsers = [];
+                for(var u in users) {
+                    UserService
+                        .findUserById(users[u])
+                        .then(function(response) {
+                           favoritedUsers.push(response.data.username);
+                        });
+                }
+                vm.favoritedUsers = favoritedUsers;
+
+            });
 
     }
 })();

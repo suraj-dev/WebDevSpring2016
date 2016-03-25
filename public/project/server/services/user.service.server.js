@@ -6,6 +6,7 @@ module.exports = function(app, userModel) {
     app.get('/api/project/user?username=:username&password=:password', findUserByCredentials);
     app.put('/api/project/user/:id', updateUserById);
     app.delete('/api/project/user/:id', deleteUserById);
+    app.put('/api/project/user/:id/location', userFavoritesLocation);
 
     function createUser(req, res) {
         var user = req.body;
@@ -52,9 +53,8 @@ module.exports = function(app, userModel) {
     function updateUserById(req, res) {
         var userId = Number(req.params.id);
         var user = req.body;
-        userModel.updateUserById(userId, user);
-        var users = userModel.findAllUsers();
-        res.json(users);
+        var result = userModel.updateUserById(userId, user);
+        res.send(result);
     }
 
     function deleteUserById(req, res) {
@@ -62,5 +62,12 @@ module.exports = function(app, userModel) {
         userModel.deleteUserById(userId);
         var users = userModel.findAllUsers();
         res.json(users);
+    }
+
+    function userFavoritesLocation(req, res) {
+        var userId = Number(req.params.id);
+        var location = req.body;
+        var favoriteLocations = userModel.userFavoritesLocation(userId, location);
+        res.json(favoriteLocations);
     }
 };

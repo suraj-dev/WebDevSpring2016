@@ -1,4 +1,5 @@
 <h1 class="page-header">Profile</h1>
+
 <form class="form-horizontal">
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" height="200" width="200" class="thumbnail">
     <div class="form-group">
@@ -47,9 +48,11 @@
         <label for="inputName3" class="col-sm-2 control-label">Places Visited:</label>
 
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-show="currentUser.favoriteLocations">
         <label for="inputName3" class="col-sm-2 control-label">Favorite Places:</label>
-
+        <ul ng-repeat="location in currentUser.favoriteLocations">
+            <li><a href="#/details/{{location.locationId}}">{{location.locationTitle}}</a></li>
+        </ul>
     </div>
 
     <div class="form-group">
@@ -72,4 +75,6 @@
             <button type="submit" class="btn btn-default btn-primary btn-block" ng-click="model.update()">Update</button>
         </div>
     </div>
+    <div ng-show="model.updateMessage" class="alert alert-success" role="alert">{{model.updateMessage}}</div>
+    <div ng-show="model.updateErrorMessage" class="alert alert-danger" role="alert">{{model.updateErrorMessage}}</div>
 </form>

@@ -1,4 +1,4 @@
-html {
+body {
     background: url('../views/images/milky-way-984050_1920.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -201,10 +201,34 @@ body .no-padding {
 }
 
 .input-group.input-group-lg {
-    width : 100%;
+    width : 90%;
 }
 
 #mainSearchLabel {
     background: transparent;
     font-size: 180%;
 }
+
+#searchbx {
+    width: 80%;
+}
+
+/*Below code is for search icon in searchbar*/
+
+    /* enable absolute positioning */
+/*.inner-addon {
+    position: relative;
+}
+
+!* style glyph *!
+.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
+
+!* align glyph *!
+.right-addon .glyphicon { right: 0px;}
+
+!* add padding  *!
+.right-addon input { padding-right: 30px; }*/
