@@ -3,7 +3,7 @@
         .module("FormBuilderApp")
         .controller("FieldController", fieldController);
 
-    function fieldController(FieldService, $routeParams, $uibModal) {
+    function fieldController(FieldService, $routeParams) {
         var vm = this;
         var formId = $routeParams.formId;
 
@@ -97,80 +97,24 @@
                 });
         }
 
-        vm.textPop = textPop;
-
-        function textPop() {
-            var modalInstance = $uibModal.open({
-                templateUrl: '/assignment/client/views/forms/modal/singleLineField.html'
-                /*controller: 'ModalInstanceCtrl'*/
-            });
-        }
-
-        vm.textAreaPop = textAreaPop;
-
-        function textAreaPop() {
-            var modalInstance = $uibModal.open({
-                templateUrl: '/assignment/client/views/forms/modal/singleLineField.html'
-                /*controller: 'ModalInstanceCtrl'*/
-            });
-        }
-
-        vm.datePop = datePop;
-
-        function datePop() {
-            var modalInstance = $uibModal.open({
-                templateUrl: '/assignment/client/views/forms/modal/date.html'
-                /*controller: 'ModalInstanceCtrl'*/
-            });
-        }
-
-        vm.optionsPop = optionsPop;
-
-        function optionsPop() {
-            var modalInstance = $uibModal.open({
-                templateUrl: '/assignment/client/views/forms/modal/options.html'
-                /*controller: 'ModalInstanceCtrl'*/
-            });
-        }
-
-        vm.checkboxPop = checkboxPop;
-
-        function checkboxPop() {
-            var modalInstance = $uibModal.open({
-                templateUrl: '/assignment/client/views/forms/modal/options.html'
-                /*controller: 'ModalInstanceCtrl'*/
-            });
-        }
-
-        vm.radioPop = radioPop;
-
-        function radioPop() {
-            var modalInstance = $uibModal.open({
-                templateUrl: '/assignment/client/views/forms/modal/options.html'
-                /*controller: 'ModalInstanceCtrl'*/
-            });
-        }
 
         vm.sortableFields = {
             axis : 'y'
         };
 
+        vm.edit = edit;
+
+        function edit(field) {
+            vm.selectedField = field;
+            if (field.options){
+                vm.option = '';
+                for(var i = 0; i< field.options.length ; i++){
+                    vm.option += field.options[i].label + ":" + field.options[i].value + "\n";
+                }
+            }
+        }
+
 
     }
 })();
 
-/*(function() {
-    angular.module('FormBuilderApp')
-        .controller('ModalInstanceCtrl', function ($uibModalInstance) {
-
-            var vm = this;
-
-            vm.ok = function () {
-                $uibModalInstance.close();
-            };
-
-            vm.cancel = function () {
-                $uibModalInstance.dismiss('cancel');
-            };
-        });
-})();*/
