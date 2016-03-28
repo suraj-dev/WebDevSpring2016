@@ -18,7 +18,7 @@
             var usr = {
                 username: user.username,
                 password: user.password,
-                email_id: user.email
+                emails: [user.email]
             };
 
             UserService
@@ -26,7 +26,7 @@
                 .then(function (response) {
                     var newUser = response.data;
                     console.log(newUser);
-                    UserService.setCurrentUser(newUser[newUser.length - 1]);
+                    UserService.setCurrentUser(newUser);
                     $location.url("/profile");
                 });
 
