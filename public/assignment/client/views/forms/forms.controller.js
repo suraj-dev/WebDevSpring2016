@@ -26,7 +26,7 @@
             FormService
                 .createFormForUser($rootScope.currentUser._id, form)
                 .then(function(response) {
-                    vm.forms = response.data;
+                    vm.forms.push(response.data);
             }, function(error) {
                     console.log(error);
                 });
@@ -45,13 +45,23 @@
 
         function updateForm(frm) {
             var newForm = {
-                title: frm.title
+                title: frm.title,
+                updated: Date.now()
             };
 
             FormService
                 .updateFormById(selectedFormId, newForm)
                 .then(function(response) {
-                    vm.forms = response.data;
+                    var id = selectedFormId;
+
+                    for(var i = 0 ; i < vm.forms.length ; i++)
+                    {
+                        if(id == vm.forms[i]._id)
+                        {
+                            vm.forms[i].title = frm.title;
+                        }
+                    }
+
             });
         }
 

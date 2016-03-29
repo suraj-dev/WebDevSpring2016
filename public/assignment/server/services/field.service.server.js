@@ -1,4 +1,4 @@
-module.exports = function(app, formModel, userModel) {
+module.exports = function(app, fieldModel) {
     app.get('/api/assignment/form/:formId/field', findFieldsByFormId);
     app.get('/api/assignment/form/:formId/field/:fieldId', findFieldById);
     app.delete('/api/assignment/form/:formId/field/:fieldId', deleteFieldById);
@@ -8,35 +8,51 @@ module.exports = function(app, formModel, userModel) {
 
     function findFieldsByFormId(req, res) {
         var formId = req.params.formId;
-        var fields = formModel.findFieldsByFormId(formId);
-        res.json(fields);
+        fieldModel.findFieldsByFormId(formId)
+            .then(
+                function(form) {
+                    res.json(form.fields);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
+
     }
 
     function findFieldById(req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        var field = formModel.findFieldById(fieldId, formId);
+        var field = fieldModel.findFieldById(fieldId, formId);
         res.json(field);
     }
 
     function deleteFieldById(req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        var fields = formModel.deleteFieldById(fieldId, formId);
+        var fields = fieldModel.deleteFieldById(fieldId, formId);
         res.json(fields);
     }
 
     function createField(req, res) {
         var formId = req.params.formId;
         var field = req.body;
-        var fields = formModel.createField(field, formId);
-        res.json(fields);
+        fieldModel.createField(field, formId)
+            .then(
+                function(doc) {
+                    res.json(doc);
+                },
+
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function updateFieldById(req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
         var field = req.body;
-        formModel.updateFieldById(fieldId, field, formId);
+        fieldModel.updateFieldById(fieldId, field, formId);
     }
 };

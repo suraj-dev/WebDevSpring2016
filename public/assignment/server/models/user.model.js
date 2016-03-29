@@ -102,7 +102,6 @@ module.exports = function (db, mongoose) {
         });
 
         // return a promise
-        console.log("Promise =" + deferred.promise);
         return deferred.promise;
     }
 

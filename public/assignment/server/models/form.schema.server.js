@@ -1,8 +1,8 @@
 module.exports = function(mongoose) {
 
-    var FieldSchema = require('./field.schema.server.js');
+    var FieldSchema = require('./field.schema.server.js')(mongoose);
 
-    var FormSchema = mongoose.Schema({
+    var FormSchema = new mongoose.Schema({
         userId : String,
         title : {type: String, default: 'New Form'},
         fields : [FieldSchema],
