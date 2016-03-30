@@ -9,15 +9,13 @@
         var vm = this;
 
         function init() {
-
+            vm.username = $rootScope.currentUser.username;
+            vm.password = $rootScope.currentUser.password;
+            vm.email = $rootScope.currentUser.emails[0];
+            vm.firstName = $rootScope.currentUser.firstName;
+            vm.lastName = $rootScope.currentUser.lastName;
         }
         init();
-
-        vm.username = $rootScope.currentUser.username;
-        vm.password = $rootScope.currentUser.password;
-        vm.email = $rootScope.currentUser.emails[$rootScope.currentUser.emails.length - 1];
-        vm.firstName = $rootScope.currentUser.firstName;
-        vm.lastName = $rootScope.currentUser.lastName;
 
 
         vm.update = update;
@@ -36,7 +34,12 @@
             UserService
                 .updateUser(id, user)
                 .then(function (response) {
-                    $rootScope.data = response;
+                    console.log(response.data);
+                    $rootScope.currentUser.username = response.data.username;
+                    $rootScope.currentUser.password = response.data.password;
+                    $rootScope.currentUser.emails[0] = response.data.emails[0];
+                    $rootScope.currentUser.firstName = response.data.firstName;
+                    $rootScope.currentUser.lastName = response.data.lastName;
                 });
         }
     }

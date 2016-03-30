@@ -124,7 +124,12 @@ module.exports = function (db, mongoose) {
                deferred.reject(err);
            }
             else {
-               deferred.resolve(doc);
+               UserModel.findById(userId, function(err, doc) {
+                   if(err)
+                       deferred.reject(err);
+                   else
+                   deferred.resolve(doc);
+               });
            }
         });
         return deferred.promise;

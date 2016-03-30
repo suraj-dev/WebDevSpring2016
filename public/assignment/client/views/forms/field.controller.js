@@ -99,6 +99,7 @@
             FieldService
                 .deleteFieldFromForm(formId, fieldId)
                 .then(function(response) {
+                    console.log(response.data);
                    vm.fields.splice(index,1);
                 });
         }
