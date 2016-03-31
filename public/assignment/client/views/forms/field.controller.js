@@ -7,14 +7,19 @@
         var vm = this;
         var formId = $routeParams.formId;
 
-        FieldService
-            .getFieldsForForm(formId)
-            .then(function(response) {
-                console.log(response.data);
-               vm.fields = response.data;
-            });
+        function init() {
+            vm.addField = addField;
+            vm.removeField = removeField;
+            vm.edit = edit;
+            FieldService
+                .getFieldsForForm(formId)
+                .then(function(response) {
+                    console.log(response.data);
+                    vm.fields = response.data;
+                });
+        }
 
-        vm.addField = addField;
+        init();
 
         function addField(fieldType) {
             var field;
@@ -91,11 +96,9 @@
             }
         }
 
-        vm.removeField = removeField;
-
         function removeField(index) {
             var fieldId = vm.fields[index]._id;
-            console.log(fieldId);
+            console.log("fieldId=" + fieldId + " formId=" + formId);
             FieldService
                 .deleteFieldFromForm(formId, fieldId)
                 .then(function(response) {
@@ -108,8 +111,6 @@
         vm.sortableFields = {
             axis : 'y'
         };
-
-        vm.edit = edit;
 
         function edit(field) {
             vm.selectedField = field;

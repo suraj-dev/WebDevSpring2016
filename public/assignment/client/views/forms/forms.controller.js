@@ -5,19 +5,26 @@
         .controller("FormController", FormController);
 
     function FormController($rootScope, FormService, $location) {
-
-        var user_id = $rootScope.currentUser._id;
-
         var vm = this;
 
+        function init() {
 
-        FormService
-            .findAllFormsForUser(user_id)
-            .then(function (response) {
-                vm.forms = response.data;
-            });
+            var user_id = $rootScope.currentUser._id;
+            vm.selectedFormId = -1;
 
-        vm.addForm = addForm;
+            vm.addForm = addForm;
+            vm.selectForm = selectForm;
+            vm.updateForm = updateForm;
+            vm.deleteForm = deleteForm;
+
+            FormService
+                .findAllFormsForUser(user_id)
+                .then(function (response) {
+                    vm.forms = response.data;
+                });
+        }
+
+        init();
 
         function addForm(frm) {
             var form = {
@@ -32,16 +39,14 @@
                 });
         }
 
-        var selectedFormId = -1;
 
-        vm.selectForm = selectForm;
 
         function selectForm(index) {
+
             vm.title = vm.forms[index].title;
-            selectedFormId = vm.forms[index]._id;
+            vm.selectedFormId = vm.forms[index]._id;
         }
 
-        vm.updateForm = updateForm;
 
         function updateForm(frm) {
             var newForm = {
@@ -50,9 +55,9 @@
             };
 
             FormService
-                .updateFormById(selectedFormId, newForm)
+                .updateFormById(vm.selectedFormId, newForm)
                 .then(function(response) {
-                    var id = selectedFormId;
+                    var id = vm.selectedFormId;
 
                     for(var i = 0 ; i < vm.forms.length ; i++)
                     {
@@ -64,8 +69,6 @@
 
             });
         }
-
-        vm.deleteForm = deleteForm;
 
         function deleteForm(index) {
             var form_id = vm.forms[index]._id;

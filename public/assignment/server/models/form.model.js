@@ -105,7 +105,6 @@ module.exports = function (db, mongoose) {
                 deferred.reject(err);
             }
             else {
-                console.log(doc);
                 deferred.resolve(doc);
             }
         });

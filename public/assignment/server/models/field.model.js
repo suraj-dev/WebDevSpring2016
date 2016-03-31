@@ -31,14 +31,17 @@ module.exports = function (db, mongoose, formModel) {
     }
 
     function deleteFieldById(fieldId, formId) {
-       return FormModel
-            .findById(formId)
+       /*return FormModel.findById(formId)
             .then(
                 function(form){
                     form.fields._id(fieldId).remove();
                     return FormModel.save();
                 }
-            );
+            );*/
+        return FormModel.update(
+            { _id: formId },
+            { $pull: { 'fields': { _id : fieldId } } }
+        );
     }
 
     function createField(field, formId) {

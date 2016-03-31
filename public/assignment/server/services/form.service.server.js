@@ -10,7 +10,6 @@ module.exports = function(app, formModel) {
         var forms = formModel.findFormsByUserId(userId)
             .then(
                 function(doc) {
-                    console.log(doc);
                     res.json(doc);
                 },
 
@@ -51,10 +50,9 @@ module.exports = function(app, formModel) {
     function createForm(req, res) {
         var userId = req.params.userId;
         var form = req.body;
-        var forms = formModel.createForm(form, userId)
+        formModel.createForm(form, userId)
             .then(
                 function(doc) {
-                    console.log(doc);
                     res.json(doc);
                 },
 
