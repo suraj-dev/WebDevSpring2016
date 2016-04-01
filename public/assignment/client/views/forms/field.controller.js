@@ -3,7 +3,7 @@
         .module("FormBuilderApp")
         .controller("FieldController", fieldController);
 
-    function fieldController(FieldService, $routeParams) {
+    function fieldController(FieldService, $routeParams, $rootScope) {
         var vm = this;
         var formId = $routeParams.formId;
 
@@ -11,6 +11,7 @@
             vm.addField = addField;
             vm.removeField = removeField;
             vm.edit = edit;
+            vm.update = updateField;
             FieldService
                 .getFieldsForForm(formId)
                 .then(function(response) {
@@ -35,6 +36,26 @@
 
             else if(fieldType === "Multiline Text") {
                 field = {"label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"};
+                FieldService
+                    .createFieldForForm(formId, field)
+                    .then(function(response) {
+                        var fields = response.data["fields"];
+                        vm.fields.push(fields[fields.length - 1]);
+                    });
+            }
+
+            else if(fieldType === "Email") {
+                field = {"label": "New Email Field", "type": "EMAIL", "placeholder": "New Field"};
+                FieldService
+                    .createFieldForForm(formId, field)
+                    .then(function(response) {
+                        var fields = response.data["fields"];
+                        vm.fields.push(fields[fields.length - 1]);
+                    });
+            }
+
+            else if(fieldType === "Password") {
+                field = {"label": "New Password Field", "type": "PASSWORD", "placeholder": "New Field"};
                 FieldService
                     .createFieldForForm(formId, field)
                     .then(function(response) {
@@ -113,13 +134,76 @@
         };
 
         function edit(field) {
-            vm.selectedField = field;
+
+            $rootScope.isOptions = null;
+            $rootScope.isPlaceholder = null;
+            var editField;
+
+            if(!field.placeholder) {
+
+                if(!field.options) {
+                    editField = {
+                        _id: field._id,
+                        label: field.label
+                    };
+                }
+                else {
+                    editField = {
+                        _id: field._id,
+                        label: field.label,
+                        options : field.options
+                    };
+                }
+            }
+            else {
+                editField = {
+                    _id : field._id,
+                    label: field.label,
+                    placeholder: field.placeholder
+                };
+                $rootScope.isPlaceholder = true;
+            }
+
+            vm.selectedField = editField;
+
             if (field.options){
+                $rootScope.isOptions = true;
                 vm.option = '';
                 for(var i = 0; i< field.options.length ; i++){
                     vm.option += field.options[i].label + ":" + field.options[i].value + "\n";
                 }
             }
+        }
+
+        function updateField(field) {
+            var updatedField;
+            if(!field.placeholder) {
+                    updatedField = {
+                        label: field.label
+                    };
+            }
+            else {
+                updatedField = {
+                    label: field.label,
+                    placeholder: field.placeholder
+                };
+            }
+
+            FieldService
+                .updateField(formId, field._id, updatedField)
+                .then(function(response) {
+
+                    console.log(response.data);
+                    var id = field._id;
+
+                    for(var i = 0 ; i < vm.fields.length ; i++)
+                    {
+                        if(id == vm.fields[i]._id)
+                        {
+                            vm.fields[i].label = field.label;
+                        }
+                    }
+                });
         }
 
 

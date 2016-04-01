@@ -12,8 +12,6 @@ module.exports = function(app, userModel) {
         var user = userModel.createUser(usr)
             .then(
                 function(doc) {
-                    console.log("newUser =" + user);
-                    console.log("newUser doc =" + doc);
                     res.json(doc);
                 },
 

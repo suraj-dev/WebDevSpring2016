@@ -10,8 +10,8 @@ module.exports = function (db, mongoose, formModel) {
         findFieldsByFormId: findFieldsByFormId,
         findFieldById: findFieldById,
         deleteFieldById: deleteFieldById,
-        createField: createField
-        /*updateFieldById: updateFieldById*/
+        createField: createField,
+        updateFieldById: updateFieldById
     };
 
     return api;
@@ -24,48 +24,34 @@ module.exports = function (db, mongoose, formModel) {
         return FormModel
             .findById(formId)
             .then(
-                function(form){
+                function (form) {
                     return form.fields._id(fieldId);
                 }
             );
     }
 
     function deleteFieldById(fieldId, formId) {
-       /*return FormModel.findById(formId)
-            .then(
-                function(form){
-                    form.fields._id(fieldId).remove();
-                    return FormModel.save();
-                }
-            );*/
         return FormModel.update(
-            { _id: formId },
-            { $pull: { 'fields': { _id : fieldId } } }
+            {_id: formId},
+            {$pull: {'fields': {_id: fieldId}}}
         );
     }
 
     function createField(field, formId) {
         return FormModel.findById(formId)
             .then(
-                function(form) {
+                function (form) {
                     form.fields.push(field);
                     return form.save();
                 }
             );
     }
 
-    /*function updateFieldById(fieldId, field, formId) {
+    function updateFieldById(fieldId, field, formId) {
 
-        for (var u in mock) {
-            if (mock[u]._id === formId) {
-                for (var v in mock[u].fields) {
-                    if (v._id === fieldId) {
-                        v.label = field.label;
-                        v.type = field.type;
-                        v.placeholder = field.placeholder;
-                    }
-                }
-            }
-        }
-    }*/
+        return FormModel.update(
+            { _id: formId, "fields._id" : fieldId },
+            { $set: { "fields.$.label" : field.label } }
+        );
+    }
 };

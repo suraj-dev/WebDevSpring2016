@@ -27,7 +27,44 @@
                         </div>
                     </div>
                 </div>
-                <br>
+                <div class="row" ng-switch-when="EMAIL">
+                    <div class="col-sm-9">
+                        <label for="inputName">{{field.label}}</label>
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-6">
+                                <input type="email" class="form-control" id="inputName" placeholder="{{field.placeholder}}">
+                            </div>
+                            <div class="col-xs-4 col-sm-6">
+                                <a href=""><span class="glyphicon glyphicon-pencil incrsize"
+                                                 ng-click="model.edit(field)" data-toggle="modal"
+                                                 data-target="#myModal"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-remove incrsize"
+                                                 ng-click="model.removeField($index)"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-switch-when="PASSWORD">
+                    <div class="col-sm-9">
+                        <label for="inputName">{{field.label}}</label>
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-6">
+                                <input type="password" class="form-control" id="inputName" placeholder="{{field.placeholder}}">
+                            </div>
+                            <div class="col-xs-4 col-sm-6">
+                                <a href=""><span class="glyphicon glyphicon-pencil incrsize"
+                                                 ng-click="model.edit(field)" data-toggle="modal"
+                                                 data-target="#myModal"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-remove incrsize"
+                                                 ng-click="model.removeField($index)"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row" ng-switch-when="DATE">
                     <div class="col-sm-9">
                         <label for="inputDate">{{field.label}}</label>
@@ -47,7 +84,6 @@
                         </div>
                     </div>
                 </div>
-                <br>
                 <div class="row" ng-switch-when="OPTIONS">
                     <div class="col-sm-9">
                         <label for="inputGender">{{field.label}}</label>
@@ -70,7 +106,6 @@
                         </div>
                     </div>
                 </div>
-                <br>
                 <div class="row" ng-switch-when="CHECKBOXES">
                     <div class="col-sm-9">
                         <label>{{field.label}}</label>
@@ -92,7 +127,6 @@
                         </div>
                     </div>
                 </div>
-                <br>
                 <div class="row" ng-switch-when="RADIOS">
                     <div class="col-sm-9">
                         <label>{{field.label}}</label>
@@ -151,6 +185,8 @@
                         <option value="Checkboxes">Checkboxes</option>
                         <option value="Radio buttons">Radio buttons</option>
                         <option value="Multiline Text">Multiline Text</option>
+                        <option value="Email">Email</option>
+                        <option value="Password">Password</option>
                     </select>
                 </div>
                 <div class="col-xs-4 col-sm-6">
@@ -184,11 +220,10 @@
                                         {{model.option}}
                                     </textarea>
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" ng-click="model.update(model.updatedField)" class="btn btn-default" data-dismiss="modal">Ok</button>
+                    <button type="button" ng-click="model.update(model.selectedField)" class="btn btn-default" data-dismiss="modal">Ok</button>
                 </div>
             </div>
         </div>

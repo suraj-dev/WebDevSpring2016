@@ -60,6 +60,15 @@ module.exports = function(app, fieldModel) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
         var field = req.body;
-        fieldModel.updateFieldById(fieldId, field, formId);
+        fieldModel.updateFieldById(fieldId, field, formId)
+            .then(
+                function(doc) {
+                    res.json(doc);
+                },
+
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 };

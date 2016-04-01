@@ -80,7 +80,6 @@ module.exports = function (db, mongoose) {
                 }
 
             });
-        console.log("Promise =" + deferred.promise);
         return deferred.promise;
     }
 
