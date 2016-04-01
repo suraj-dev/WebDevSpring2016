@@ -19,7 +19,8 @@
                                 <a href=""><span class="glyphicon glyphicon-pencil incrsize"
                                                  ng-click="model.edit(field)" data-toggle="modal"
                                                  data-target="#myModal"></span></a>
-                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"
+                                ng-click="model.addField('Single Line Text')"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-remove incrsize"
                                                  ng-click="model.removeField($index)"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
@@ -38,7 +39,8 @@
                                 <a href=""><span class="glyphicon glyphicon-pencil incrsize"
                                                  ng-click="model.edit(field)" data-toggle="modal"
                                                  data-target="#myModal"></span></a>
-                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"
+                                                 ng-click="model.addField('Email')"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-remove incrsize"
                                                  ng-click="model.removeField($index)"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
@@ -57,7 +59,8 @@
                                 <a href=""><span class="glyphicon glyphicon-pencil incrsize"
                                                  ng-click="model.edit(field)" data-toggle="modal"
                                                  data-target="#myModal"></span></a>
-                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"
+                                                 ng-click="model.addField('Password')"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-remove incrsize"
                                                  ng-click="model.removeField($index)"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
@@ -76,7 +79,8 @@
                                 <a href=""><span class="glyphicon glyphicon-pencil incrsize"
                                                  ng-click="model.edit(field)" data-toggle="modal"
                                                  data-target="#myModal"></span></a>
-                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"
+                                                 ng-click="model.addField('Date')"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-remove incrsize"
                                                  ng-click="model.removeField($index)"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
@@ -98,7 +102,8 @@
                                 <a href=""><span class="glyphicon glyphicon-pencil incrsize"
                                                  ng-click="model.edit(field)" data-toggle="modal"
                                                  data-target="#myModal"></span></a>
-                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"
+                                                 ng-click="model.addField('Dropdown')"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-remove incrsize"
                                                  ng-click="model.removeField($index)"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
@@ -119,7 +124,8 @@
                                 <a href=""><span class="glyphicon glyphicon-pencil incrsize"
                                                  ng-click="model.edit(field)" data-toggle="modal"
                                                  data-target="#myModal"></span></a>
-                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"
+                                                 ng-click="model.addField('Checkboxes')"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-remove incrsize"
                                                  ng-click="model.removeField($index)"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
@@ -141,7 +147,8 @@
                                 <a href=""><span class="glyphicon glyphicon-pencil incrsize"
                                                  ng-click="model.edit(field)" data-toggle="modal"
                                                  data-target="#myModal"></span></a>
-                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"
+                                                 ng-click="model.addField('Radios buttons')"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-remove incrsize"
                                                  ng-click="model.removeField($index)"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
@@ -160,7 +167,8 @@
                                 <a href=""><span class="glyphicon glyphicon-pencil incrsize"
                                                  ng-click="model.edit(field)" data-toggle="modal"
                                                  data-target="#myModal"></span></a>
-                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"
+                                                 ng-click="model.addField('Multiline Text')"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-remove incrsize"
                                                  ng-click="model.removeField($index)"></span></a>
                                 <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
@@ -208,13 +216,13 @@
                 <div class="modal-body">
                     Label: <br>
                     <input type="text" ng-model="model.selectedField.label">
-                    <div ng-show="model.selectedField.placeholder">
+                    <div ng-show="model.isPlaceholder">
                         Placeholder: <br>
                         <input ng-model="model.selectedField.placeholder"
                                class="form-control"
                                type="text">
                     </div>
-                    <div ng-show="model.selectedField.options">
+                    <div ng-show="model.isOptions">
                         Options: <br>
                                     <textarea>
                                         {{model.option}}

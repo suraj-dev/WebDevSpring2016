@@ -135,8 +135,14 @@
 
         function edit(field) {
 
-            $rootScope.isOptions = null;
-            $rootScope.isPlaceholder = null;
+            if(vm.isPlaceholder) {
+                delete vm.isPlaceholder;
+            }
+
+            if(vm.isOptions) {
+                delete vm.isOptions;
+            }
+
             var editField;
 
             if(!field.placeholder) {
@@ -156,18 +162,19 @@
                 }
             }
             else {
+
+                vm.isPlaceholder = true;
                 editField = {
                     _id : field._id,
                     label: field.label,
                     placeholder: field.placeholder
                 };
-                $rootScope.isPlaceholder = true;
             }
 
             vm.selectedField = editField;
 
-            if (field.options){
-                $rootScope.isOptions = true;
+            if (field.options.length !== 0) {
+                vm.isOptions = true;
                 vm.option = '';
                 for(var i = 0; i< field.options.length ; i++){
                     vm.option += field.options[i].label + ":" + field.options[i].value + "\n";
@@ -198,15 +205,15 @@
 
                     for(var i = 0 ; i < vm.fields.length ; i++)
                     {
-                        if(id == vm.fields[i]._id)
-                        {
+                        if(id == vm.fields[i]._id) {
                             vm.fields[i].label = field.label;
+                            if (vm.fields[i].placeholder) {
+                                vm.fields[i].placeholder = field.placeholder;
+                            }
                         }
                     }
                 });
         }
-
-
     }
 })();
 
