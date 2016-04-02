@@ -3,7 +3,7 @@
         .module("FormBuilderApp")
         .controller("FieldController", fieldController);
 
-    function fieldController(FieldService, $routeParams, $rootScope) {
+    function fieldController(FieldService, $routeParams) {
         var vm = this;
         var formId = $routeParams.formId;
 
