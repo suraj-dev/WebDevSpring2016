@@ -12,6 +12,7 @@
             vm.removeField = removeField;
             vm.edit = edit;
             vm.update = updateField;
+
             FieldService
                 .getFieldsForForm(formId)
                 .then(function(response) {
@@ -183,11 +184,31 @@
         }
 
         function updateField(field) {
-            var updatedField;
             if(!field.placeholder) {
-                    updatedField = {
-                        label: field.label
-                    };
+
+                    if(!field.options) {
+                        updatedField = {
+                            label: field.label
+                        };
+                    }
+
+                    else {
+                        var updatedField;
+                        var opts = vm.options;
+                        var op = [];
+                        var fieldOpts = opts.split("\n");
+                        for(var i in fieldOpts) {
+                            var lv = fieldOpts[i].split(":");
+                            op.push({
+                               label : lv[0],
+                               value : lv[1]
+                            });
+                        }
+                        updatedField = {
+                            label: field.label,
+                            options : op
+                        };
+                    }
             }
             else {
                 updatedField = {
@@ -207,6 +228,10 @@
                     {
                         if(id == vm.fields[i]._id) {
                             vm.fields[i].label = field.label;
+
+                            if (vm.fields[i].options) {
+                                vm.fields[i].options = updatedField.options;
+                            }
                             if (vm.fields[i].placeholder) {
                                 vm.fields[i].placeholder = field.placeholder;
                             }

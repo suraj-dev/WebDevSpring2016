@@ -50,10 +50,20 @@ module.exports = function (db, mongoose, formModel) {
     function updateFieldById(fieldId, field, formId) {
 
         if(!field.placeholder) {
-            return FormModel.update(
-                {_id: formId, "fields._id": fieldId},
-                {$set: {"fields.$.label": field.label}}
-            );
+
+            if(!field.options) {
+                return FormModel.update(
+                    {_id: formId, "fields._id": fieldId},
+                    {$set: {"fields.$.label": field.label}}
+                );
+            }
+
+            else {
+                return FormModel.update(
+                    {_id: formId, "fields._id": fieldId},
+                    {$set: {"fields.$.label": field.label, "fields.$.options": field.options}}
+                );
+            }
         }
 
         else {
