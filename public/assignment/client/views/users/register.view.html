@@ -9,6 +9,7 @@
 
 <body>
 
+<div ng-show="model.error" class="alert alert-danger" role="alert">{{model.errors}}</div>
             <h1 class="page-header">Register</h1>
             <form class="form-horizontal">
                 <div class="form-group">
@@ -32,12 +33,12 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Email:</label>
                     <div class="col-sm-7">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="model.user.email">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="model.user.emails">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-7">
-                       <a href="#/profile" id="registerbtn" class="btn btn-default btn-primary btn-block" ng-click="model.register(model.user)">
+                       <a href="" id="registerbtn" class="btn btn-default btn-primary btn-block" ng-click="model.register(model.user)">
                            Register
                        </a>
                     </div>

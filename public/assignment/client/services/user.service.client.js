@@ -8,7 +8,9 @@
 
         var service = {
             findUserByUsername : findUserByUsername,
-            findUserByCredentials: findUserByCredentials,
+            login : login,
+            logout : logout,
+            register : register,
             findAllUsers: findAllUsers,
             createUser: createUser,
             deleteUserById: deleteUserById,
@@ -19,8 +21,16 @@
         return service;
 
 
-        function findUserByCredentials(username, password) {
-            return $http.get("/api/assignment/user?username=" + username + "&password=" + password);
+        function login(user) {
+            return $http.post("/api/assignment/login", user);
+        }
+
+        function logout() {
+            return $http.post("/api/assignment/logout");
+        }
+
+        function register(user) {
+            return $http.post("/api/assignment/register", user);
         }
 
         function findAllUsers(callback) {

@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($rootScope, UserService, $location) {
+    function RegisterController(UserService, $location) {
         var vm = this;
 
         vm.register = register;
@@ -14,22 +14,30 @@
         }
         init();
 
-        function register(user) {
-            var usr = {
-                username: user.username,
-                password: user.password,
-                emails: [user.email]
-            };
-
-            UserService
-                .createUser(usr)
-                .then(function (response) {
-                    var newUser = response.data;
-                    console.log(newUser);
-                    UserService.setCurrentUser(newUser);
-                    $location.url("/profile");
-                });
-
+        function register(user)
+        {
+            if(user.password != user.verifyPassword || !user.password || !user.verifyPassword)
+            {
+                vm.error = "Your passwords don't match";
+            }
+            else
+            {
+                UserService
+                    .register(user)
+                    .then(
+                        function(response) {
+                            console.log(response.data);
+                            var user = response.data;
+                            if(user != null) {
+                                UserService.setCurrentUser(user);
+                                $location.url("/profile");
+                            }
+                        },
+                        function(err) {
+                            vm.error = err;
+                        }
+                    );
+            }
         }
     }
 })();

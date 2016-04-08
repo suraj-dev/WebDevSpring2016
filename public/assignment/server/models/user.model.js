@@ -47,15 +47,7 @@ module.exports = function (db, mongoose) {
     }
 
     function findUserByUsername(username) {
-        var deferred = q.defer();
-        UserModel.find({username : username}, function (err, doc) {
-            if (err) {
-                deferred.reject(err);
-            } else {
-                deferred.resolve(doc);
-            }
-        });
-        return deferred.promise;
+        return UserModel.findOne({username : username});
     }
 
     function findUserByCredentials(credentials) {

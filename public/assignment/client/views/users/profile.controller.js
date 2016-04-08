@@ -9,14 +9,14 @@
         var vm = this;
 
         function init() {
-            vm.username = $rootScope.currentUser.username;
-            vm.password = $rootScope.currentUser.password;
-            vm.email = $rootScope.currentUser.emails[0];
-            vm.firstName = $rootScope.currentUser.firstName;
-            vm.lastName = $rootScope.currentUser.lastName;
         }
         init();
 
+        vm.username = $rootScope.currentUser.username;
+        vm.password = $rootScope.currentUser.password;
+        vm.email = $rootScope.currentUser.emails[0];
+        vm.firstName = $rootScope.currentUser.firstName;
+        vm.lastName = $rootScope.currentUser.lastName;
 
         vm.update = update;
 
