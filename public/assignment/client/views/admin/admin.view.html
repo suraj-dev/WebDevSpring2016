@@ -15,45 +15,33 @@
                 <tr>
                     <th class="col-xs-3"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Username</th>
                     <th class="col-xs-3"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Password</th>
-                    <th class="col-xs-3"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Role</th>
-                    <th class="col-xs-3"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Action</th>
+                    <th class="col-xs-3"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> First Name</th>
+                    <th class="col-xs-3"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Last Name</th>
+                    <th class="col-xs-3"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Roles</th>
+                    <th class="col-xs-3"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Actions</th>
                 </tr>
                 <tr>
-                    <th><input class="form-control" type="text" name="usrname" placeholder="username"></th>
-                    <th><input class="form-control" type="password" name="passwd" placeholder="password"></th>
-                    <th><input class="form-control" type="text" name="role" placeholder="role1,role2"></th>
+                    <th><input class="form-control" type="text" name="usrname" placeholder="username" ng-model="model.user.username"></th>
+                    <th><input class="form-control" type="password" name="passwd" placeholder="password" ng-model="model.user.password"></th>
+                    <th><input class="form-control" type="text" name="fname" placeholder="first name" ng-model="model.user.firstName"></th>
+                    <th><input class="form-control" type="text" name="lname" placeholder="last name" ng-model="model.user.lastName"></th>
+                    <th><input class="form-control" type="text" name="role" placeholder="role1,role2" ng-model="model.user.roles"></th>
                     <th>
-                        <a href="#"><span class="glyphicon glyphicon-plus incrsize"></span></a>&nbsp;&nbsp;
-                        <a href="#"><span class="glyphicon glyphicon-ok incrsize"</span></a>
+                        <a href=""><span class="glyphicon glyphicon-plus incrsize" ng-click = "model.add(model.user)"></span></a>&nbsp;&nbsp;
+                        <a href=""><span class="glyphicon glyphicon-ok incrsize" ng-click = "model.update(model.user)"></span></a>
                     </th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>alice</td>
-                    <td></td>
-                    <td>student</td>
+                <tr ng-repeat = "user in model.users">
+                    <td>{{user.username}}</td>
+                    <td>{{user.password}}</td>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.roles}}</td>
                     <td>
-                        <a href="#"><span class="glyphicon glyphicon-remove incrsize"></span></a>&nbsp;&nbsp;
-                        <a href="#"><span class="glyphicon glyphicon-pencil incrsize"</span></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>bob</td>
-                    <td></td>
-                    <td>faculty | admin</td>
-                    <td>
-                        <a href="#"><span class="glyphicon glyphicon-remove incrsize"></span></a>&nbsp;&nbsp;
-                        <a href="#"><span class="glyphicon glyphicon-pencil incrsize"</span></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>charlie</td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a href="#"><span class="glyphicon glyphicon-remove incrsize"></span></a>&nbsp;&nbsp;
-                        <a href="#"><span class="glyphicon glyphicon-pencil incrsize"</span></a>
+                        <a href=""><span class="glyphicon glyphicon-remove incrsize" ng-click = "model.remove(user, $index)"></span></a>&nbsp;&nbsp;
+                        <a href=""><span class="glyphicon glyphicon-cog incrsize" ng-click = "model.select(user)"></span></a>
                     </td>
                 </tr>
                 </tbody>
