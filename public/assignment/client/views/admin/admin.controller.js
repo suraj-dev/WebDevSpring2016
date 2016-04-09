@@ -34,8 +34,15 @@
                 user.roles = user.roles.split(",");
             }
             UserService
-                .updateUserById(user._id, user)
-                .then(handleSuccess, handleError);
+                .updateUser(user._id, user)
+                .then(function(response) {
+                    for(var i in vm.users) {
+                        if(vm.users[i]._id === user._id) {
+                            user.roles = user.roles.toString();
+                            vm.users[i] = user;
+                        }
+                    }
+                });
         }
 
         function add(user)
@@ -52,14 +59,14 @@
 
         function select(user)
         {
-            vm.username = user.username;
-            vm.password = user.password;
-            vm.firstName = user.firstName;
-            vm.lastName = user.lastName;
-            vm.roles = user.roles.toString();
+            user.roles = user.roles.toString();
+            vm.user = user;
         }
 
         function handleSuccess(response) {
+            for(var i in response.data) {
+                response.data[i].roles = response.data[i].roles.toString();
+            }
             vm.users = response.data;
         }
 
