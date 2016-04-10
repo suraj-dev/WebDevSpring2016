@@ -4,16 +4,18 @@ var LocalStrategy    = require('passport-local').Strategy;
 module.exports = function(app, userModel) {
 
     var auth = authenticated;
-    app.post('/api/assignment/user', createUser);
-    app.get('/api/assignment/user', findAllUsers);
-    app.get('/api/assignment/user/:id', findUserById);
+    var loggedInUser;
+    app.post('/api/assignment/admin/user', isAdmin, createUser);
+    app.get('/api/assignment/admin/user', isAdmin, findAllUsers);
+    app.get('/api/assignment/admin/user/:id', isAdmin, findUserById);
     app.get('/api/assignment/user?username=:username', findUserByUsername);
     app.post('/api/assignment/login', passport.authenticate('local'), login);
     app.post('/api/assignment/logout', logout);
     app.get('/api/assignment/loggedin', loggedin);
     app.post('/api/assignment/register', register);
     app.put('/api/assignment/user/:id', updateUserById);
-    app.delete('/api/assignment/user/:id', deleteUserById);
+    app.put('/api/assignment/admin/user/:id', isAdmin, updateUserById);
+    app.delete('/api/assignment/admin/user/:id', isAdmin, deleteUserById);
 
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
@@ -52,6 +54,7 @@ module.exports = function(app, userModel) {
 
     function login(req, res) {
         var user = req.user;
+        loggedInUser = user;
         res.json(user);
     }
 
@@ -61,7 +64,16 @@ module.exports = function(app, userModel) {
     }
 
     function loggedin(req, res) {
-        res.send(req.isAuthenticated() ? req.user : '0');
+        if(req.isAuthenticated()) {
+
+            res.send(req.user);
+        }
+
+        else
+        {
+            res.send('0');
+        }
+
     }
 
     function register(req, res) {
@@ -119,10 +131,8 @@ module.exports = function(app, userModel) {
     }
 
     function findAllUsers(req, res) {
-        if(req.query.username && req.query.password) {
-            findUserByCredentials(req, res);
-        }
-        else if(req.query.username) {
+
+        if(req.query.username) {
             findUserByUsername(req, res);
         }
         else {
@@ -220,6 +230,18 @@ module.exports = function(app, userModel) {
             res.send(401);
         } else {
             next();
+        }
+    }
+
+    function isAdmin(req, res, next) {
+
+        if(req.isAuthenticated()) {
+            if(loggedInUser.roles.indexOf("admin") >= 0) {
+                next();
+            }
+        }
+        else {
+            res.send(403);
         }
     }
 };

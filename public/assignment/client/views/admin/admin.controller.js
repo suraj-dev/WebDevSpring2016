@@ -13,6 +13,8 @@
             vm.update = update;
             vm.add    = add;
             vm.select = select;
+            vm.sortType = 'username';
+            vm.sortReverse = false;
             UserService
                 .findAllUsers()
                 .then(handleSuccess, handleError);
@@ -34,7 +36,7 @@
                 user.roles = user.roles.split(",");
             }
             UserService
-                .updateUser(user._id, user)
+                .updateUserById(user._id, user)
                 .then(function(response) {
                     for(var i in vm.users) {
                         if(vm.users[i]._id === user._id) {

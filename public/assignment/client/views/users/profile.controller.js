@@ -10,9 +10,10 @@
 
         function init() {
 
+            console.log($rootScope.currentUser);
             vm.username = $rootScope.currentUser.username;
             vm.password = $rootScope.currentUser.password;
-            vm.email = $rootScope.currentUser.emails[0];
+            vm.email = $rootScope.currentUser.emails.toString();
             vm.firstName = $rootScope.currentUser.firstName;
             vm.lastName = $rootScope.currentUser.lastName;
         }
@@ -37,7 +38,7 @@
                     console.log(response.data);
                     $rootScope.currentUser.username = response.data.username;
                     $rootScope.currentUser.password = response.data.password;
-                    $rootScope.currentUser.emails[0] = response.data.emails[0];
+                    $rootScope.currentUser.emails = response.data.emails;
                     $rootScope.currentUser.firstName = response.data.firstName;
                     $rootScope.currentUser.lastName = response.data.lastName;
                 });
