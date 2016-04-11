@@ -11,21 +11,30 @@
 
         function init() {
         }
+
         init();
 
         function login(user) {
-            if(!user) {
+            if (!user) {
                 return;
             }
             console.log(user);
             UserService
                 .login(user)
-                .then(function(response){
-                    if(response.data) {
+                .then(function (response) {
+                    if (response.data) {
                         UserService.setCurrentUser(response.data);
                         $rootScope.data = response.data;
                         console.log(response.data);
-                        $location.url("/profile");
+
+                        if ($rootScope.currentUser.roles !== null
+                            && typeof($rootScope.currentUser.roles) !== 'undefined'
+                            && $rootScope.currentUser.roles.indexOf('admin') >= 0) {
+                            $location.url("/admin");
+                        }
+                        else {
+                            $location.url("/profile");
+                        }
                     }
                     else {
                         vm.message = "Invalid credentials";
