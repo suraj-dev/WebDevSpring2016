@@ -7,6 +7,7 @@ var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
 var mongoose = require('mongoose');
 var connectionString = 'mongodb://127.0.0.1:27017/formmaker';
+var projectConnectionString = 'mongodb://127.0.0.1:27017/tourista';
 
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
     connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
@@ -17,6 +18,7 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 }
 
 var db = mongoose.connect(connectionString);
+/*var project_db = mongoose.connect(projectConnectionString);*/
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
@@ -37,5 +39,6 @@ app.get('/hello', function(req, res){
     res.send('hello world');
 });
 require("./public/assignment/server/app.js")(app, db , mongoose);
-require("./public/project/server/app.js")(app);
+/*require("./public/project/server/app.js")(app, project_db, mongoose);*/
+require("./public/project/server/app.js")(app)
 app.listen(port, ipaddress);

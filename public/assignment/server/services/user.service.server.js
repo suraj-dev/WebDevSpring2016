@@ -64,16 +64,7 @@ module.exports = function(app, userModel) {
     }
 
     function loggedin(req, res) {
-        if(req.isAuthenticated()) {
-
-            res.send(req.user);
-        }
-
-        else
-        {
-            res.send('0');
-        }
-
+        res.send(req.isAuthenticated() ? req.user : '0');
     }
 
     function register(req, res) {

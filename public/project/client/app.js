@@ -1,5 +1,5 @@
 (function(){
     'use strict';
     angular
-        .module("TouristaApp",['ngRoute', 'uiGmapgoogle-maps']);
+        .module("TouristaApp",['ngRoute', 'uiGmapgoogle-maps', 'angucomplete-alt']);
 })();

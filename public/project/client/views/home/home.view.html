@@ -4,8 +4,20 @@
 <div class="input-group input-group-lg">
     <label class="input-group-addon" id="mainSearchLabel"><i>Take me to:</i></label>
 
+    <!--<div angucomplete-alt
+         placeholder="Name of a City,State or Country"
+         pause="500"
+         selected-object="selectedUser"
+         remote-url="https://en.wikivoyage.org/w/api.php?action=opensearch&format=json&callback=callbackfn&search="
+         remote-url-response-formatter="formatResponse"
+         title-field="location"
+         minlength="2"
+         input-class="form-control"
+         match-class="highlight">
+    </div>-->
     <input class="form-control" ng-model="model.searchtxt" type="text" id="mainsearch" placeholder="Name of a City,State or Country">
              <span class="input-group-btn">
         <button class="btn btn-primary" ng-click="model.search(model.searchtxt)" type="button">Search</button>
                  </span>
+
 </div>
