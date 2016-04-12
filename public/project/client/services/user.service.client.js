@@ -30,6 +30,7 @@
         }
 
         function createUser(user) {
+            console.log(user);
             return $http.post('/api/project/user', user);
         }
 
