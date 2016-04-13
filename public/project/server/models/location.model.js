@@ -1,6 +1,9 @@
-var mock = require('./location.mock.json');
+var q = require("q");
 
-module.exports = function () {
+module.exports = function (db, mongoose) {
+
+    var locationSchema = require('./location.schema.server.js')(mongoose);
+    var locationModel = mongoose.model('location', locationSchema);
     var api = {
         findFavoritedUsers: findFavoritedUsers,
         createFavoritedUser : createFavoritedUser
@@ -9,24 +12,27 @@ module.exports = function () {
     return api;
 
     function findFavoritedUsers(locationId) {
-        for (var l in mock) {
-            if (mock[l]._id === locationId) {
-                return mock[l].favoritedUsers;
+        var deferred = q.defer();
+
+        locationModel.findOne({locationId : locationId},function(err, doc) {
+            if(err) {
+                deferred.reject(err);
             }
-        }
-        return null;
+            else {
+                deferred.resolve(doc);
+            }
+        });
+
+        return deferred.promise;
     }
 
-    function createFavoritedUser(locationId, userId) {
-        for (var l in mock) {
-            if (mock[l]._id === locationId) {
-                mock[l].favoritedUsers.push(userId);
-                return mock[l].favoritedUsers;
-            }
-
-        }
-        mock[l]._id = locationId;
-        mock[l].favoritedUsers = [userId];
-        return mock[l].favoritedUsers;
+    function createFavoritedUser(locationId, user) {
+        return locationModel.findOne({locationId: locationId})
+            .then(
+                function (location) {
+                    location.favoritedUsers.push(user);
+                    return location.save();
+                }
+            );
     }
 };

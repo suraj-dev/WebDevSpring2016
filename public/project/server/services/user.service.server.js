@@ -11,11 +11,9 @@ module.exports = function(app, userModel) {
     function createUser(req, res) {
         var usr = req.body;
         usr.roles = ["user"];
-        console.log("User service server: ", usr);
         var user = userModel.createUser(usr)
             .then(
                 function(doc) {
-                    console.log(doc);
                     res.json(doc);
                 },
 
@@ -125,7 +123,16 @@ module.exports = function(app, userModel) {
     function userFavoritesLocation(req, res) {
         var userId = Number(req.params.id);
         var location = req.body;
-        var favoriteLocations = userModel.userFavoritesLocation(userId, location);
-        res.json(favoriteLocations);
+        var favoriteLocations = userModel.userFavoritesLocation(userId, location)
+            .then(
+                function (doc) {
+                    console.log(doc);
+                    res.json(doc.favoriteLocations);
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 };

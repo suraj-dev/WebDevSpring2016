@@ -1,18 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="en" ng-app="TouristaApp">
 <head>
     <meta charset="utf-8">
     <title>Tourista</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <link rel="stylesheet" href="https://bootswatch.com/darkly/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="https://bootswatch.com/assets/css/custom.min.css">
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet"
+          href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
     <!-- Angular JS library from Google CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
@@ -41,23 +41,29 @@
     <script src="views/admin/admin.controller.js"></script>
 
 
-
-
 </head>
 <body ng-controller="MainController">
 
-<div ng-include="'views/header/header.view.html'">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div ng-include="'views/header/header.view.html'"></div>
+        </div>
+    </div>
 
-</div>
+    <div class="row">
 
 
-<div class="container" ng-view>
+        <div class="col-sm-12 main" ng-view>
 
-</div>
+        </div>
 
 
-<div ng-include="'views/footer/footer.view.html'">
+    </div>
 
+    <div ng-include="'views/footer/footer.view.html'">
+
+    </div>
 </div>
 </body>
 

@@ -1,5 +1,3 @@
-
-
 module.exports = function (db, mongoose) {
     var q = require("q");
     var projectUserSchema = require("./user.schema.server.js")(mongoose);
@@ -78,11 +76,8 @@ module.exports = function (db, mongoose) {
     function createUser(user) {
         // use q to defer the response
         var deferred = q.defer();
-        console.log("User model: ", user);
         // insert new user with mongoose user model's create()
         ProjectUserModel.create(user, function (err, doc) {
-            console.log(err);
-            console.log(doc);
             if (err) {
                 // reject promise if error
                 deferred.reject(err);
@@ -92,7 +87,6 @@ module.exports = function (db, mongoose) {
             }
 
         });
-        console.log(deferred.promise);
         // return a promise
         return deferred.promise;
     }
@@ -128,12 +122,12 @@ module.exports = function (db, mongoose) {
     }
 
     function userFavoritesLocation(userId, location) {
-        for (var u in mock) {
-            if (mock[u]._id === userId) {
-                mock[u].favoriteLocations.push(location);
-                console.log(mock[u]);
-                return mock[u].favoriteLocations;
-            }
-        }
+        return ProjectUserModel.findOne({_id: userId})
+            .then(
+                function (user) {
+                    user.favoriteLocations.push(user);
+                    return location.save();
+                }
+            );
     }
 };

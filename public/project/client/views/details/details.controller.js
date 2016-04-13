@@ -35,9 +35,10 @@
                             for (var key in response.data.query.pages) {
                                 if (response.data.query.pages.hasOwnProperty(key)) {
                                     imgUrl = response.data.query.pages[key].thumbnail.original;
-                                    $scope.getImage = function() {
+                                    vm.imgUrl = imgUrl;
+                                  /*  $scope.getImage = function() {
                                         return 'url(' + imgUrl + ')';
-                                    }
+                                    }*/
                                 }
                                 }
                         });
@@ -109,49 +110,6 @@
             vm.comments.splice(index, 1);
         }
 
-        vm.goToImageGallery = goToImageGallery;
-
-        function goToImageGallery(event) {
-            var id = $location.hash();
-            event.stopPropagation();
-            event.preventDefault();
-            $location.hash('imgGallery');
-            $anchorScroll();
-            $location.hash(id);
-        }
-
-        vm.goToGmaps = goToGmaps;
-
-        function goToGmaps(event) {
-            var id = $location.hash();
-            event.stopPropagation();
-            event.preventDefault();
-            $location.hash('gmaps');
-            $anchorScroll();
-            $location.hash(id);
-        }
-
-        vm.goToReviews = goToReviews;
-
-        function goToReviews(event) {
-            var id = $location.hash();
-            event.stopPropagation();
-            event.preventDefault();
-            $location.hash('reviews');
-            $anchorScroll();
-            $location.hash(id);
-        }
-
-        vm.goToPtsOfInterest = goToPtsOfInterest;
-
-        function goToPtsOfInterest(event) {
-            var id = $location.hash();
-            event.stopPropagation();
-            event.preventDefault();
-            $location.hash('ptsOfInterest');
-            $anchorScroll();
-            $location.hash(id);
-        }
 
         vm.userFavoritesLocation = userFavoritesLocation;
 
@@ -168,9 +126,10 @@
                 });
 
             LocationService
-                .postFavoritedUser(pageid, userId)
+                .postFavoritedUser(pageid, userId, $rootScope.currentUser.username)
                 .then(function(response) {
-                    var users = response.data;
+                    vm.favoritedUsers.push($rootScope.currentUser.username);
+                    /*var users = response.data;
                     var favoritedUsers = [];
                     for(var u in users) {
                         UserService
@@ -179,25 +138,34 @@
                                 favoritedUsers.push(response.data.username);
                             });
                     }
-                    vm.favoritedUsers = favoritedUsers;
+                    vm.favoritedUsers = favoritedUsers;*/
                 });
         }
 
         LocationService
             .findFavoritedUsers(pageid)
             .then(function(response) {
-               var users = response.data;
-                var favoritedUsers = [];
+                vm.favoritedUsers = response.data;
+                /*var favoritedUsers = [];
                 for(var u in users) {
                     UserService
                         .findUserById(users[u])
                         .then(function(response) {
                            favoritedUsers.push(response.data.username);
                         });
-                }
-                vm.favoritedUsers = favoritedUsers;
+                }*/
 
             });
+
+        vm.tab = 'info';
+
+        vm.setTab = function (tabId) {
+            vm.tab = tabId;
+        };
+
+        vm.isSet = function (tabId) {
+            return vm.tab === tabId;
+        };
 
     }
 })();

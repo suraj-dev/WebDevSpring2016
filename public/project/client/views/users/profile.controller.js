@@ -15,7 +15,6 @@
             vm.firstName = $rootScope.currentUser.firstName;
             vm.lastName = $rootScope.currentUser.lastName;
             vm.hometown = $rootScope.currentUser.hometown;
-            vm.dob = $rootScope.currentUser.dob.toISOString().substring(0,10);
         }
 
         init();
