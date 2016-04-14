@@ -1,48 +1,45 @@
-
-<!--<div class="thumbnail" ng-style="{ 'background-image' : getImage(), 'background-size' : '500px 500px' }">
-    </div>-->
-
-
 <div class="row">
-<div class="col-sm-8">
-    <h1>{{model.location_name}}</h1><!--</p>--> &nbsp;&nbsp;
-    <!--</div>-->
-    <div ng-hide="currentUser"><h4>Login to provide ratings, mark favorite and visited places</h4></div>
-<span class="rating" ng-show="currentUser">
+    <div class="col-sm-8">
+        <h1>{{model.location_name}} &nbsp;
+            <span class="rating" ng-show="currentUser">
 <span class="star"></span>
 <span class="star"></span>
 <span class="star"></span>
 <span class="star"></span>
 <span class="star"></span>
-</span>
-    &nbsp;<span><h4><a href="" ng-show="currentUser"><span ng-click="model.userFavoritesLocation()"
-                                                           class="glyphicon glyphicon-heart"></span></a>
-</h4></span> &nbsp; &nbsp; &nbsp;
-    <!--<a ng-click="model.goToImageGallery($event)">Image Gallery</a> &nbsp; <a ng-click="model.goToGmaps($event)">Google Maps</a> &nbsp; <a ng-click="model.goToReviews($event)">Reviews</a> &nbsp; <a ng-click="model.goToPtsOfInterest($event)">Points of Interest</a></h4></span>-->
-    <br>
-    <ul class="nav nav-pills">
-        <li role="presentation" ng-class="{active:model.isSet('info')}"><a href="" ng-click="model.setTab('info')">Information</a>
-        </li>
-        <li role="presentation" ng-class="{active:model.isSet('gallery')}"><a href="" ng-click="model.setTab('gallery')">Gallery</a>
-        </li>
-        <li role="presentation" ng-class="{active:model.isSet('maps')}"><a href="" ng-click="model.setTab('maps')">Maps</a>
-        </li>
-        <li role="presentation" ng-class="{active:model.isSet('poi')}"><a href="" ng-click="model.setTab('poi')">Points of
-            Interest</a></li>
-    </ul>
-</div>
+</span> &nbsp;<h3><a href="" ng-show="currentUser"><span ng-click="model.userFavoritesLocation()"
+                                                                class="glyphicon glyphicon-heart"></span></a></h3></h1><!--</p>--> &nbsp;&nbsp;
+        <!--</div>-->
+        <div ng-hide="currentUser"><h4>Login to provide ratings, mark favorite and visited places</h4></div>
+
+
+        &nbsp;
+    </h4></span> &nbsp; &nbsp; &nbsp;
+        <!--<a ng-click="model.goToImageGallery($event)">Image Gallery</a> &nbsp; <a ng-click="model.goToGmaps($event)">Google Maps</a> &nbsp; <a ng-click="model.goToReviews($event)">Reviews</a> &nbsp; <a ng-click="model.goToPtsOfInterest($event)">Points of Interest</a></h4></span>-->
+        <br>
+        <ul class="nav nav-pills">
+            <li role="presentation" ng-class="{active:model.isSet('info')}"><a href="" ng-click="model.setTab('info')">Information</a>
+            </li>
+            <li role="presentation" ng-class="{active:model.isSet('gallery')}"><a href=""
+                                                                                  ng-click="model.setTab('gallery')">Gallery</a>
+            </li>
+            <li role="presentation" ng-class="{active:model.isSet('maps')}"><a href=""
+                                                                               ng-click="model.setTab('maps')">Maps</a>
+            </li>
+            <li role="presentation" ng-class="{active:model.isSet('poi')}"><a href="" ng-click="model.setTab('poi')">Points
+                of
+                Interest</a></li>
+        </ul>
+    </div>
     <div class="col-sm-4">
         <div class="table-responsive">
-            <img id="locationPhoto" ng-src = {{model.imgUrl}}>
+            <img id="locationPhoto" ng-src={{model.imgUrl}}>
         </div>
     </div>
-    </div>
+</div>
 
 
-
-
-
-    <br>
+<br>
 
 <div ng-show="model.isSet('info')" ng-bind-html="model.location_content">
 
@@ -74,13 +71,13 @@
         </div>
     </div>
 </div>
-<div class="map2">
+
 <div id="map" class="nobg"></div>
-<ui-gmap-google-map ng-show="model.isSet('maps')" center='map.center' zoom='map.zoom'>
+<ui-gmap-google-map center='map.center' zoom='map.zoom'>
     <ui-gmap-marker idkey="marker.id" coords='marker.location'>
     </ui-gmap-marker>
 </ui-gmap-google-map>
-</div>
+
 <br>
 
 <h2>Users who have favorited this location:</h2>

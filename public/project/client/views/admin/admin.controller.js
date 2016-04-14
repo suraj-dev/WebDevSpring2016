@@ -1,55 +1,80 @@
 (function() {
+    'use strict';
     angular
         .module("TouristaApp")
         .controller("AdminController", adminController);
 
-    function adminController(UserService, $scope) {
-        UserService.findAllUsers(function(response) {
-           $scope.users = response;
-        });
+    function adminController(UserService) {
 
-        $scope.addUser = function() {
-            var user= {
-                username : $scope.usrname,
-                password : $scope.passwd,
-                roles : $scope.role
-            };
-            UserService.createUser(user, function(response) {
-                //$scope.users.push(response);
-            });
-        };
+        var vm = this;
 
-        var selectedUserId = -1;
+        function init() {
+            vm.remove = remove;
+            vm.update = update;
+            vm.add    = add;
+            vm.select = select;
+            vm.sortType = 'username';
+            vm.sortReverse = false;
+            UserService
+                .findAllUsers()
+                .then(handleSuccess, handleError);
+        }
+        init();
 
-        $scope.selectUser = selectUser;
-
-        function selectUser(index) {
-            $scope.usrname = $scope.users[index].username;
-            $scope.role = $scope.users[index].roles;
-            selectedUserId = $scope.users[index]._id;
+        function remove(user, index)
+        {
+            UserService
+                .deleteUserById(user._id)
+                .then(function(response) {
+                    vm.users.splice(index,1);
+                });
         }
 
-        $scope.updateUser = updateUser;
-
-        function updateUser() {
-            var newUser = {
-                username : $scope.usrname,
-                password : $scope.passwd,
-                roles : $scope.role
-            };
-
-            UserService.updateUser(selectedUserId, newUser, function(response) {
-
-            });
+        function update(user)
+        {
+            if(user.roles) {
+                user.roles = user.roles.split(",");
+            }
+            UserService
+                .updateUser(user._id, user)
+                .then(function(response) {
+                    for(var i in vm.users) {
+                        if(vm.users[i]._id === user._id) {
+                            user.roles = user.roles.toString();
+                            vm.users[i] = user;
+                        }
+                    }
+                });
         }
 
-        $scope.deleteUser = deleteUser;
-
-        function deleteUser(index) {
-            var user_id = $scope.users[index]._id;
-            UserService.deleteUserById(user_id, function(response) {
-                $scope.users.splice(index,1);
-            });
+        function add(user)
+        {
+            if(user.roles) {
+                user.roles = user.roles.split(",");
+            }
+            UserService
+                .createUser(user)
+                .then(function(response) {
+                    vm.users.push(response.data);
+                });
         }
+
+        function select(user)
+        {
+            user.roles = user.roles.toString();
+            vm.user = user;
+        }
+
+        function handleSuccess(response) {
+            for(var i in response.data) {
+                response.data[i].roles = response.data[i].roles.toString();
+            }
+            vm.users = response.data;
+        }
+
+        function handleError(error) {
+            vm.error = error;
+        }
+
     }
 })();

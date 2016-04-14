@@ -126,7 +126,6 @@ module.exports = function(app, userModel) {
         var favoriteLocations = userModel.userFavoritesLocation(userId, location)
             .then(
                 function (doc) {
-                    console.log(doc);
                     res.json(doc.favoriteLocations);
                 },
 

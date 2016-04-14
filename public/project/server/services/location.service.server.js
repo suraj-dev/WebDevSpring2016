@@ -7,7 +7,6 @@ module.exports = function (app, locationModel) {
         var favoritedUsers = locationModel.findFavoritedUsers(locationId)
             .then(
                 function (doc) {
-                    console.log(doc);
                     res.json(doc.favoritedUsers);
                 },
 

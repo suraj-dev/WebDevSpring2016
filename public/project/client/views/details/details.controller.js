@@ -57,7 +57,7 @@
                                             center: {
                                                 latitude: results[0].geometry.location.lat(),
                                                 longitude: results[0].geometry.location.lng()
-                                            }, zoom: 8
+                                            }, zoom: 12
                                         };
                                         $scope.marker = {
                                             id: 0,
