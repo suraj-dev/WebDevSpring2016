@@ -227,6 +227,10 @@ body .no-padding {
     font-size: 700%;
 }
 
+#heartIcon {
+    color: red;
+}
+
 /*Below code is for search icon in searchbar*/
 
     /* enable absolute positioning */

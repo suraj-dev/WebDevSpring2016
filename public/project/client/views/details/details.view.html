@@ -7,10 +7,10 @@
 <span class="star"></span>
 <span class="star"></span>
 <span class="star"></span>
-</span> &nbsp;<h3><a href="" ng-show="currentUser"><span ng-click="model.userFavoritesLocation()"
-                                                                class="glyphicon glyphicon-heart"></span></a></h3></h1><!--</p>--> &nbsp;&nbsp;
+</span> &nbsp;<span><a href="" ng-show="currentUser"><i id="heartIcon" ng-click="model.userFavoritesLocation()"
+                                                                class="fa fa-heart"></i></a></span></h1><!--</p>--> &nbsp;&nbsp;
         <!--</div>-->
-        <div ng-hide="currentUser"><h4>Login to provide ratings, mark favorite and visited places</h4></div>
+        <div ng-hide="currentUser"><h4><a href="#/login">Login</a> to provide ratings, mark favorite and visited places</h4></div>
 
 
         &nbsp;
@@ -31,7 +31,7 @@
                 Interest</a></li>
         </ul>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4" ng-show="model.isSet('info')">
         <div class="table-responsive">
             <img id="locationPhoto" ng-src={{model.imgUrl}}>
         </div>
@@ -47,11 +47,13 @@
 <div ng-show="model.isSet('gallery')">
     <h2 id="imgGallery">Image Gallery:</h2>
 
+    <div class="table-responsive">
     <iframe
             class="nobg embed-responsive-item"
             ng-src={{model.imgSrc}}
-            frameborder="0" width="350" height="500" scrolling="yes" marginwidth="0" marginheight="0">
+            frameborder="2" width="700" height="500" scrolling="no" marginwidth="0" marginheight="0">
     </iframe>
+    </div>
 </div>
 <div ng-show="model.isSet('poi')">
     <h2 id="ptsOfInterest">Points of Interest:</h2>

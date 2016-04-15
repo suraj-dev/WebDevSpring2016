@@ -1,6 +1,6 @@
 module.exports = function (app, locationModel) {
     app.get('/api/project/location/:id/favuser', findFavoritedUsers);
-    app.put('/api/project/location/:locationid/favuser/:userid', createFavoritedUser);
+    app.post('/api/project/location/:locationid/favuser/:userid/:username', createFavoritedUser);
 
     function findFavoritedUsers(req, res) {
         var locationId = Number(req.params.id);
@@ -17,9 +17,10 @@ module.exports = function (app, locationModel) {
     }
 
     function createFavoritedUser(req, res) {
-        var locationId = Number(req.params.locationid);
-        var userId = Number(req.params.userid);
-        var username = req.body;
+
+        var locationId = req.params.locationid;
+        var userId = req.params.userid;
+        var username = req.params.username;
         var user = {
             userId : userId,
             username : username
@@ -27,6 +28,7 @@ module.exports = function (app, locationModel) {
         var favoritedUsers = locationModel.createFavoritedUser(locationId, user)
             .then(
                 function (doc) {
+                    console.log(doc);
                     res.json(doc);
                 },
 

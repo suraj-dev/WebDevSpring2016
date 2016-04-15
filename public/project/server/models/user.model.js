@@ -122,12 +122,40 @@ module.exports = function (db, mongoose) {
     }
 
     function userFavoritesLocation(userId, location) {
-        return ProjectUserModel.findOne({_id: userId})
+        /*return ProjectUserModel.findById(userId)
             .then(
-                function (user) {
-                    user.favoriteLocations.push(user);
-                    return location.save();
+                function (doc) {
+                    user.favoriteLocations.push(location);
+                    return doc.save();
                 }
-            );
+            );*/
+        var deferred = q.defer();
+
+
+        ProjectUserModel.findById(userId, function (err, doc) {
+
+            // reject promise if error
+            if (err) {
+                deferred.reject(err);
+            } else {
+
+                // add movie id to user likes
+                doc.favoriteLocations.push (location);
+
+                // save user
+                doc.save (function (err, doc) {
+
+                    if (err) {
+                        deferred.reject(err);
+                    } else {
+
+                        // resolve promise with user
+                        deferred.resolve (doc);
+                    }
+                });
+            }
+        });
+
+        return deferred.promise;
     }
 };

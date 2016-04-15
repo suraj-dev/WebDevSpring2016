@@ -78,7 +78,7 @@
         }
 
         function postFavoritedUser(locationId, userId, username) {
-            return $http.put('/api/project/location/' + locationId + '/favuser/' + userId, username);
+            return $http.post('/api/project/location/' + locationId + '/favuser/' + userId + '/' + username);
         }
 
     }

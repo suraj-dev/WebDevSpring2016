@@ -1,3 +1,4 @@
+
 module.exports = function(app, userModel) {
     app.post('/api/project/user', createUser);
     app.get('/api/project/user', findAllUsers);
@@ -6,7 +7,7 @@ module.exports = function(app, userModel) {
     app.get('/api/project/user?username=:username&password=:password', findUserByCredentials);
     app.put('/api/project/user/:id', updateUserById);
     app.delete('/api/project/user/:id', deleteUserById);
-    app.put('/api/project/user/:id/location', userFavoritesLocation);
+    app.put('/api/project/user/:userId/location', userFavoritesLocation);
 
     function createUser(req, res) {
         var usr = req.body;
@@ -121,11 +122,12 @@ module.exports = function(app, userModel) {
     }
 
     function userFavoritesLocation(req, res) {
-        var userId = Number(req.params.id);
+        var userId = req.params.userId;
         var location = req.body;
         var favoriteLocations = userModel.userFavoritesLocation(userId, location)
             .then(
                 function (doc) {
+                    console.log(doc);
                     res.json(doc.favoriteLocations);
                 },
 

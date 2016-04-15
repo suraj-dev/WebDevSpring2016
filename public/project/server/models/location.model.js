@@ -27,12 +27,49 @@ module.exports = function (db, mongoose) {
     }
 
     function createFavoritedUser(locationId, user) {
-        return locationModel.findOne({locationId: locationId})
-            .then(
-                function (location) {
-                    location.favoritedUsers.push(user);
-                    return location.save();
+        var deferred = q.defer();
+
+
+        locationModel.findOne({locationId: locationId},
+
+            function (err, doc) {
+
+                // reject promise if error
+                if (err) {
+                    deferred.reject(err);
                 }
-            );
+
+
+                if (doc) {
+
+                    doc.favoritedUsers.push (user);
+                    // save changes
+                    doc.save(function(err, doc){
+                        if (err) {
+                            deferred.reject(err);
+                        } else {
+                            deferred.resolve(doc);
+                        }
+                    });
+                } else {
+                    location = new locationModel({
+                        locationId : locationId,
+                        favoritedUsers : [],
+                        ratings : []
+                    });
+
+                    location.favoritedUsers.push (user);
+                    // save new instance
+                    location.save(function(err, doc) {
+                        if (err) {
+                            deferred.reject(err);
+                        } else {
+                            deferred.resolve(doc);
+                        }
+                    });
+                }
+            });
+
+        return deferred.promise;
     }
 };

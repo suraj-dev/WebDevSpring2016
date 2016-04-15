@@ -2,7 +2,7 @@ module.exports = function(mongoose) {
 
     var locationSchema = new mongoose.Schema({
         locationId : Number,
-        favoritedUsers : [{userId : Number, username: String}],
+        favoritedUsers : [{userId : String, username: String}],
         ratings : [Number]},
         {collection : 'location'});
 

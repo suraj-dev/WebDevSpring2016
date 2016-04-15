@@ -7,6 +7,12 @@
     function DetailsController($scope, $rootScope, $sce, $routeParams, LocationService, YelpAPIService, $location, $anchorScroll, UserService) {
 
         var vm = this;
+
+        function init() {
+
+        }
+        init();
+        vm.favoritedUsers = [];
         var imgUrl;
         var pageid = $routeParams.pageid;
         var pageTitle;
@@ -72,7 +78,7 @@
                                         vm.map = {center: {latitude: 45, longitude: -73}, zoom: 8};
                                     }
                                 });
-                                vm.imgSrc = $sce.trustAsResourceUrl("http://www.panoramio.com/wapi/template/photo_list.html?tag=" + pageTitle + "&amp;width=500&amp;height=500&amp;list_size=8&amp;position=bottom&amp;bgcolor=%2333");
+                                vm.imgSrc = $sce.trustAsResourceUrl("http://www.panoramio.com/wapi/template/photo_list.html?tag=" + pageTitle + "&amp;width=700&amp;height=500&amp;list_size=8&amp;position=bottom&amp;bgcolor=%2333");
                                 YelpAPIService.request_yelp(pageTitle)
                                     .then(function (response) {
                                     console.log(response);
@@ -128,7 +134,7 @@
             LocationService
                 .postFavoritedUser(pageid, userId, $rootScope.currentUser.username)
                 .then(function(response) {
-                    vm.favoritedUsers.push($rootScope.currentUser.username);
+                   vm.favoritedUsers.push($rootScope.currentUser.username);
                     /*var users = response.data;
                     var favoritedUsers = [];
                     for(var u in users) {
