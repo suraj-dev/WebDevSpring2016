@@ -22,9 +22,9 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
-
+console.log(process.env);
 app.use(session({
-    secret: 'this is a secret',
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
 }));
