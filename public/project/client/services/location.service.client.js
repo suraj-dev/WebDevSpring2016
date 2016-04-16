@@ -6,8 +6,6 @@
 
     function locationService($http, $templateCache) {
 
-        var comments = [];
-
         var service = {
             findLocationByTitle: findLocationByTitle,
             findLocationByID: findLocationByID,
@@ -49,20 +47,11 @@
         }
 
         function findComments(locationId) {
-            var commentsForLocation = [];
-            for (var com in comments) {
-                if (comments[com].locationId === locationId)
-                {
-                    commentsForLocation.push(comments[com]);
-                }
-            }
-
-            return commentsForLocation;
+            return $http.get('/api/project/location/' + locationId + '/comment');
         }
 
-        function postComment(comment) {
-            comments.push(comment);
-            return comment;
+        function postComment(locationId, comment) {
+            return $http.post('/api/project/location/' + locationId + '/comment', comment);
         }
 
         function getCoverImage(pageid) {

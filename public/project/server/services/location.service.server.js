@@ -1,6 +1,8 @@
 module.exports = function (app, locationModel) {
     app.get('/api/project/location/:id/favuser', findFavoritedUsers);
     app.post('/api/project/location/:locationid/favuser/:userid/:username', createFavoritedUser);
+    app.post('/api/project/location/:locationid/comment', createComment);
+    app.get('/api/project/location/:locationid/comment', findAllComments);
 
     function findFavoritedUsers(req, res) {
         var locationId = Number(req.params.id);
@@ -36,5 +38,35 @@ module.exports = function (app, locationModel) {
                     res.status(400).send(err);
                 }
             );
+    }
+
+    function createComment(req ,res) {
+        var locationId = req.params.locationid;
+        var comment = req.body;
+        var com = locationModel.createComment(locationId, comment)
+            .then(
+                function (doc) {
+                    res.json(doc);
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+
+    }
+
+    function findAllComments(req, res) {
+        var locationId = req.params.locationid;
+        var coms = locationModel.findAllComments(locationId)
+            .then(
+                function (doc) {
+                    res.json(doc);
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
     }
 };

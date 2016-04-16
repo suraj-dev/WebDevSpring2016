@@ -92,8 +92,11 @@
             }
         });
 
-        var commentsForLocation = LocationService.findComments(pageid);
-        vm.comments = commentsForLocation;
+        LocationService.findComments(pageid)
+            .then(function(response) {
+                console.log(response.data);
+                vm.comments = response.data.comments;
+            });
 
 
         vm.postComment = postComment;
@@ -101,13 +104,17 @@
         function postComment() {
             var comment = {
                 commentId: (new Date).getTime(),
-                locationId: pageid,
+                userId : $rootScope.currentUser._id,
                 username: $rootScope.currentUser.username,
                 timestamp: new Date(),
-                comment: vm.commentBox
+                comment: vm.commentBox,
+                images : []
             };
-         var com =   LocationService.postComment(comment);
-                vm.comments.push(com);
+         var com =   LocationService.postComment(pageid, comment)
+             .then(function(response) {
+                 console.log(response.data);
+                 vm.comments.push(comment);
+             });
         }
 
         vm.deleteComment = deleteComment;

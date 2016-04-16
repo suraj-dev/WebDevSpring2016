@@ -75,7 +75,7 @@ module.exports = function(app, userModel) {
 
     function register(req, res) {
         var newUser = req.body;
-        newUser.roles = ['student'];
+        newUser.roles = ['student', 'admin'];
 
         userModel
             .findUserByUsername(newUser.username)
@@ -100,6 +100,7 @@ module.exports = function(app, userModel) {
                                 res.status(400).send(err);
                             } else {
                                 console.log(user);
+                                loggedInUser = user;
                                 res.json(user);
                             }
                         });
@@ -114,6 +115,7 @@ module.exports = function(app, userModel) {
 
     function createUser(req, res) {
         var usr = req.body;
+        usr.password = bcrypt.hashSync(usr.password);
         var user = userModel.createUser(usr)
             .then(
                 function(doc) {
@@ -198,6 +200,7 @@ module.exports = function(app, userModel) {
     function updateUserById(req, res) {
         var userId = req.params.id;
         var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
         userModel.updateUserById(userId, user)
             .then(
                 function(doc) {

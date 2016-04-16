@@ -6,7 +6,9 @@ module.exports = function (db, mongoose) {
     var locationModel = mongoose.model('location', locationSchema);
     var api = {
         findFavoritedUsers: findFavoritedUsers,
-        createFavoritedUser : createFavoritedUser
+        createFavoritedUser : createFavoritedUser,
+        createComment : createComment,
+        findAllComments : findAllComments
     };
 
     return api;
@@ -55,7 +57,8 @@ module.exports = function (db, mongoose) {
                     location = new locationModel({
                         locationId : locationId,
                         favoritedUsers : [],
-                        ratings : []
+                        ratings : [],
+                        comments : []
                     });
 
                     location.favoritedUsers.push (user);
@@ -69,6 +72,69 @@ module.exports = function (db, mongoose) {
                     });
                 }
             });
+
+        return deferred.promise;
+    }
+
+    function createComment(locationId, comment) {
+        var deferred = q.defer();
+
+
+        locationModel.findOne({locationId: locationId},
+
+            function (err, doc) {
+
+                // reject promise if error
+                if (err) {
+                    deferred.reject(err);
+                }
+
+
+                if (doc) {
+
+                    doc.comments.push (comment);
+                    // save changes
+                    doc.save(function(err, doc){
+                        if (err) {
+                            deferred.reject(err);
+                        } else {
+                            deferred.resolve(doc);
+                        }
+                    });
+                } else {
+                    location = new locationModel({
+                        locationId : locationId,
+                        favoritedUsers : [],
+                        ratings : [],
+                        comments : []
+                    });
+
+                    location.comments.push (comment);
+                    // save new instance
+                    location.save(function(err, doc) {
+                        if (err) {
+                            deferred.reject(err);
+                        } else {
+                            deferred.resolve(doc);
+                        }
+                    });
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function findAllComments(locationId) {
+        var deferred = q.defer();
+
+        locationModel.findOne({locationId : locationId},function(err, doc) {
+            if(err) {
+                deferred.reject(err);
+            }
+            else {
+                deferred.resolve(doc);
+            }
+        });
 
         return deferred.promise;
     }

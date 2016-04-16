@@ -102,15 +102,15 @@
                                 class="fa fa-picture-o"></i></a></li>
                     </ul>
                     <button type="submit" class="btn btn-success green" ng-click="model.postComment()"><i
-                            class="fa fa-share"></i> Share
+                            class="fa fa-share"></i> Post
                     </button>
                 </form>
             </div><!-- Status Upload  -->
         </div><!-- Widget Area -->
     </div>
-
 </div>
 
+<br>
 <!-- Displaying comments -->
 <div ng-repeat="comment in model.comments">
     <div class="row">
@@ -124,7 +124,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <a href="#/profile"><strong>{{comment.username}}</strong></a> <span class="text-muted">{{comment.timestamp}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span
-                        class="glyphicon glyphicon-remove" ng-click="model.deleteComment($index)"></span>
+                        ng-show = 'comment.userId==currentUser._id' class="glyphicon glyphicon-remove" ng-click="model.deleteComment($index)"></span>
                 </div>
                 <div class="panel-body">
                     {{comment.comment}}
