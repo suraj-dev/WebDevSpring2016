@@ -10,8 +10,7 @@ module.exports = function(mongoose) {
             userId : String,
             username : String,
             timestamp : String,
-            comment : String,
-            images : Buffer
+            comment : String
         }
         ]},
         {collection : 'location'});

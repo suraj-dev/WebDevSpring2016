@@ -18,7 +18,7 @@
             else
             {
                 UserService
-                    .createUser(user)
+                    .register(user)
                     .then(
                         function(response) {
                             console.log(response.data);

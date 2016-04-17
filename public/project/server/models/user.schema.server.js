@@ -9,7 +9,8 @@ module.exports = function(mongoose) {
         hometown : String,
         dob : Date,
         favoriteLocations : [{locationId : Number, locationTitle : String}],
-        roles : [String]
+        roles : [String],
+        images : [{imageUrl : String}]
     }, {collection : 'projectUser'});
 
     return projectUserSchema;

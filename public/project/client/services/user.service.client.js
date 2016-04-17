@@ -10,6 +10,9 @@
             findUserByUsername : findUserByUsername,
             findUserByCredentials: findUserByCredentials,
             findAllUsers: findAllUsers,
+            login : login,
+            logout : logout,
+            register : register,
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
@@ -20,6 +23,17 @@
 
         return service;
 
+        function login(user) {
+            return $http.post("/api/project/login", user);
+        }
+
+        function logout() {
+            return $http.post("/api/project/logout");
+        }
+
+        function register(user) {
+            return $http.post("/api/project/register", user);
+        }
 
         function findUserByCredentials(username, password) {
             return $http.get("/api/project/user?username=" + username + "&password=" + password);

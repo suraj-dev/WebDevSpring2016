@@ -1,8 +1,13 @@
 module.exports = function (app, locationModel) {
+
+    var multer = require('multer');
+    var upload = multer({ dest: __dirname+'/../../../uploads' });
     app.get('/api/project/location/:id/favuser', findFavoritedUsers);
     app.post('/api/project/location/:locationid/favuser/:userid/:username', createFavoritedUser);
     app.post('/api/project/location/:locationid/comment', createComment);
     app.get('/api/project/location/:locationid/comment', findAllComments);
+    app.delete('/api/project/location/:locationid/comment/:commentid', deleteComment);
+
 
     function findFavoritedUsers(req, res) {
         var locationId = Number(req.params.id);
@@ -54,6 +59,20 @@ module.exports = function (app, locationModel) {
                 }
             );
 
+    }
+
+    function deleteComment(req, res) {
+        var locationId = req.params.locationid;
+        var commentId = req.params.commentid;
+        var del = locationModel.deleteComment(locationId, commentId)
+            .then(
+                function(doc) {
+                    res.status(200).send(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function findAllComments(req, res) {

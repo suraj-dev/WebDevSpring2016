@@ -31,9 +31,10 @@
                 Interest</a></li>
         </ul>
     </div>
+    <br>
     <div class="col-sm-4" ng-show="model.isSet('info')">
         <div class="table-responsive">
-            <img id="locationPhoto" ng-src={{model.imgUrl}}>
+            <img id="locationPhoto" class="img-thumbnail img-responsive" ng-src={{model.imgUrl}}>
         </div>
     </div>
 </div>
@@ -95,12 +96,12 @@
         <div class="widget-area no-padding blank">
             <div class="status-upload">
                 <form>
-                    <textarea placeholder="What are your thoughts about this place?"
+                    <textarea placeholder="What are your thoughts about this place? Click the icon below to add images"
                               ng-model="model.commentBox"></textarea>
-                    <ul>
-                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i
-                                class="fa fa-picture-o"></i></a></li>
-                    </ul>
+                   <!-- <ul>
+                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><input type="file"
+                                class="fa fa-picture-o"></a></li>
+                    </ul>-->
                     <button type="submit" class="btn btn-success green" ng-click="model.postComment()"><i
                             class="fa fa-share"></i> Post
                     </button>
@@ -110,6 +111,7 @@
     </div>
 </div>
 
+<br>
 <br>
 <!-- Displaying comments -->
 <div ng-repeat="comment in model.comments">
@@ -124,7 +126,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <a href="#/profile"><strong>{{comment.username}}</strong></a> <span class="text-muted">{{comment.timestamp}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span
-                        ng-show = 'comment.userId==currentUser._id' class="glyphicon glyphicon-remove" ng-click="model.deleteComment($index)"></span>
+                        ng-show = "comment.userId==currentUser._id || currentUser.roles.indexOf('admin')>=0" class="glyphicon glyphicon-remove" ng-click="model.deleteComment($index)"></span>
                 </div>
                 <div class="panel-body">
                     {{comment.comment}}

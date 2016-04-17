@@ -107,8 +107,7 @@
                 userId : $rootScope.currentUser._id,
                 username: $rootScope.currentUser.username,
                 timestamp: new Date(),
-                comment: vm.commentBox,
-                images : []
+                comment: vm.commentBox
             };
          var com =   LocationService.postComment(pageid, comment)
              .then(function(response) {
@@ -120,7 +119,13 @@
         vm.deleteComment = deleteComment;
 
         function deleteComment(index) {
-            vm.comments.splice(index, 1);
+            var commentId = vm.comments[index].commentId;
+            LocationService.deleteComment(pageid, commentId)
+                .then(
+                    function(response) {
+                        vm.comments.splice(index, 1);
+                    }
+                );
         }
 
 

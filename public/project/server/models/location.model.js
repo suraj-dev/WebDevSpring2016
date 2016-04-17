@@ -8,7 +8,8 @@ module.exports = function (db, mongoose) {
         findFavoritedUsers: findFavoritedUsers,
         createFavoritedUser : createFavoritedUser,
         createComment : createComment,
-        findAllComments : findAllComments
+        findAllComments : findAllComments,
+        deleteComment : deleteComment
     };
 
     return api;
@@ -137,5 +138,12 @@ module.exports = function (db, mongoose) {
         });
 
         return deferred.promise;
+    }
+
+    function deleteComment(locationId, commentId) {
+        return locationModel.update(
+            {locationId: locationId},
+            {$pull: {'comments': {commentId: commentId}}}
+        );
     }
 };

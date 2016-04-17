@@ -15,6 +15,7 @@
             vm.firstName = $rootScope.currentUser.firstName;
             vm.lastName = $rootScope.currentUser.lastName;
             vm.hometown = $rootScope.currentUser.hometown;
+            vm.images = $rootScope.currentUser.images;
         }
 
         init();

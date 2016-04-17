@@ -11,7 +11,8 @@ module.exports = function (db, mongoose) {
         findUserByCredentials : findUserByCredentials,
         deleteUserById : deleteUserById,
         updateUserById : updateUserById,
-        userFavoritesLocation : userFavoritesLocation
+        userFavoritesLocation : userFavoritesLocation,
+        uploadImage : uploadImage
     };
 
     return api;
@@ -157,5 +158,12 @@ module.exports = function (db, mongoose) {
         });
 
         return deferred.promise;
+    }
+
+    function uploadImage(username, img) {
+        return ProjectUserModel.update(
+            {username : username},
+            {$push : {images : img}}
+        );
     }
 };
