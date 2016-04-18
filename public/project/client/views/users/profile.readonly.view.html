@@ -1,0 +1,46 @@
+<h1 class="page-header">{{model.user.firstName}}&nbsp;{{model.user.lastName}}&nbsp;</h1>
+<button type="button" class="btn btn-primary" ng-click="model.followUser()">Follow</button>
+<div ng-show="model.followMessage" class="alert alert-success" role="alert">{{model.followMessage}}</div>
+
+<div class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-2 control-label label-left">Username:</label>
+        <div class="col-sm-7">
+            {{model.user.username}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Email:</label>
+        <div class="col-sm-7">
+            {{model.user.emails}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Hometown:</label>
+        <div class="col-sm-7">
+            {{model.user.hometown}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Date of Birth:</label>
+        <div class="col-sm-7">
+            {{model.user.dob | date:"MM/dd/yyyy"}}
+        </div>
+    </div>
+    <div class="form-group" ng-show="currentUser.favoriteLocations">
+        <label class="col-sm-2 control-label">Favorite Places:</label>
+        <ul ng-repeat="location in model.user.favoriteLocations">
+            <li><a href="#/details/{{location.locationId}}">{{location.locationTitle}}</a></li>
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">No of followers:</label>
+
+    </div>
+
+    <!--<div class="form-group">
+        <label class="col-sm-2 control-label">Images Uploaded:</label>
+        <img ng-repeat="img in model.user.images" ng-src={{img.imageUrl}} class="img-thumbnail img-responsive">
+    </div>-->
+</div>

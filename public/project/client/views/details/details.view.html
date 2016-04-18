@@ -65,9 +65,10 @@
                     <img ng-src="{{poi.image_url}}" alt="">
                     <div class="caption">
                         <h4>{{poi.name}}</h4>
-                        <div ng-repeat="addr in poi.display_address">
-                            <p>{{addr}}</p>
+                        <div ng-repeat="addr in poi.location.display_address">
+                            {{addr}}
                         </div>
+                        {{poi.display_phone}}
                     </div>
                 </div>
             </div>
@@ -86,7 +87,7 @@
 <h2>Users who have favorited this location:</h2>
 <p ng-hide="currentUser">Login to see users who have favorited this location</p>
 <ul ng-repeat="user in model.favoritedUsers track by $index" ng-show="currentUser">
-    <li>{{user.username}}</li>
+    <li><a href="#/profile/{{user.userId}}">{{user.username}}</a></li>
 </ul>
 <h2 id="reviews">Reviews</h2>
 <h4 ng-hide="currentUser">Sign in to post reviews</h4>
@@ -98,10 +99,12 @@
                 <form>
                     <textarea placeholder="What are your thoughts about this place? Click the icon below to add images"
                               ng-model="model.commentBox"></textarea>
-                   <!-- <ul>
-                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><input type="file"
-                                class="fa fa-picture-o"></a></li>
-                    </ul>-->
+                    <ul>
+                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"></a></li>
+                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"></a></li>
+                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"></a></li>
+                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"></a></li>
+                    </ul>
                     <button type="submit" class="btn btn-success green" ng-click="model.postComment()"><i
                             class="fa fa-share"></i> Post
                     </button>
@@ -116,16 +119,16 @@
 <!-- Displaying comments -->
 <div ng-repeat="comment in model.comments">
     <div class="row">
-        <div class="col-sm-1">
+        <!--<div class="col-sm-1">
             <div class="thumbnail">
                 <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-            </div><!-- /thumbnail -->
-        </div><!-- /col-sm-1 -->
+            </div>&lt;!&ndash; /thumbnail &ndash;&gt;
+        </div>&lt;!&ndash; /col-sm-1 &ndash;&gt;-->
 
         <div class="col-sm-5">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="#/profile"><strong>{{comment.username}}</strong></a> <span class="text-muted">{{comment.timestamp}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span
+                    <a href="#/profile/{{comment.userId}}"><strong>{{comment.username}}</strong></a> <span class="text-muted">{{comment.timestamp | date:"MM/dd/yyyy 'at' h:mma"}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span
                         ng-show = "comment.userId==currentUser._id || currentUser.roles.indexOf('admin')>=0" class="glyphicon glyphicon-remove" ng-click="model.deleteComment($index)"></span>
                 </div>
                 <div class="panel-body">

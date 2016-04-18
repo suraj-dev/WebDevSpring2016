@@ -1,7 +1,6 @@
 <h1 class="page-header">Profile</h1>
 
 <div class="form-horizontal">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" height="200" width="200" class="thumbnail">
     <div class="form-group">
         <label for="inputName" class="col-sm-2 control-label label-left">Username:</label>
         <div class="col-sm-7">
@@ -52,8 +51,10 @@
     </div>
 
     <div class="form-group">
-        <label for="inputName3" class="col-sm-2 control-label">No of followers:</label>
-
+        <label for="inputName3" class="col-sm-2 control-label">Following:</label>
+        <ul ng-repeat="user in model.following">
+            <li><a href="#/profile/{{user.userId}}">{{user.username}}</a></li>
+        </ul>
     </div>
 
     <div class="form-group">
@@ -70,7 +71,11 @@
 
     <div class="form-group">
         <label for="inputName3" class="col-sm-2 control-label">Images Uploaded:</label>
-        <img ng-repeat="img in model.images" ng-src={{img.imageUrl}} class="img-thumbnail img-responsive">
+        <div class="row">
+            <div class="col-sm-8">
+        <img ng-repeat="img in model.images" ng-src={{img.imageUrl}} class="img-thumbnail img-responsive imgs">
+            </div>
+        </div>
     </div>
 
     <div class="form-group">

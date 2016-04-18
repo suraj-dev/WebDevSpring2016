@@ -12,7 +12,8 @@ module.exports = function (db, mongoose) {
         deleteUserById : deleteUserById,
         updateUserById : updateUserById,
         userFavoritesLocation : userFavoritesLocation,
-        uploadImage : uploadImage
+        uploadImage : uploadImage,
+        followUser : followUser
     };
 
     return api;
@@ -165,5 +166,36 @@ module.exports = function (db, mongoose) {
             {username : username},
             {$push : {images : img}}
         );
+    }
+
+    function followUser(userId, otherUser) {
+        var deferred = q.defer();
+
+
+        ProjectUserModel.findById(userId, function (err, doc) {
+
+            // reject promise if error
+            if (err) {
+                deferred.reject(err);
+            } else {
+
+                // add movie id to user likes
+                doc.following.push (otherUser);
+
+                // save user
+                doc.save (function (err, doc) {
+
+                    if (err) {
+                        deferred.reject(err);
+                    } else {
+
+                        // resolve promise with user
+                        deferred.resolve (doc);
+                    }
+                });
+            }
+        });
+
+        return deferred.promise;
     }
 };

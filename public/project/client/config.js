@@ -23,6 +23,12 @@
                         loggedin: checkLoggedin
                     }
                 })
+                .when('/profile/:userId', {
+                    templateUrl: "views/users/profile.readonly.view.html",
+                    controller: "ProfileReadOnlyController",
+                    controllerAs : "model"
+
+                })
                 .when('/admin', {
                     templateUrl: "views/admin/admin.view.html",
                     controller: "AdminController",

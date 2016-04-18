@@ -10,7 +10,7 @@ module.exports = function(app, userModel) {
     var upload = multer({ dest: __dirname+'../../../uploads'});
     app.post('/api/project/user', isAdmin, createUser);
     app.get('/api/project/user', isAdmin, findAllUsers);
-    app.get('/api/project/user/:id', isAdmin, findUserById);
+    app.get('/api/project/user/:id', findUserById);
     app.post('/api/project/login', passport.authenticate('local'), login);
     app.post('/api/project/logout', logout);
     app.get('/api/project/loggedin', loggedin);
@@ -23,6 +23,7 @@ module.exports = function(app, userModel) {
     app.put('/api/project/admin/user/:id', isAdmin, updateUserById);
     app.delete('/api/project/admin/user/:id', isAdmin, deleteUserById);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
+    app.post("/api/project/user/:userid/follow", followUser);
 
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
@@ -295,5 +296,22 @@ module.exports = function(app, userModel) {
         else {
             res.send(403);
         }
+    }
+
+    function followUser(req, res) {
+        var otherUser = req.body;
+        var userId = req.params.userid;
+
+        userModel.followUser(userId, otherUser)
+            .then(
+                function (doc) {
+                    console.log(doc);
+                    res.json(doc);
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
     }
 };

@@ -18,7 +18,8 @@
             updateUser: updateUser,
             setCurrentUser : setCurrentUser,
             userFavoritesLocation : userFavoritesLocation,
-            findUserById : findUserById
+            findUserById : findUserById,
+            followUser : followUser
         };
 
         return service;
@@ -71,6 +72,10 @@
 
         function findUserById(userId) {
             return $http.get('/api/project/user/' + userId);
+        }
+
+        function followUser(otherUser, userId) {
+            return $http.post('/api/project/user/' + userId + '/follow', otherUser);
         }
     }
 })();

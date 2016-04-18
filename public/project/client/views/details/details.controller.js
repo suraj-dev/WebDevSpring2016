@@ -32,9 +32,11 @@
             $rootScope.data = response.data;
             vm.detailsbg = "detailsbg";
             for (var key in $rootScope.data.query.pages) {
+
                 if ($rootScope.data.query.pages.hasOwnProperty(key)) {
                     vm.location_name = $rootScope.data.query.pages[key].title;
                     vm.location_content = $sce.trustAsHtml($rootScope.data.query.pages[key].extract);
+
                     LocationService
                         .getCoverImage(pageid)
                         .then(function(response) {
@@ -79,9 +81,12 @@
                                     }
                                 });
                                 vm.imgSrc = $sce.trustAsResourceUrl("http://www.panoramio.com/wapi/template/photo_list.html?tag=" + pageTitle + "&amp;width=700&amp;height=500&amp;list_size=8&amp;position=bottom&amp;bgcolor=%2333");
+
                                 YelpAPIService.request_yelp(pageTitle)
                                     .then(function (response) {
                                     console.log(response);
+                                        var yelpInfo = response.data;
+                                        console.log(yelpInfo);
                                     $rootScope.yelpInfo = response.data;
                                 });
                                 break;
