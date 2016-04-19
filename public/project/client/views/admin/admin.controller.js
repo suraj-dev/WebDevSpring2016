@@ -4,9 +4,10 @@
         .module("TouristaApp")
         .controller("AdminController", adminController);
 
-    function adminController(UserService) {
+    function adminController(UserService, $rootScope) {
 
         var vm = this;
+        var selectedUserId;
 
         function init() {
             vm.remove = remove;
@@ -23,11 +24,17 @@
 
         function remove(user, index)
         {
-            UserService
-                .deleteUserById(user._id)
-                .then(function(response) {
-                    vm.users.splice(index,1);
-                });
+            if(user._id !== $rootScope.currentUser._id) {
+                UserService
+                    .deleteUserById(user._id)
+                    .then(function (response) {
+                        vm.users.splice(index, 1);
+                        vm.error = null;
+                    });
+            }
+            else {
+                vm.error = "You cannot delete your current admin account while you are logged in";
+            }
         }
 
         function update(user)
@@ -36,12 +43,14 @@
                 user.roles = user.roles.split(",");
             }
             UserService
-                .updateUser(user._id, user)
+                .updateUser(selectedUserId, user)
                 .then(function(response) {
                     for(var i in vm.users) {
-                        if(vm.users[i]._id === user._id) {
-                            user.roles = user.roles.toString();
-                            vm.users[i] = user;
+                        if(vm.users[i]._id === selectedUserId) {
+                            console.log(response.data);
+                            var usr = response.data;
+                            usr.roles = usr.roles.toString();
+                            vm.users[i] = usr;
                         }
                     }
                 });
@@ -61,8 +70,13 @@
 
         function select(user)
         {
-            user.roles = user.roles.toString();
-            vm.user = user;
+            selectedUserId = user._id;
+            vm.roles = user.roles.toString();
+            vm.username = user.username;
+            vm.password = user.password;
+            vm.firstName = user.firstName;
+            vm.lastName = user.lastName;
+            vm._id = user._id;
         }
 
         function handleSuccess(response) {

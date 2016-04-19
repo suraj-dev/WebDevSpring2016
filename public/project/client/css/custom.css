@@ -239,6 +239,10 @@ body .no-padding {
     height : 250px;
 }
 
+#commentRemoveIcon {
+    float : right;
+}
+
 /*Below code is for search icon in searchbar*/
 
     /* enable absolute positioning */

@@ -8,6 +8,7 @@
 <body>
 <h1 class="page-header">Admin</h1>
 <h2>Users</h2>
+<div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
 <div class="table-responsive">
     <table class="table table-striped table-bordered">
         <thead>
@@ -40,29 +41,29 @@
         <tr>
             <th>
                 <input class="form-control" type="text" name="usrname" placeholder="username"
-                       ng-model="model.user.username">
+                       ng-model="model.username">
             </th>
             <th>
                 <input class="form-control" type="password" name="passwd" placeholder="password"
-                       ng-model="model.user.password">
+                       ng-model="model.password">
             </th>
             <th>
                 <input class="form-control" type="text" name="fname" placeholder="first name"
-                       ng-model="model.user.firstName">
+                       ng-model="model.firstName">
             </th>
             <th>
                 <input class="form-control" type="text" name="lname" placeholder="last name"
-                       ng-model="model.user.lastName">
+                       ng-model="model.lastName">
             </th>
             <th>
                 <input class="form-control" type="text" name="role" placeholder="role1,role2"
-                       ng-model="model.user.roles">
+                       ng-model="model.roles">
             </th>
             <th>
                 <a href="">
-                    <span class="glyphicon glyphicon-plus incrsize" ng-click="model.add(model.user)"></span>
+                    <span class="glyphicon glyphicon-plus incrsize" ng-click="model.add(model)"></span>
                 </a>&nbsp;&nbsp;
-                <a href=""><span class="glyphicon glyphicon-ok incrsize" ng-click="model.update(model.user)"></span>
+                <a href=""><span class="glyphicon glyphicon-ok incrsize" ng-click="model.update(model)"></span>
                 </a>
             </th>
         </tr>

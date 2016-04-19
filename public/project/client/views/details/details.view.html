@@ -1,20 +1,14 @@
 <div class="row">
     <div class="col-sm-8">
-        <h1>{{model.location_name}} &nbsp;
-            <span class="rating" ng-show="currentUser">
-<span class="star"></span>
-<span class="star"></span>
-<span class="star"></span>
-<span class="star"></span>
-<span class="star"></span>
-</span> &nbsp;<span><a href="" ng-show="currentUser"><i id="heartIcon" ng-click="model.userFavoritesLocation()"
-                                                                class="fa fa-heart"></i></a></span></h1><!--</p>--> &nbsp;&nbsp;
+        <h1>{{model.location_name}}
+            &nbsp;<span><a href="" ng-show="currentUser"><i id="heartIcon" ng-click="model.userFavoritesLocation()"
+                                                            class="fa fa-heart"></i></a></span></h1><!--</p>--> &nbsp;&nbsp;
         <!--</div>-->
-        <div ng-hide="currentUser"><h4><a href="#/login">Login</a> to provide ratings, mark favorite and visited places</h4></div>
+        <div ng-hide="currentUser"><h4><a href="#/login">Login</a> to post reviews and mark favorite places</h4></div>
 
 
         &nbsp;
-    </h4></span> &nbsp; &nbsp; &nbsp;
+        </h4></span> &nbsp; &nbsp; &nbsp;
         <!--<a ng-click="model.goToImageGallery($event)">Image Gallery</a> &nbsp; <a ng-click="model.goToGmaps($event)">Google Maps</a> &nbsp; <a ng-click="model.goToReviews($event)">Reviews</a> &nbsp; <a ng-click="model.goToPtsOfInterest($event)">Points of Interest</a></h4></span>-->
         <br>
         <ul class="nav nav-pills">
@@ -29,6 +23,9 @@
             <li role="presentation" ng-class="{active:model.isSet('poi')}"><a href="" ng-click="model.setTab('poi')">Points
                 of
                 Interest</a></li>
+            <li role="presentation" ng-class="{active:model.isSet('reviews')}"><a href=""
+                                                                                  ng-click="model.setTab('reviews')">Reviews
+            </a></li>
         </ul>
     </div>
     <br>
@@ -49,11 +46,11 @@
     <h2 id="imgGallery">Image Gallery:</h2>
 
     <div class="table-responsive">
-    <iframe
-            class="nobg embed-responsive-item"
-            ng-src={{model.imgSrc}}
-            frameborder="2" width="700" height="500" scrolling="no" marginwidth="0" marginheight="0">
-    </iframe>
+        <iframe
+                class="nobg embed-responsive-item"
+                ng-src={{model.imgSrc}}
+                frameborder="2" width="700" height="500" scrolling="no" marginwidth="0" marginheight="0">
+        </iframe>
     </div>
 </div>
 <div ng-show="model.isSet('poi')">
@@ -61,10 +58,11 @@
     <div class="row">
         <div ng-repeat="poi in yelpInfo.businesses">
             <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img ng-src="{{poi.image_url}}" alt="">
+                <div class="thumbnail nobg">
+                    <img ng-src="{{poi.image_url}}" alt="Image not available" style="width: 50%">
                     <div class="caption">
                         <h4>{{poi.name}}</h4>
+                        <img ng-src="{{poi.rating_img_url}}">
                         <div ng-repeat="addr in poi.location.display_address">
                             {{addr}}
                         </div>
@@ -76,11 +74,12 @@
     </div>
 </div>
 
-<div id="map" class="nobg"></div>
+<div ng-hide="model.isSet('reviews') || model.isSet('poi') || model.isSet('gallery')">
 <ui-gmap-google-map center='map.center' zoom='map.zoom'>
     <ui-gmap-marker idkey="marker.id" coords='marker.location'>
     </ui-gmap-marker>
 </ui-gmap-google-map>
+</div>
 
 <br>
 
@@ -89,52 +88,61 @@
 <ul ng-repeat="user in model.favoritedUsers track by $index" ng-show="currentUser">
     <li><a href="#/profile/{{user.userId}}">{{user.username}}</a></li>
 </ul>
-<h2 id="reviews">Reviews</h2>
-<h4 ng-hide="currentUser">Sign in to post reviews</h4>
-<div class="row" ng-show="currentUser">
 
-    <div class="col-md-6">
-        <div class="widget-area no-padding blank">
-            <div class="status-upload">
-                <form>
-                    <textarea placeholder="What are your thoughts about this place? Click the icon below to add images"
+<div ng-show="model.isSet('reviews')">
+    <h2 id="reviews">Reviews</h2>
+    <h4 ng-hide="currentUser">Sign in to post reviews</h4>
+    <div class="row" ng-show="currentUser">
+
+        <div class="col-md-6">
+            <div class="widget-area no-padding blank">
+                <div class="status-upload">
+                    <form>
+                    <textarea placeholder="What are your thoughts about this place?"
                               ng-model="model.commentBox"></textarea>
-                    <ul>
-                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"></a></li>
-                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"></a></li>
-                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"></a></li>
-                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"></a></li>
-                    </ul>
-                    <button type="submit" class="btn btn-success green" ng-click="model.postComment()"><i
-                            class="fa fa-share"></i> Post
-                    </button>
-                </form>
-            </div><!-- Status Upload  -->
-        </div><!-- Widget Area -->
+                        <ul>
+                            <li><a title="" data-toggle="tooltip" data-placement="bottom"
+                                   data-original-title="Audio"></a></li>
+                            <li><a title="" data-toggle="tooltip" data-placement="bottom"
+                                   data-original-title="Video"></a></li>
+                            <li><a title="" data-toggle="tooltip" data-placement="bottom"
+                                   data-original-title="Sound Record"></a></li>
+                            <li><a title="" data-toggle="tooltip" data-placement="bottom"
+                                   data-original-title="Picture"></a></li>
+                        </ul>
+                        <button type="submit" class="btn btn-success green" ng-click="model.postComment()"><i
+                                class="fa fa-share"></i> Post
+                        </button>
+                    </form>
+                </div><!-- Status Upload  -->
+            </div><!-- Widget Area -->
+        </div>
     </div>
-</div>
 
-<br>
-<br>
-<!-- Displaying comments -->
-<div ng-repeat="comment in model.comments">
-    <div class="row">
-        <!--<div class="col-sm-1">
-            <div class="thumbnail">
-                <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-            </div>&lt;!&ndash; /thumbnail &ndash;&gt;
-        </div>&lt;!&ndash; /col-sm-1 &ndash;&gt;-->
+    <br>
+    <br>
+    <!-- Displaying comments -->
+    <div ng-repeat="comment in model.comments">
+        <div class="row">
+            <!--<div class="col-sm-1">
+                <div class="thumbnail">
+                    <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                </div>&lt;!&ndash; /thumbnail &ndash;&gt;
+            </div>&lt;!&ndash; /col-sm-1 &ndash;&gt;-->
 
-        <div class="col-sm-5">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a href="#/profile/{{comment.userId}}"><strong>{{comment.username}}</strong></a> <span class="text-muted">{{comment.timestamp | date:"MM/dd/yyyy 'at' h:mma"}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span
-                        ng-show = "comment.userId==currentUser._id || currentUser.roles.indexOf('admin')>=0" class="glyphicon glyphicon-remove" ng-click="model.deleteComment($index)"></span>
-                </div>
-                <div class="panel-body">
-                    {{comment.comment}}
-                </div><!-- /panel-body -->
-            </div><!-- /panel panel-default -->
-        </div><!-- /col-sm-5 -->
+            <div class="col-sm-5">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="#/profile/{{comment.userId}}"><strong>{{comment.username}}</strong></a> <span
+                            class="text-muted">{{comment.timestamp | date:"MM/dd/yyyy 'at' h:mma"}}</span><span
+                            ng-show="comment.userId==currentUser._id || currentUser.roles.indexOf('admin')>=0"
+                            class="glyphicon glyphicon-remove" ng-click="model.deleteComment($index)" id="commentRemoveIcon"></span>
+                    </div>
+                    <div class="panel-body">
+                        {{comment.comment}}
+                    </div><!-- /panel-body -->
+                </div><!-- /panel panel-default -->
+            </div><!-- /col-sm-5 -->
+        </div>
     </div>
 </div>

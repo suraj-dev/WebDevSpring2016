@@ -1,46 +1,43 @@
 <h1 class="page-header">{{model.user.firstName}}&nbsp;{{model.user.lastName}}&nbsp;</h1>
-<button type="button" class="btn btn-primary" ng-click="model.followUser()">Follow</button>
-<div ng-show="model.followMessage" class="alert alert-success" role="alert">{{model.followMessage}}</div>
+<button type="button" class="btn btn-primary" ng-click="followUser()">Follow</button>
+<div ng-show="model.alreadyFollowing" class="alert alert-danger" role="alert">{{model.alreadyFollowing}}</div>
 
 <div class="form-horizontal">
     <div class="form-group">
         <label class="col-sm-2 control-label label-left">Username:</label>
         <div class="col-sm-7">
-            {{model.user.username}}
+            <label class="control-label col-sm-2">{{model.user.username}}</label>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Email:</label>
         <div class="col-sm-7">
-            {{model.user.emails}}
+            <label class="control-label col-sm-2">{{model.user.emails}}</label>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Hometown:</label>
         <div class="col-sm-7">
-            {{model.user.hometown}}
+            <label class="control-label col-sm-2"{{model.user.hometown}}></label>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Date of Birth:</label>
         <div class="col-sm-7">
-            {{model.user.dob | date:"MM/dd/yyyy"}}
+            <label class="control-label col-sm-2">{{model.user.dob | date:"MM/dd/yyyy"}}</label>
         </div>
     </div>
     <div class="form-group" ng-show="currentUser.favoriteLocations">
         <label class="col-sm-2 control-label">Favorite Places:</label>
+        <div class="col-sm-7">
         <ul ng-repeat="location in model.user.favoriteLocations">
             <li><a href="#/details/{{location.locationId}}">{{location.locationTitle}}</a></li>
         </ul>
+        </div>
     </div>
 
     <div class="form-group">
-        <label class="col-sm-2 control-label">No of followers:</label>
-
-    </div>
-
-    <!--<div class="form-group">
         <label class="col-sm-2 control-label">Images Uploaded:</label>
         <img ng-repeat="img in model.user.images" ng-src={{img.imageUrl}} class="img-thumbnail img-responsive">
-    </div>-->
+    </div>
 </div>

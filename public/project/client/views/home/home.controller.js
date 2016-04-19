@@ -37,15 +37,10 @@
         };*/
 
         function search(location_name) {
-            LocationService
-                .findLocationByTitle(location_name)
-                .then(function(response) {
-                    console.log(response);
-                    $rootScope.data = response.data;
-                    if($rootScope.data != null) {
-                        $location.url('/searchresults');
-                    }
-                });
+            console.log(location_name);
+            if(location_name !== undefined) {
+                $location.url('/searchresults/' + location_name);
+            }
         }
     }
 })();

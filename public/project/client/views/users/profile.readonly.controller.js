@@ -32,17 +32,30 @@
         function followUser() {
 
             var otherUsr = {
-                username : otherUser.username,
-                userId : otherUser._id
+                username: otherUser.username,
+                userId: otherUser._id
             };
 
-            UserService
-                .followUser(otherUsr, $rootScope.currentUser._id)
-                .then(
-                    function(response) {
-                        vm.followMessage = "You are now following " + otherUser.username;
+            var userFollowed = false;
+
+            if ($rootScope.currentUser.following.length > 0) {
+                for (var i in $rootScope.currentUser.following) {
+                    if ($rootScope.currentUser.following[i].userId === otherUserId) {
+                        userFollowed = true;
+                        vm.alreadyFollowing = "You are already following this user";
                     }
-                )
+                }
+            }
+
+            if (userFollowed === false) {
+                UserService
+                    .followUser(otherUsr, $rootScope.currentUser._id)
+                    .then(
+                        function (response) {
+                            vm.followMessage = "You are now following " + otherUser.username;
+                        }
+                    )
+            }
         }
 
 

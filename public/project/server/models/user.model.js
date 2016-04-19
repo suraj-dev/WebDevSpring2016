@@ -140,7 +140,6 @@ module.exports = function (db, mongoose) {
             if (err) {
                 deferred.reject(err);
             } else {
-
                 // add movie id to user likes
                 doc.favoriteLocations.push (location);
 

@@ -26,7 +26,10 @@
                 .when('/profile/:userId', {
                     templateUrl: "views/users/profile.readonly.view.html",
                     controller: "ProfileReadOnlyController",
-                    controllerAs : "model"
+                    controllerAs : "model",
+                    resolve: {
+                        loggedin: checkCurrentUser
+                    }
 
                 })
                 .when('/admin', {
@@ -48,11 +51,17 @@
                 .when('/details/:pageid', {
                     templateUrl: "views/details/details.view.html",
                     controller: "DetailsController",
-                    controllerAs : "model"
+                    controllerAs : "model",
+                    resolve : {
+                        loggedin: checkCurrentUser
+                    }
                 })
-                .when('/searchresults', {
+                .when('/searchresults/:locationName', {
                     templateUrl: "views/searchresults/searchresults.view.html",
-                    controller: "SearchResultsController"
+                    controller: "SearchResultsController",
+                    resolve: {
+                        loggedin: checkCurrentUser
+                    }
                 })
                 .otherwise({
                     redirectTo: '/home'

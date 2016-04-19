@@ -45,16 +45,20 @@
     </div>
     <div class="form-group" ng-show="currentUser.favoriteLocations">
         <label for="inputName3" class="col-sm-2 control-label">Favorite Places:</label>
+        <div class="col-sm-7">
         <ul ng-repeat="location in currentUser.favoriteLocations">
             <li><a href="#/details/{{location.locationId}}">{{location.locationTitle}}</a></li>
         </ul>
+            </div>
     </div>
 
     <div class="form-group">
         <label for="inputName3" class="col-sm-2 control-label">Following:</label>
+        <div class="col-sm-7">
         <ul ng-repeat="user in model.following">
             <li><a href="#/profile/{{user.userId}}">{{user.username}}</a></li>
         </ul>
+            </div>
     </div>
 
     <div class="form-group">
@@ -63,8 +67,8 @@
               enctype="multipart/form-data">
         <label for="inputName3" class="col-sm-2 control-label">Upload image:</label>
         <div class="col-sm-7">
-            <input type="file" name ="myFile" class="form-control" id="inputName3">
-            <button type="submit" class="form-control">Upload</button>
+            <input type="file" name ="myFile" class="" id="inputName3">
+            <button type="submit" class="btn btn-default">Upload</button>
         </div>
             </form>
     </div>
