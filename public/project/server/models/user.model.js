@@ -13,7 +13,8 @@ module.exports = function (db, mongoose) {
         updateUserById : updateUserById,
         userFavoritesLocation : userFavoritesLocation,
         uploadImage : uploadImage,
-        followUser : followUser
+        followUser : followUser,
+        undoFavoriteLocation : undoFavoriteLocation
     };
 
     return api;
@@ -196,5 +197,12 @@ module.exports = function (db, mongoose) {
         });
 
         return deferred.promise;
+    }
+
+    function undoFavoriteLocation(userId, locationId) {
+        return ProjectUserModel.update(
+            {_id: userId},
+            {$pull: {'favoriteLocations': {locationId : locationId}}}
+        );
     }
 };

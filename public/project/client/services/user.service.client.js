@@ -19,7 +19,8 @@
             setCurrentUser : setCurrentUser,
             userFavoritesLocation : userFavoritesLocation,
             findUserById : findUserById,
-            followUser : followUser
+            followUser : followUser,
+            undoFavorite : undoFavorite
         };
 
         return service;
@@ -76,6 +77,10 @@
 
         function followUser(otherUser, userId) {
             return $http.post('/api/project/user/' + userId + '/follow', otherUser);
+        }
+
+        function undoFavorite(userId, locationId) {
+            return $http.delete('/api/project/user/' + userId +'/location/' + locationId + '/delete');
         }
     }
 })();

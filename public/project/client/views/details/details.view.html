@@ -1,8 +1,33 @@
 <div class="row">
     <div class="col-sm-8">
-        <h1>{{model.location_name}}
-            &nbsp;<span><a href="" ng-show="currentUser"><i id="heartIcon" ng-click="model.userFavoritesLocation()"
-                                                            class="fa fa-heart"></i></a></span></h1><!--</p>--> &nbsp;&nbsp;
+        <h1>
+            <span>
+                <div ng-show="currentUser">
+                <div ng-hide="model.favorited">
+                    <span>
+                        {{model.location_name}}
+                <a href="">
+                    <i id="heartIcon" ng-click="model.userFavoritesLocation()"
+                                                            class="glyphicon glyphicon-heart-empty">
+
+                    </i>
+                </a>
+            </span>
+                </div>
+                <div ng-show="model.favorited">
+            <span>
+                {{model.location_name}}
+                    <a href="">
+                    <i id="heartIcon"
+                       class="glyphicon glyphicon-heart" ng-click="model.undoFavorite()">
+
+                    </i>
+                </a>
+                </span>
+                </div>
+            </div>
+                </span>
+        </h1><!--</p>--> &nbsp;&nbsp;
         <!--</div>-->
         <div ng-hide="currentUser"><h4><a href="#/login">Login</a> to post reviews and mark favorite places</h4></div>
 

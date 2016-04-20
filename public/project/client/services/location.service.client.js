@@ -15,7 +15,8 @@
             getCoverImage: getCoverImage,
             findFavoritedUsers : findFavoritedUsers,
             postFavoritedUser : postFavoritedUser,
-            deleteComment : deleteComment
+            deleteComment : deleteComment,
+            undoFavorite : undoFavorite
         };
 
         return service;
@@ -73,6 +74,10 @@
 
         function deleteComment(locationId, commentId) {
             return $http.delete('/api/project/location/' + locationId + '/comment/' + commentId);
+        }
+
+        function undoFavorite(locationId, userId) {
+            return $http.delete('/api/project/location/' + locationId + '/user/' + userId + '/delete');
         }
 
     }

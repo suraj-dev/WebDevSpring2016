@@ -6,15 +6,27 @@
 
     function profileReadOnlyController($routeParams, UserService, $rootScope) {
         var vm = this;
+        vm.alreadyFollowing = null;
 
         function init() {
+            var otherUserId = $routeParams.userId;
+            if ($rootScope.currentUser.following.length > 0) {
+                for (var i in $rootScope.currentUser.following) {
+                    if ($rootScope.currentUser.following[i].userId === otherUserId) {
+                        vm.alreadyFollowing = "true";
+                    }
+                }
 
+                if(vm.alreadyFollowing !== "true") {
+                    vm.alreadyFollowing = null;
+                }
+            }
         }
 
         init();
 
-        var otherUser;
         var otherUserId = $routeParams.userId;
+        var otherUser;
         UserService
             .findUserById(otherUserId)
             .then(
@@ -42,7 +54,7 @@
                 for (var i in $rootScope.currentUser.following) {
                     if ($rootScope.currentUser.following[i].userId === otherUserId) {
                         userFollowed = true;
-                        vm.alreadyFollowing = "You are already following this user";
+                        vm.alreadyFollowing = "true";
                     }
                 }
             }
@@ -53,8 +65,9 @@
                     .then(
                         function (response) {
                             vm.followMessage = "You are now following " + otherUser.username;
+                            vm.alreadyFollowing = "true";
                         }
-                    )
+                    );
             }
         }
 

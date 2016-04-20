@@ -7,15 +7,27 @@
     function DetailsController($scope, $rootScope, $sce, $routeParams, LocationService, YelpAPIService, $location, $anchorScroll, UserService) {
 
         var vm = this;
-
+        var pageid;
+        vm.favorited = null;
         function init() {
+            pageid = $routeParams.pageid;
+            if ($rootScope.currentUser.favoriteLocations.length > 0) {
+                for (var i in $rootScope.currentUser.favoriteLocations) {
+                    if (pageid == $rootScope.currentUser.favoriteLocations[i].locationId.toString()) {
+                        vm.favorited = true;
+                        break;
+                    }
+                }
+                if(vm.favorited !== true) {
+                    vm.favorited = null;
+                }
 
+            }
         }
 
         init();
         vm.favoritedUsers = [];
         var imgUrl;
-        var pageid = $routeParams.pageid;
         var pageTitle;
         var userId;
         if ($rootScope.currentUser != null) {
@@ -177,6 +189,7 @@
                              }
                              vm.favoritedUsers = favoritedUsers;*/
                         });
+                    vm.favorited = true;
                 }
 
                 }
@@ -203,6 +216,7 @@
                          }
                          vm.favoritedUsers = favoritedUsers;*/
                     });
+                vm.favorited = true;
             }
 
 
@@ -212,14 +226,6 @@
             .findFavoritedUsers(pageid)
             .then(function (response) {
                 vm.favoritedUsers = response.data;
-                /*var favoritedUsers = [];
-                 for(var u in users) {
-                 UserService
-                 .findUserById(users[u])
-                 .then(function(response) {
-                 favoritedUsers.push(response.data.username);
-                 });
-                 }*/
 
             });
 
@@ -232,6 +238,32 @@
         vm.isSet = function (tabId) {
             return vm.tab === tabId;
         };
+
+        vm.undoFavorite = undoFavorite;
+
+        function undoFavorite() {
+            UserService
+                .undoFavorite($rootScope.currentUser._id, pageid)
+                .then(function(response) {
+                    for (var i in $rootScope.currentUser.favoriteLocations) {
+                        if (pageid == $rootScope.currentUser.favoriteLocations[i].locationId.toString()) {
+                            $rootScope.currentUser.favoriteLocations.splice(i, 1);
+                        }
+                    }
+                });
+
+            LocationService
+                .undoFavorite(pageid, $rootScope.currentUser._id)
+                .then(function(response) {
+                    for (var i in vm.favoritedUsers) {
+                        if ($rootScope.currentUser._id == vm.favoritedUsers[i].userId) {
+                            vm.favoritedUsers.splice(i, 1);
+                        }
+                    }
+            });
+
+            vm.favorited = null;
+        }
 
     }
 })();

@@ -7,6 +7,7 @@ module.exports = function (app, locationModel) {
     app.post('/api/project/location/:locationid/comment', createComment);
     app.get('/api/project/location/:locationid/comment', findAllComments);
     app.delete('/api/project/location/:locationid/comment/:commentid', deleteComment);
+    app.delete('/api/project/location/:locationId/user/:userId/delete', undoFavorite);
 
 
     function findFavoritedUsers(req, res) {
@@ -87,5 +88,21 @@ module.exports = function (app, locationModel) {
                     res.status(400).send(err);
                 }
             )
+    }
+
+    function undoFavorite(req, res) {
+        var locationId = req.params.locationId;
+        var userId = req.params.userId;
+
+        locationModel.undoFavorite(locationId, userId)
+            .then(
+                function (doc) {
+                    res.json(doc);
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 };

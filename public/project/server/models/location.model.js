@@ -9,7 +9,8 @@ module.exports = function (db, mongoose) {
         createFavoritedUser : createFavoritedUser,
         createComment : createComment,
         findAllComments : findAllComments,
-        deleteComment : deleteComment
+        deleteComment : deleteComment,
+        undoFavorite : undoFavorite
     };
 
     return api;
@@ -144,6 +145,13 @@ module.exports = function (db, mongoose) {
         return locationModel.update(
             {locationId: locationId},
             {$pull: {'comments': {commentId: commentId}}}
+        );
+    }
+
+    function undoFavorite(locationId, userId) {
+        return locationModel.update(
+            {locationId: locationId},
+            {$pull: {'favoritedUsers': {userId: userId}}}
         );
     }
 };

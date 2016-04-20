@@ -24,6 +24,7 @@ module.exports = function(app, userModel) {
     app.delete('/api/project/admin/user/:id', isAdmin, deleteUserById);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
     app.post("/api/project/user/:userid/follow", followUser);
+    app.delete("/api/project/user/:userId/location/:locationId/delete", undoFavorite);
 
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
@@ -305,7 +306,6 @@ module.exports = function(app, userModel) {
         userModel.followUser(userId, otherUser)
             .then(
                 function (doc) {
-                    console.log(doc);
                     res.json(doc);
                 },
 
@@ -313,5 +313,20 @@ module.exports = function(app, userModel) {
                     res.status(400).send(err);
                 }
             )
+    }
+
+    function undoFavorite(req, res) {
+        var locationId = req.params.locationId;
+        var userId = req.params.userId;
+        userModel.undoFavoriteLocation(userId, locationId)
+            .then(
+                function (doc) {
+                    res.json(doc);
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 };
