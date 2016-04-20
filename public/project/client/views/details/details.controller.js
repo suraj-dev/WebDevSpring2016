@@ -8,20 +8,21 @@
 
         var vm = this;
         var pageid;
-        vm.favorited = null;
         function init() {
             pageid = $routeParams.pageid;
-            if ($rootScope.currentUser.favoriteLocations.length > 0) {
-                for (var i in $rootScope.currentUser.favoriteLocations) {
-                    if (pageid == $rootScope.currentUser.favoriteLocations[i].locationId.toString()) {
-                        vm.favorited = true;
-                        break;
+            if ($rootScope.currentUser) {
+                if ($rootScope.currentUser.favoriteLocations.length > 0) {
+                    for (var i in $rootScope.currentUser.favoriteLocations) {
+                        if (pageid == $rootScope.currentUser.favoriteLocations[i].locationId.toString()) {
+                            vm.favorited = true;
+                            break;
+                        }
                     }
-                }
-                if(vm.favorited !== true) {
-                    vm.favorited = null;
-                }
+                    if (vm.favorited !== true) {
+                        vm.favorited = null;
+                    }
 
+                }
             }
         }
 
