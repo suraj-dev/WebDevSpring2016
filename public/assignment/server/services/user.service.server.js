@@ -1,10 +1,10 @@
-var passport         = require('passport');
+/*var passport         = require('passport');
  var LocalStrategy    = require('passport-local').Strategy;
- var bcrypt = require("bcrypt-nodejs");
+ var bcrypt = require("bcrypt-nodejs");*/
 
 module.exports = function(app, userModel) {
 
-    var auth = authenticated;
+    /*var auth = authenticated;
     var loggedInUser;
     app.post('/api/assignment/admin/user', isAdmin, createUser);
     app.get('/api/assignment/admin/user', isAdmin, findAllUsers);
@@ -245,5 +245,5 @@ module.exports = function(app, userModel) {
         else {
             res.send(403);
         }
-    }
+    }*/
 };
