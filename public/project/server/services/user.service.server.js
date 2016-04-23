@@ -1,10 +1,10 @@
-var passport         = require('passport');
+/*var passport         = require('passport');
 var LocalStrategy    = require('passport-local').Strategy;
-var bcrypt = require("bcrypt-nodejs");
+var bcrypt = require("bcrypt-nodejs");*/
 
 module.exports = function(app, userModel) {
 
-    var auth = authenticated;
+    /*var auth = authenticated;
     var loggedInUser;
     var multer = require('multer');
     var upload = multer({ dest: __dirname+'../../../uploads'});
@@ -328,5 +328,5 @@ module.exports = function(app, userModel) {
                     res.status(400).send(err);
                 }
             );
-    }
+    }*/
 };
