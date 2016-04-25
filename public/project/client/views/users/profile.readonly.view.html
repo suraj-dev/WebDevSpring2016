@@ -1,6 +1,11 @@
+<div class="row">
 <h1 class="page-header">{{model.user.firstName}}&nbsp;{{model.user.lastName}}&nbsp;</h1>
 <div ng-hide="model.alreadyFollowing">
 <button type="button"  class="btn btn-primary" ng-click="model.followUser()">Follow</button>
+</div>
+    <div ng-show="model.alreadyFollowing">
+    <button type="button" class="btn btn-primary" ng-click="model.unfollowUser()">Unfollow</button>
+    </div>
 </div>
 <div class="form-horizontal">
     <div class="form-group">
@@ -38,6 +43,6 @@
 
     <div class="form-group">
         <label class="col-sm-2 control-label">Images Uploaded:</label>
-        <img ng-repeat="img in model.user.images" ng-src={{img.imageUrl}} class="img-thumbnail img-responsive">
+        <img ng-repeat="img in model.user.images" ng-src={{img.imageUrl}} class="img-thumbnail img-responsive imgs">
     </div>
 </div>

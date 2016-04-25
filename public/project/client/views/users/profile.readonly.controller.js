@@ -71,6 +71,17 @@
             }
         }
 
+        vm.unfollowUser = unfollowUser;
+
+        function unfollowUser() {
+            UserService.unfollowUser($rootScope.currentUser._id, otherUser._id)
+                .then(
+                    function(response) {
+                        vm.alreadyFollowing = null;
+                    }
+                )
+        }
+
 
 
     }

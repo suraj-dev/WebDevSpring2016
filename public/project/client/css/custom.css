@@ -4,13 +4,17 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 body
 {
     background-color: inherit;
     padding-bottom: 70px;
+    min-height: 100%;
 }
 
 #pgheader

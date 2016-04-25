@@ -20,7 +20,8 @@
             userFavoritesLocation : userFavoritesLocation,
             findUserById : findUserById,
             followUser : followUser,
-            undoFavorite : undoFavorite
+            undoFavorite : undoFavorite,
+            unfollowUser : unfollowUser
         };
 
         return service;
@@ -81,6 +82,10 @@
 
         function undoFavorite(userId, locationId) {
             return $http.delete('/api/project/user/' + userId +'/location/' + locationId + '/delete');
+        }
+
+        function unfollowUser(userId, otherUserId) {
+            return $http.delete('/api/project/user/' + userId + '/unfollow/' + otherUserId);
         }
     }
 })();

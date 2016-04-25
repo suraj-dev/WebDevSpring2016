@@ -1,32 +1,21 @@
 <div class="row">
     <div class="col-sm-8">
+        <div style="display: inline-block">
         <h1>
-            <span>
-
-                    <span>
-                        {{model.location_name}}
-                        <div ng-show="currentUser && model.favorited == null">
-                <a href="">
+                        {{model.location_name}}<a ng-show="currentUser && model.favorited == null" href="">
                     <i id="heartIcon" ng-click="model.userFavoritesLocation()"
                                                             class="glyphicon glyphicon-heart-empty">
 
                     </i>
                 </a>
-                </div>
-                        </span>
-            <span>
-                <div ng-show="currentUser && model.favorited == true">
-                    <a href="">
+                    <a ng-show="currentUser && model.favorited == true" href="">
                     <i id="heartIcon"
                        class="glyphicon glyphicon-heart" ng-click="model.undoFavorite()">
 
                     </i>
                 </a>
-                </div>
-                </span>
-
-                </span>
-        </h1><!--</p>--> &nbsp;&nbsp;
+        </h1>
+        </div><!--</p>--> &nbsp;&nbsp;
         <!--</div>-->
         <div ng-hide="currentUser"><h4><a href="#/login">Login</a> to post reviews and mark favorite places</h4></div>
 

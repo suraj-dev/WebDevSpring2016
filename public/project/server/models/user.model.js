@@ -14,7 +14,8 @@ module.exports = function (db, mongoose) {
         userFavoritesLocation : userFavoritesLocation,
         uploadImage : uploadImage,
         followUser : followUser,
-        undoFavoriteLocation : undoFavoriteLocation
+        undoFavoriteLocation : undoFavoriteLocation,
+        unfollowUser : unfollowUser
     };
 
     return api;
@@ -203,6 +204,13 @@ module.exports = function (db, mongoose) {
         return ProjectUserModel.update(
             {_id: userId},
             {$pull: {'favoriteLocations': {locationId : locationId}}}
+        );
+    }
+
+    function unfollowUser(userId, otherUserId) {
+        return ProjectUserModel.update(
+            {_id: userId},
+            {$pull: {'following': {userId : otherUserId}}}
         );
     }
 };
