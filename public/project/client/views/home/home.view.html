@@ -2,7 +2,7 @@
     <h1 id="welcomePageTitle">Welcome to Tourista!</h1>
 </div>
 <div class="form-group">
-    <div class="row">
+    <!--<div class="row">
         <div class="col-sm-2">
             <h4><label for="mainsearch" class="label label-default" id="mainSearchLabel"><i>Take me to:</i></label></h4>
         </div>
@@ -15,21 +15,20 @@
             <button class="btn btn-primary btn-block btn-lg" ng-click="model.search(model.searchtxt)" type="button">Search</button>
         </div>
 
-    </div>
-
-
-    <!--<div angucomplete-alt
-         placeholder="Name of a City,State or Country"
-         pause="500"
-         selected-object="selectedUser"
-         remote-url="https://en.wikivoyage.org/w/api.php?action=opensearch&format=json&callback=callbackfn&search="
-         remote-url-response-formatter="formatResponse"
-         title-field="location"
-         minlength="2"
-         input-class="form-control"
-         match-class="highlight">
     </div>-->
 
+    <div class="row">
+        <div class="col-sm-2">
+            <h4><label for="mainsearch" class="label label-default" id="mainSearchLabel"><i>Take me to:</i></label></h4>
+        </div>
+    <div class="col-sm-8" id="mainsearch">
+    <autocomplete attr-class="autocomplete" ng-model="model.inputLocation" data="model.loc" attr-input-class="form-control input-lg" attr-placeholder="Name of a City, State or Country"></autocomplete>
+        </div>
+    <div class="col-sm-2">
+        <button class="btn btn-primary btn-block btn-lg" ng-click="model.search(model.inputLocation)" type="button">Search</button>
+    </div>
+
+</div>
 
 
 

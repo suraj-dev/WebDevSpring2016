@@ -27,7 +27,7 @@ module.exports = function(app, userModel) {
     app.delete("/api/project/user/:userId/location/:locationId/delete", undoFavorite);
     app.delete('/api/project/user/:userId/unfollow/:otherUserId', unfollowUser);
 
-    passport.use(new LocalStrategy(localStrategy));
+    passport.use('local', new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 

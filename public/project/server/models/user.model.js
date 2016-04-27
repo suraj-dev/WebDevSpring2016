@@ -49,7 +49,19 @@ module.exports = function (db, mongoose) {
     }
 
     function findUserByUsername(username) {
-        return ProjectUserModel.findOne({username : username});
+        var deferred = q.defer ();
+        ProjectUserModel
+            .findOne (
+                {username: username},
+                function (err, user) {
+                    if (!err) {
+                        deferred.resolve(user);
+                    } else {
+                        deferred.reject(err);
+                    }
+                }
+            );
+        return deferred.promise;
     }
 
     function findUserByCredentials(credentials) {

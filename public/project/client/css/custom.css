@@ -248,6 +248,10 @@ body .no-padding {
     float : right;
 }
 
+.searchBox {
+    padding: 0px;
+}
+
 /*Below code is for search icon in searchbar*/
 
     /* enable absolute positioning */
